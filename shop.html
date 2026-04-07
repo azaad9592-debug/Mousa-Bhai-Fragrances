@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Musa Bhai Fragrances</title>
+    <meta name="description" content="Explore our complete collection of premium luxury-inspired perfumes, traditional attars, and home fragrances.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <style>
+        .shop-page-header {
+            padding: 180px 0 60px;
+            background: var(--grad-luxury);
+            text-align: center;
+        }
+        .shop-grid-section {
+            padding: 80px 0 120px;
+            background: var(--black);
+        }
+        .shop-intro {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+        .shop-intro p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Ensure consistent image sizes in shop grid */
+        .product-item .img-wrapper {
+            height: 350px;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-item img {
+            height: 90%;
+            width: 90%;
+            object-fit: contain; /* Maintain aspect ratio without stretching */
+            padding: 10px;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="shop-page">
+    <!-- Premium Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <svg class="m-symbol" viewBox="0 0 100 100">
+                    <path d="M25 20 H75 V80 H25 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                    <path d="M35 65 V35 L50 50 L65 35 V65" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="50" cy="74" r="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="brand-name" style="letter-spacing: 5px;">MUSA BHAI</div>
+        </div>
+    </div>
+
+    <!-- Top Branding Bar -->
+    <div class="top-branding-bar">
+        <i class="fa-solid fa-gem"></i> Premium Quality Fragrances at Best Prices
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+        <div class="container nav-flex">
+            <div class="logo-wrapper">
+                <a href="index.html#home" class="luxury-logo">
+                    <div class="logo-icon">
+                        <svg class="m-symbol" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="48" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
+                            <path d="M30 65 V35 L50 50 L70 35 V65" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M40 22 Q50 16 60 22" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="brand-name">Musa Bhai</span>
+                        <span class="brand-subline">Fragrances</span>
+                    </div>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#collections">Collections</a>
+                <a href="shop.html" class="active" style="color:var(--gold) !important;">Shop</a>
+                <a href="info.html#about">About</a>
+                <a href="info.html#contact">Contact</a>
+            </nav>
+            <button id="mobile-toggle" class="mobile-only-toggle"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="shop-page-header">
+        <div class="container">
+            <h1 class="section-title">The Boutique</h1>
+            <div class="accent-line"></div>
+        </div>
+    </section>
+
+    <!-- Shop Grid -->
+    <section class="shop-grid-section">
+            <!-- New Attars Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">New Attars</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="new-attar-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="new-attar-viewport">
+                    <div id="new-attar-grid" class="product-grid shop-carousel single-row">
+                        <!-- New Attars will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="new-attar-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- New Arrivals Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">New Arrivals</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="new-arrivals-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="new-arrivals-viewport">
+                    <div id="new-arrivals-grid" class="product-grid shop-carousel single-row">
+                        <!-- New Arrivals will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="new-arrivals-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Fresh Attars Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Fresh Attars</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="fresh-attars-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="fresh-attars-viewport">
+                    <div id="fresh-attars-grid" class="product-grid shop-carousel single-row">
+                        <!-- Fresh Attars will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="fresh-attars-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Ajmal Brand Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Ajmal Brand</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="ajmal-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="ajmal-viewport">
+                    <div id="ajmal-perfume-grid" class="product-grid shop-carousel single-row">
+                        <!-- Ajmal products (Attars) will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="ajmal-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Surrati Brand Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">SURRATI</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="surrati-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="surrati-viewport">
+                    <div id="surrati-grid" class="product-grid shop-carousel single-row">
+                        <!-- Surrati products will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="surrati-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Afnan Brand Slider -->
+            <div class="slider-container shop-row-container" style="margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">AFNAN</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="afnan-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="afnan-viewport">
+                    <div id="afnan-grid" class="product-grid shop-carousel single-row">
+                        <!-- Afnan products will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="afnan-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Row 1 Slider -->
+            <div class="slider-container shop-row-container">
+                <h3 class="row-label">Curated Selection - Part I</h3>
+                <button class="slider-nav prev-btn" id="shop-prev-1" aria-label="Previous Row 1">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="shop-viewport-1">
+                    <div id="shop-grid-row-1" class="product-grid shop-carousel single-row">
+                        <!-- Row 1 products -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="shop-next-1" aria-label="Next Row 1">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Row 2 Slider -->
+            <div class="slider-container shop-row-container">
+                <h3 class="row-label">Curated Selection - Part II</h3>
+                <button class="slider-nav prev-btn" id="shop-prev-2" aria-label="Previous Row 2">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="shop-viewport-2">
+                    <div id="shop-grid-row-2" class="product-grid shop-carousel single-row">
+                        <!-- Row 2 products -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="shop-next-2" aria-label="Next Row 2">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Body Spray Slider -->
+            <div class="slider-container shop-row-container" style="margin-top: 80px; margin-bottom: 100px;">
+                <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Body Spray</h2>
+                <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
+                
+                <button class="slider-nav prev-btn" id="body-spray-prev" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="slider-viewport" id="body-spray-viewport">
+                    <div id="body-spray-grid" class="product-grid shop-carousel single-row">
+                        <!-- Body Sprays will be loaded via script.js -->
+                    </div>
+                </div>
+                <button class="slider-nav next-btn" id="body-spray-next" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Trust Badges -->
+            <div class="footer-trust-badges">
+                <div class="trust-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Secure Checkout</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fa-solid fa-award"></i>
+                    <span>Premium Quality</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fa-solid fa-medal"></i>
+                    <span>Trusted Brand</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Fast Shipping</span>
+                </div>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="luxury-logo" style="margin-bottom:20px;">
+                        <div class="logo-icon">
+                            <svg class="m-symbol" viewBox="0 0 100 100">
+                                <path d="M25 20 H75 V80 H25 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                                <path d="M35 65 V35 L50 50 L65 35 V65" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="50" cy="74" r="2.5" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            <span class="brand-name">MUSA BHAI</span>
+                            <span class="brand-subline">FRAGRANCES</span>
+                        </div>
+                    </div>
+                    <p>Luxury inspired scents that leave a lasting impression. Smell expensive, pay less.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/moosa__bhai_3?igsh=MWIwdDZkN29lYTNoOQ%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@musa_bhai_3" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://youtube.com/@moosa_perfumes" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/share/1FwWywycSQ/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Shop Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html"><i class="fa-solid fa-list-ul"></i> Full Collection</a></li>
+                        <li><a href="index.html#collections"><i class="fa-solid fa-crown"></i> Best Sellers</a></li>
+                        <li><a href="shop.html"><i class="fa-solid fa-sparkles"></i> New Arrivals</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="info.html#privacy"><i class="fa-solid fa-user-shield"></i> Data Integrity</a></li>
+                        <li><a href="info.html#terms"><i class="fa-solid fa-file-contract"></i> Terms of Engagement</a></li>
+                        <li><a href="info.html#refund"><i class="fa-solid fa-rotate-left"></i> Returns & Replacements</a></li>
+                        <li><a href="info.html#shipping"><i class="fa-solid fa-truck-fast"></i> Shipping Policy</a></li>
+                        <li><a href="info.html#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Trust & Help</h4>
+                    <ul class="footer-links trust-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Certified Authentic Purity</li>
+                        <li><i class="fa-solid fa-truck-fast"></i> Express Nationwide Logistics</li>
+                        <li><i class="fa-solid fa-lock"></i> AES-256 Encrypted Transactions</li>
+                        <li><i class="fa-brands fa-whatsapp"></i> 24/7 Concierge Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 Musa Bhai Fragrances. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Express Order</h2>
+                <p>Complete your details below to place your order via WhatsApp.</p>
+            </div>
+            <form id="orderForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-name">Full Name</label>
+                        <input type="text" id="cust-name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-phone">Phone Number</label>
+                        <input type="tel" id="cust-phone" placeholder="+92 300 1234567" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cust-email">Email Address</label>
+                        <input type="email" id="cust-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-city">City</label>
+                        <input type="text" id="cust-city" placeholder="Enter your city" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group" style="flex: 2;">
+                        <label for="prod-name">Product Name</label>
+                        <input type="text" id="prod-name" placeholder="Enter product name" required readonly>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="order-qty">Quantity</label>
+                        <input type="number" id="order-qty" min="1" value="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="del-address">Full Delivery Address</label>
+                    <textarea id="del-address" rows="4" placeholder="Enter your full address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="order-notes">Additional Notes (optional)</label>
+                    <textarea id="order-notes" rows="2" placeholder="Any special instructions?"></textarea>
+                </div>
+
+                <div class="order-actions" style="grid-template-columns: 1fr;">
+                    <button type="submit" id="place-order-top-btn" class="btn-luxury" style="width: 100%; border: none; cursor: pointer; padding: 20px; font-size: 15px;">
+                        <i class="fa-solid fa-check-double"></i> Place Order
+                    </button>
+                    <p style="text-align: center; font-size: 11px; opacity: 0.6; margin-top: 10px;">Your WhatsApp and Email apps will open to send the order.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923101131981" target="_blank" class="floating-whatsapp" aria-label="Order on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Live Order Popup Container -->
+    <div id="live-order-popup" class="live-order-popup">
+        <div class="order-user-img">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="order-info">
+            <b id="order-user-name">Ali from Karachi</b>
+            <span id="order-product-name">just ordered Tiger Black</span>
+        </div>
+    </div>
+
+    <script>
+        // Dynamic Filtering/Scrolling for categories
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cat = urlParams.get('cat');
+            if (cat) {
+                const targetId = cat === 'perfume' ? 'shop-viewport-1' : 
+                                 cat === 'attar' ? 'new-attar-viewport' : 
+                                 cat === 'body-spray' ? 'body-spray-viewport' : null;
+                if (targetId) {
+                    setTimeout(() => {
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            window.scrollTo({
+                                top: target.getBoundingClientRect().top + window.scrollY - 200,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 800);
+                }
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
