@@ -494,14 +494,14 @@ h1, h2, h3, h4 {
 }
 
 .hero-content h1 {
-    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
     line-height: 1.1;
     margin-bottom: 20px;
     color: #FFFFFF;
 }
 
 .hero-content p {
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 40px;
     max-width: 600px;
@@ -666,7 +666,7 @@ h1, h2, h3, h4 {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 800;
     color: var(--gold);
     text-transform: uppercase;
@@ -1168,7 +1168,7 @@ p {
     }
 
     .mobile-only-toggle {
-        display: block;
+        display: block !important;
     }
 
     .nav-links {
@@ -1231,6 +1231,19 @@ p {
         left: 15px;
         right: 15px;
         max-width: calc(100% - 30px);
+        z-index: 100; /* Ensure it doesn't cover main buttons if needed */
+    }
+
+    /* Fixed Desktop Hamburger Visibility */
+    .mobile-only-toggle {
+        display: block !important;
+    }
+}
+
+/* Ensure hamburger is hidden on high res */
+@media (min-width: 993px) {
+    .mobile-only-toggle {
+        display: none !important;
     }
 }
 
@@ -2193,3 +2206,4 @@ p {
         bottom: 92px;
         right: 20px;
     }
+}
