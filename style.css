@@ -769,85 +769,92 @@ h1, h2, h3, h4 {
 /* Product Section Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Smaller, more professional cards */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Balanced Desktop Width */
     gap: 15px;
     margin: 30px 0;
 }
 
 .product-item {
-    background: #fdfdfd; /* Clean nearly-white/grey background */
-    border-radius: 10px;
+    background: #ffffff; /* Clean Boutique White */
+    border-radius: 8px;
     overflow: hidden;
     padding: 10px;
     border: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100%;
+    cursor: pointer;
 }
 
 .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
     border-color: var(--gold);
 }
 
 .product-item .img-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Perfect Square Ratio like reference */
+    aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-bottom: 12px;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 10px; /* USER FIX: Space for full bottle visibility */
 }
 
 .product-item img {
-    width: 90%;
-    height: 90%;
-    object-fit: contain; /* USER FIX: Ensure complete product is visible */
-    transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* USER FIX: No cropping */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-item:hover img {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
 .floating-cart-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 34px;
-    height: 34px;
-    background: #C1272D; /* Scents N Stories Signature Red */
-    color: #fff;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    background: #c1272d;
+    color: #ffffff;
     border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 15px rgba(193, 39, 45, 0.3);
     cursor: pointer;
     z-index: 10;
     transition: 0.3s;
-    opacity: 0.9;
+    opacity: 0; /* Professional 'Back' reveal effect */
+    transform: translateY(-10px);
+}
+
+.product-item:hover .floating-cart-btn {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .floating-cart-btn:hover {
     background: #000;
     transform: scale(1.1);
-    opacity: 1;
 }
 
 .product-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: left; /* Alignment like reference */
+    text-align: left;
 }
 
 .meta-row {
@@ -1756,27 +1763,27 @@ p {
     font-weight: 600;
 }
 
-/* --- EXCLUSIVE SHOP SLIDER (Dual-Row Independent Carousel) --- */
+/* --- EXCLUSIVE SHOP SLIDER --- */
 .slider-container {
     position: relative;
-    padding: 0 80px;
-    max-width: 1600px;
+    padding: 0 60px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .shop-row-container {
-    margin-bottom: 80px; /* Space between row 1 and row 2 */
+    margin-bottom: 60px;
 }
 
-.row-label {
-    font-family: var(--font-heading);
+.slider-title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-align: center;
     color: var(--gold);
-    font-size: 1.4rem;
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-bottom: 20px;
-    text-align: center;
-    opacity: 0.9;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
 }
 
 .slider-viewport {
