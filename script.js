@@ -284,9 +284,9 @@ function generateProductCard(product) {
         <div class="product-item fade-up">
             <div class="img-wrapper" onclick="openProductViewModal('${safeName}')">
                 <img src="${product.image || placeholderImg}" alt="${product.name}" loading="lazy">
-                <div class="overlay-trigger">
-                    <span class="quick-view">Quick View</span>
-                </div>
+                <button onclick="event.stopPropagation(); addToCart('${safeName}')" class="floating-cart-btn" title="Add to Cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </button>
             </div>
             <div class="product-content">
                 <div class="meta-row">
@@ -301,11 +301,8 @@ function generateProductCard(product) {
                 </div>
                 
                 <div class="product-actions">
-                    <button onclick="addToCart('${safeName}')" class="btn-add-cart">
-                        <i class="fa-solid fa-cart-plus"></i> Cart
-                    </button>
                     <button onclick="openOrderModal('${safeName}')" class="btn-buy-now">
-                        <i class="fa-solid fa-bag-shopping"></i> Buy
+                        <i class="fa-solid fa-bag-shopping"></i> Order Now
                     </button>
                 </div>
             </div>
@@ -517,13 +514,13 @@ function init() {
 function initLoadingScreen() {
     const loader = document.getElementById('loading-screen');
     if (loader) {
-        // Small delay to ensure smooth transition
+        // Reduced delay for professional feel (Scents N Stories is fast)
         setTimeout(() => {
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.visibility = 'hidden';
-            }, 800);
-        }, 1200);
+            }, 600);
+        }, 300);
     }
 }
 
