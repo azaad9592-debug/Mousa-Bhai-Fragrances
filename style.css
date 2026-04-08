@@ -1204,6 +1204,9 @@ p {
 }
 
 @media (max-width: 576px) {
+    .hero-img img {
+        object-position: 70% center;
+    }
     .section {
         padding: 80px 0;
     }
