@@ -280,29 +280,14 @@ function generateProductCard(product) {
     // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     
-    return `
-        <div class="product-item fade-up">
-            <div class="img-wrapper" onclick="openProductViewModal('${safeName}')">
-                <img src="${product.image || placeholderImg}" alt="${product.name}" loading="lazy">
-                <div class="overlay-trigger">
-                    <span class="quick-view">Quick View</span>
+                <div class="product-actions">
+                    <button onclick="addToCart('${safeName}')" class="btn-add-cart">
+                        <i class="fa-solid fa-cart-plus"></i> Cart
+                    </button>
+                    <button onclick="openOrderModal('${safeName}')" class="btn-buy-now">
+                        <i class="fa-solid fa-bag-shopping"></i> Buy
+                    </button>
                 </div>
-            </div>
-            <div class="product-content">
-                <div class="meta-row">
-                    <span class="product-category">${product.category || 'Premium Collection'}</span>
-                    <span class="rating"><i class="fa-solid fa-star"></i> 5.0</span>
-                </div>
-                <h3 class="product-title">${product.name}</h3>
-                
-                <div class="price-row">
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <div class="old-price">Rs. ${oldPrice}</div>
-                </div>
-                
-                <button onclick="openOrderModal('${safeName}')" class="btn-buy-now">
-                    <i class="fa-solid fa-bag-shopping"></i> Buy Now
-                </button>
             </div>
         </div>
     `;
@@ -347,8 +332,10 @@ function handleScroll() {
 // --- INITIALIZATION ---
 function init() {
     console.log("Musa Bhai Fragrances: Engine Started.");
+    initTheme();
     renderProducts();
     injectCartUI();
+    injectThemeToggle();
     initAnimations();
     initAdminWidget(); // Live counter for admin
     
@@ -879,6 +866,58 @@ function injectCartUI() {
     }
 
     renderCartBadge();
+}
+
+// ============================================================
+// THEME MANAGEMENT
+// ============================================================
+function initTheme() {
+    const savedTheme = localStorage.getItem('musa_theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+}
+
+function injectThemeToggle() {
+    if (document.getElementById('theme-toggle-container')) return;
+    
+    const headerNav = document.querySelector('.nav-flex');
+    if (!headerNav) return;
+
+    const themeContainer = document.createElement('div');
+    themeContainer.id = 'theme-toggle-container';
+    themeContainer.className = 'theme-toggle-wrapper';
+    themeContainer.innerHTML = `
+        <button onclick="toggleTheme()" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
+            <i class="fa-solid ${document.body.classList.contains('light-theme') ? 'fa-moon' : 'fa-sun'}"></i>
+        </button>
+    `;
+    
+    // Find a good place to insert - after logo or before mobile toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    if (mobileToggle) {
+        headerNav.insertBefore(themeContainer, mobileToggle);
+    } else {
+        headerNav.appendChild(themeContainer);
+    }
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const isLight = body.classList.toggle('light-theme');
+    localStorage.setItem('musa_theme', isLight ? 'light' : 'dark');
+    
+    // Update Icons
+    const icon = document.querySelector('.theme-toggle-btn i');
+    if (icon) {
+        if (isLight) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
 }
 
 // Ensure init runs after DOM is ready
