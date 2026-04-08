@@ -766,35 +766,36 @@ h1, h2, h3, h4 {
     color: rgba(255, 255, 255, 0.03);
 }
 
-/* Product Section */
+/* Product Section Grid */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 15px; /* Tighter gap for professional feel */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Smaller, more professional cards */
+    gap: 15px;
     margin: 30px 0;
 }
 
 .product-item {
-    background: #f8f8f9; /* Subtle light background like reference */
-    border-radius: 12px;
+    background: #fdfdfd; /* Clean nearly-white/grey background */
+    border-radius: 10px;
     overflow: hidden;
-    padding: 12px;
-    border: 1px solid rgba(0,0,0,0.04);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 100%;
 }
 
 .product-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    border-color: rgba(212, 175, 55, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+    border-color: var(--gold);
 }
 
 .product-item .img-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Forced square ratio like reference */
+    aspect-ratio: 1 / 1; /* Perfect Square Ratio like reference */
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 12px;
@@ -806,30 +807,30 @@ h1, h2, h3, h4 {
 }
 
 .product-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure full product is visible */
-    transition: transform 0.6s ease;
+    width: 90%;
+    height: 90%;
+    object-fit: contain; /* USER FIX: Ensure complete product is visible */
+    transition: transform 0.5s ease;
 }
 
 .product-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .floating-cart-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 38px;
-    height: 38px;
-    background: var(--gold);
-    color: var(--black);
+    top: 8px;
+    right: 8px;
+    width: 34px;
+    height: 34px;
+    background: #C1272D; /* Scents N Stories Signature Red */
+    color: #fff;
     border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     cursor: pointer;
     z-index: 10;
     transition: 0.3s;
@@ -837,8 +838,7 @@ h1, h2, h3, h4 {
 }
 
 .floating-cart-btn:hover {
-    background: var(--black);
-    color: var(--gold);
+    background: #000;
     transform: scale(1.1);
     opacity: 1;
 }
@@ -847,14 +847,14 @@ h1, h2, h3, h4 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: left; /* Left aligned like reference */
+    text-align: left; /* Alignment like reference */
 }
 
 .meta-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .product-category {
@@ -1793,15 +1793,16 @@ p {
 }
 
 .shop-carousel {
-    display: flex; /* Flex is safer for non-overlap sliders */
+    display: flex;
     flex-wrap: nowrap;
-    gap: 20px;
+    gap: 15px;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shop-carousel .product-item {
-    flex: 0 0 calc(100% / 4.5); /* 4.5 items desktop */
+    flex: 0 0 calc(100% / 5); /* 5 items desktop for denser professional look */
     min-width: 220px;
+    max-width: 240px;
     height: auto;
     opacity: 1 !important;
     transform: none !important;
@@ -1850,24 +1851,28 @@ p {
 
 @media (max-width: 768px) {
     .slider-container { padding: 0 10px; }
-    .slider-nav { display: none; } /* Use swipe on mobile */
-    .shop-row-container { margin-bottom: 50px; }
+    .slider-nav { display: none; } 
+    .shop-row-container { margin-bottom: 40px; }
     .shop-carousel { 
-        gap: 12px;
+        gap: 10px;
     }
     .shop-carousel .product-item {
-        flex: 0 0 180px; /* Fixed size peek on mobile slider */
+        flex: 0 0 160px; /* Small professional cards for slider */
     }
     .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr) !important; /* FIXED MOBILE GRID */
+        gap: 10px;
     }
     .product-item {
-        padding: 8px;
+        padding: 6px;
+    }
+    .product-item .img-wrapper {
+        margin-bottom: 8px;
     }
     .product-title {
         font-size: 13px;
         height: 34px;
+        margin-bottom: 4px;
     }
     .product-price {
         font-size: 15px;
