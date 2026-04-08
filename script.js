@@ -280,6 +280,26 @@ function generateProductCard(product) {
     // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     
+    return `
+        <div class="product-item fade-up">
+            <div class="img-wrapper" onclick="openProductViewModal('${safeName}')">
+                <img src="${product.image || placeholderImg}" alt="${product.name}" loading="lazy">
+                <div class="overlay-trigger">
+                    <span class="quick-view">Quick View</span>
+                </div>
+            </div>
+            <div class="product-content">
+                <div class="meta-row">
+                    <span class="product-category">${product.category || 'Premium Collection'}</span>
+                    <span class="rating"><i class="fa-solid fa-star"></i> 5.0</span>
+                </div>
+                <h3 class="product-title">${product.name}</h3>
+                
+                <div class="price-row">
+                    <div class="product-price">Rs. ${product.price}</div>
+                    <div class="old-price">Rs. ${oldPrice}</div>
+                </div>
+                
                 <div class="product-actions">
                     <button onclick="addToCart('${safeName}')" class="btn-add-cart">
                         <i class="fa-solid fa-cart-plus"></i> Cart
