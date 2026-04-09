@@ -537,6 +537,56 @@ header {
     width: 100%;
 }
 
+/* --- HEADER CART BUTTON --- */
+.header-cart-btn {
+    background: transparent;
+    border: 1px solid var(--border-luxury);
+    color: var(--gold);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-elite);
+    margin: 0 15px;
+}
+
+.header-cart-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.header-cart-btn i {
+    font-size: 18px;
+}
+
+#cart-count-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--gold-premium);
+    color: var(--black);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--black);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 /* ELITE HERO SECTION */
 .hero {
     height: 100vh;
@@ -856,7 +906,7 @@ header {
     display: flex;
     flex-direction: column;
     position: relative;
-    height: auto; /* Reduced length */
+    height: auto; /* COMPACT LENGTH */
     backdrop-filter: blur(5px);
 }
 
