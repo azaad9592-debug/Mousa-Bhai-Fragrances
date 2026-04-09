@@ -2,6 +2,7 @@
     /* ELITE LUXURY DARK PALETTE */
     --gold: #D4AF37;
     --gold-premium: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
+    --gold-silk: linear-gradient(135deg, #B8860B 0%, #F1D57F 50%, #8B4513 100%); /* New Satin Gold */
     --black: #050505;
     --deep-grey: #121212;
     --card-bg: rgba(255, 255, 255, 0.03);
@@ -393,6 +394,40 @@ h1, h2, h3, h4 {
 }
 
 
+/* --- ELITE ANNOUNCEMENT BAR --- */
+.announcement-bar {
+    background: #000;
+    color: var(--gold);
+    padding: 10px 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-content span {
+    padding-right: 80px;
+}
+
+.marquee-content span i {
+    margin-right: 10px;
+}
+
+@keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
 /* --- ELITE LUXURY HEADER --- */
 header {
     background: rgba(5, 5, 5, 0.9);
@@ -447,7 +482,10 @@ header {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.8rem;
-    color: var(--gold);
+    background: var(--gold-silk);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 4px;
     line-height: 1;
@@ -812,13 +850,13 @@ header {
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    padding: 12px;
+    padding: 10px; /* Reduced for compactness */
     border: 1px solid var(--border-luxury);
     transition: var(--transition-elite);
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 100%;
+    height: auto; /* Reduced length */
     backdrop-filter: blur(5px);
 }
 
@@ -849,6 +887,33 @@ header {
     height: 100%;
     object-fit: contain;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+}
+
+/* Image Sheen Animation (JAN) */
+.img-wrapper::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 45%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg) translate(-100%, -100%);
+    transition: 0.6s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.product-item:hover .img-wrapper::after {
+    transform: rotate(45deg) translate(20%, 20%);
 }
 
 .product-item:hover img {
@@ -945,23 +1010,17 @@ header {
 }
 
 .product-actions {
-    margin-top: 18px;
-    transform: translateY(20px);
-    opacity: 0;
+    margin-top: 15px;
+    opacity: 1; /* USER FIX: Always visible */
     transition: 0.4s var(--transition-elite);
-}
-
-.product-item:hover .product-actions {
-    transform: translateY(0);
-    opacity: 1;
 }
 
 .btn-buy-now {
     width: 100%;
-    padding: 10px;
-    background: var(--gold-premium);
-    color: var(--black);
-    border: none;
+    padding: 12px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold); /* USER FIX: Professional visible button */
     border-radius: 4px;
     font-weight: 800;
     font-size: 11px;
@@ -972,8 +1031,10 @@ header {
 }
 
 .btn-buy-now:hover {
-    filter: brightness(1.2);
-    transform: scale(1.02);
+    background: var(--gold-premium);
+    color: var(--black);
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
 }
 
 .product-category {
@@ -2596,4 +2657,77 @@ p {
         font-size: 16px;
     }
 }
-/* --- END OF STYLES --- */
+/* --- ELITE LUXURY FOOTER --- */
+.elite-footer {
+    background: #020202;
+    padding: 80px 0 20px;
+    border-top: 1px solid var(--border-luxury);
+    margin-top: 80px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-col h4 {
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.footer-col p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    padding-left: 5px;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.footer-contact i {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(212, 175, 55, 0.05);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+}

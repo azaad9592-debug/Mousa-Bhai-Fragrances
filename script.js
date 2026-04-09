@@ -524,12 +524,17 @@ function initEliteHeader() {
         toggleBtn.setAttribute('title', 'Toggle Light/Dark Luxury');
         toggleBtn.onclick = toggleTheme;
 
+        // Move Cart to Header - Triggered through injectCartUI but we prepare placeholder
+        const cartPlaceholder = document.createElement('div');
+        cartPlaceholder.id = 'header-cart-wrap';
+        
         const mobileMenuBtn = document.createElement('button');
         mobileMenuBtn.id = 'mobile-toggle';
         mobileMenuBtn.className = 'mobile-only-toggle';
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
         
         navActions.appendChild(toggleBtn);
+        navActions.appendChild(cartPlaceholder);
         navActions.appendChild(mobileMenuBtn);
         
         // Mobile Toggle Logic
@@ -873,16 +878,20 @@ function injectCartUI() {
     }
 
     // ---- Cart Icon ----
-    if (!document.getElementById('cart-icon-btn')) {
-        const cartBtn = document.createElement('div');
+    const target = document.getElementById('header-cart-wrap');
+    if (!target) return;
+    
+    let cartBtn = document.getElementById('cart-icon-btn');
+    if (!cartBtn) {
+        cartBtn = document.createElement('button');
         cartBtn.id = 'cart-icon-btn';
+        cartBtn.className = 'header-cart-btn';
         cartBtn.innerHTML = `
-            <button onclick="toggleCartPanel()" aria-label="Open Cart">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span id="cart-count-badge" style="display:none;">0</span>
-            </button>
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cart-count-badge" style="display:none;">0</span>
         `;
-        document.body.appendChild(cartBtn);
+        cartBtn.onclick = toggleCartPanel;
+        target.appendChild(cartBtn);
     }
 
     // ---- Cart Overlay ----
