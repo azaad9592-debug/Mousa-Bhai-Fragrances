@@ -276,14 +276,14 @@ function generateProductCard(product) {
     }
 
     // Random discount for visual appeal
-    const oldPrice = Math.round(parseInt(product.price) * 1.25);
     // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    const oldPrice = Math.floor(product.price * 1.3);
     
     return `
-        <div class="product-item fade-up">
+        <div class="product-item">
             <div class="img-wrapper" onclick="openProductViewModal('${safeName}')">
-                <img src="${product.image || placeholderImg}" alt="${product.name}" loading="lazy">
+                <img src="${product.image || 'assets/placeholder-perfume.jpg'}" alt="${product.name}" loading="lazy">
                 <button onclick="event.stopPropagation(); addToCart('${safeName}')" class="floating-cart-btn" title="Add to Cart">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
@@ -291,15 +291,19 @@ function generateProductCard(product) {
             <div class="product-content">
                 <div class="meta-row">
                     <span class="product-category">${product.category || 'Premium Collection'}</span>
-                    <span class="rating"><i class="fa-solid fa-star"></i> 5.0</span>
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                 </div>
                 <h3 class="product-title">${product.name}</h3>
-                
                 <div class="price-row">
                     <div class="product-price">Rs. ${product.price}</div>
                     <div class="old-price">Rs. ${oldPrice}</div>
                 </div>
-                
                 <div class="product-actions">
                     <button onclick="openOrderModal('${safeName}')" class="btn-buy-now">
                         <i class="fa-solid fa-bag-shopping"></i> Order Now
@@ -511,18 +515,52 @@ function init() {
 }
 
 // --- PREMIUM LOADING SCREEN ---
+function initBoutiqueHeader() {
+    const navActions = document.querySelector('.nav-actions');
+    if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'theme-toggle-btn';
+        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        toggleBtn.setAttribute('title', 'Toggle Dark/Light Mode');
+        toggleBtn.onclick = toggleTheme;
+
+        const mobileMenuBtn = document.createElement('button');
+        mobileMenuBtn.id = 'mobile-toggle';
+        mobileMenuBtn.className = 'mobile-only-toggle';
+        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        
+        navActions.appendChild(toggleBtn);
+        navActions.appendChild(mobileMenuBtn);
+        
+        // Mobile Toggle Logic
+        mobileMenuBtn.addEventListener('click', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-xmark');
+        });
+    }
+}
+
 function initLoadingScreen() {
     const loader = document.getElementById('loading-screen');
     if (loader) {
-        // Reduced delay for professional feel (Scents N Stories is fast)
+        // Luxury Boutique Fade: Quick and smooth access
         setTimeout(() => {
-            loader.style.opacity = '0';
+            loader.classList.add('fade-out');
             setTimeout(() => {
-                loader.style.visibility = 'hidden';
-            }, 600);
-        }, 300);
+                loader.style.display = 'none';
+            }, 800);
+        }, 800);
     }
 }
+
+// Global Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    initBoutiqueHeader();
+    initLoadingScreen();
+    // ... rest of init calls
+});
 
 // --- LIVE ORDER POPUP LOGIC ---
 function initLiveOrderPopup() {

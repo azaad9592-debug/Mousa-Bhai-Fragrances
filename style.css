@@ -6,40 +6,28 @@
     --gold-bright: #FFD700;
     --gold-soft: #f4d03f;
     --off-white: #fdfdfd;
-    --cream: #FDF5E6;
+    --black: #050505;
+    --boutique-bg: #F9F9FB;
+    --card-white: #FFFFFF;
+    --accent-red: #C1272D; /* Professional Price Color */
+    --text-primary: #1A1A1A;
+    --text-secondary: #666666;
+    --border-soft: #EDEDF0;
     
-    /* Luxury Accents (Strictly Gold/Black) */
-    --accent-glow: rgba(212, 175, 55, 0.2);
+    /* GRADIENTS */
+    --grad-gold: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
     
-    /* Gradients */
-    --grad-luxury: linear-gradient(135deg, #0A0A0A 0%, #1c1c1c 100%);
-    --grad-gold: linear-gradient(90deg, #D4AF37, #f4d03f);
-    --grad-premium: linear-gradient(45deg, #0A0A0A 0%, #1A1A1A 100%);
+    /* SHADOWS */
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
     
-    /* Shadows & Radii */
-    --shadow-soft: 0 10px 40px rgba(0,0,0,0.5);
-    --shadow-gold: 0 5px 20px rgba(212, 175, 55, 0.3);
-    --radius-lg: 20px;
-    --radius-md: 10px;
+    /* CONSTANTS */
+    --nav-height: 70px;
+    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     
-    /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Poppins', sans-serif;
-    
-    /* Motion */
-    --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: all 0.3s ease;
-    
-    /* New Luxury Accents */
-    --red-luxury: #8B0000;
-    --gold-deep: #B8860B;
-
-    /* Theme-specific Overrides */
-    --header-bg: rgba(10, 10, 10, 0.85);
-    --card-bg: var(--dark-grey);
-    --text-primary: #FFFFFF;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --border-color: rgba(212, 175, 55, 0.1);
+    /* FONTS */
+    --font-heading: 'Montserrat', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
 /* --- LIGHT THEME OVERRIDES --- */
@@ -298,11 +286,88 @@ html {
 }
 
 body {
-    background-color: var(--black);
-    color: var(--off-white);
+    background-color: var(--boutique-bg);
+    color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.5s ease;
+}
+
+/* BOUTIQUE PRELOADER */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--boutique-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.m-symbol {
+    width: 60px;
+    height: 60px;
+    color: var(--accent-red);
+}
+
+.loader-line {
+    width: 100px;
+    height: 1px;
+    background: var(--border-soft);
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-red);
+    animation: boutique-loading 1.5s infinite;
+}
+
+@keyframes boutique-loading {
+    0% { left: -100%; }
+    50% { left: 0; }
+    100% { left: 100%; }
+}
+
+/* Light Theme Variables */
+body.light-theme {
+    --boutique-bg: #FFFFFF;
+    --card-white: #FDFDFD;
+    --text-primary: #1A1A1A;
+    --text-secondary: #555555;
+    --border-soft: #F0F0F0;
+}
+
+/* Dark Theme Variables (Luxury Dark Boutique) */
+body.dark-theme {
+    --boutique-bg: #0A0A0A;
+    --card-white: #141414;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --border-soft: #222222;
 }
 
 .container {
@@ -370,41 +435,35 @@ h1, h2, h3, h4 {
 }
 
 .logo-wrapper {
+header {
+    background: var(--boutique-bg);
+    height: var(--nav-height);
     display: flex;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 0 5%;
+    border-bottom: 1px solid var(--border-soft);
+    transition: var(--transition-smooth);
 }
 
-.nav-links {
+.header-container {
     display: flex;
-    gap: 45px; /* Menu item spacing: 40–50px */
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
-/* --- ELITE BRAND IDENTITY --- */
-.luxury-logo {
+
+.logo-container a {
     display: flex;
     align-items: center;
     gap: 15px;
     text-decoration: none;
-    color: var(--text-primary) !important;
-}
-
-.logo-icon {
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 50%;
-    transition: var(--transition-smooth);
-    background: rgba(0,0,0,0.3);
-}
-
-.m-symbol {
-    width: 65%;
-    height: 65%;
-    fill: #D4AF37 !important;
-    stroke: #D4AF37 !important;
 }
 
 .logo-text {
@@ -415,55 +474,53 @@ h1, h2, h3, h4 {
 .brand-name {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    color: var(--text-primary) !important;
+    font-size: 1.2rem;
+    color: var(--text-primary);
     text-transform: uppercase;
-    line-height: 1;
+    letter-spacing: 2px;
 }
 
 .brand-subline {
-    font-family: var(--font-body);
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: #D4AF37 !important;
+    font-size: 0.6rem;
+    color: var(--accent-red);
     text-transform: uppercase;
-    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: -2px;
 }
 
 .nav-links {
     display: flex;
-    gap: 45px; /* Menu item spacing: 40–50px */
-    align-items: center;
+    gap: 30px;
 }
 
 .nav-links a {
-    font-size: 17px; /* Desktop: 16–18px */
-    font-weight: 500;
-    color: #FFFFFF !important;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: 0.3s ease;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+    padding: 5px 0;
     position: relative;
-    padding: 8px 0;
+    opacity: 0.8;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
+    color: var(--accent-red);
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
     width: 0;
-    height: 1.5px;
-    background: #D4AF37;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(-50%);
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: #D4AF37 !important;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Glow effect */
+    height: 1px;
+    background: var(--accent-red);
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after,
@@ -766,88 +823,82 @@ h1, h2, h3, h4 {
     color: rgba(255, 255, 255, 0.03);
 }
 
-/* Product Section Grid */
+/* BOUTIQUE PRODUCT GRID */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Balanced Desktop Width */
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); /* Precise Scents N Stories proportions */
+    gap: 12px;
     margin: 30px 0;
 }
 
 .product-item {
-    background: #ffffff; /* Clean Boutique White */
-    border-radius: 8px;
+    background: var(--card-white);
+    border-radius: 8px; /* High-end subtle rounding */
     overflow: hidden;
     padding: 10px;
-    border: 1px solid #f0f0f0;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1px solid var(--border-soft);
+    transition: var(--transition-smooth);
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100%;
-    cursor: pointer;
 }
 
 .product-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    border-color: var(--gold);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(193, 39, 45, 0.1);
 }
 
 .product-item .img-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 6px;
     margin-bottom: 12px;
-    background: #fff;
+    background: #ffffff; /* Always white for consistent fix */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 10px; /* USER FIX: Space for full bottle visibility */
+    padding: 15px; /* USER FIX: Complete visibility */
 }
 
 .product-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* USER FIX: No cropping */
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    object-fit: contain; /* USER FIX: Absolute fit */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .product-item:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08); /* Sophisticated subtle zoom */
 }
 
 .floating-cart-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 36px;
-    height: 36px;
-    background: #c1272d;
-    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-red);
+    color: #fff;
     border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 15px rgba(193, 39, 45, 0.3);
+    box-shadow: 0 4px 15px rgba(193, 39, 45, 0.3);
     cursor: pointer;
     z-index: 10;
     transition: 0.3s;
-    opacity: 0; /* Professional 'Back' reveal effect */
-    transform: translateY(-10px);
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
 }
 
 .product-item:hover .floating-cart-btn {
     opacity: 1;
-    transform: translateY(0);
-}
-
-.floating-cart-btn:hover {
-    background: #000;
-    transform: scale(1.1);
+    transform: scale(1) translateY(0);
 }
 
 .product-content {
@@ -855,13 +906,92 @@ h1, h2, h3, h4 {
     display: flex;
     flex-direction: column;
     text-align: left;
+    padding: 2px 5px;
 }
 
 .meta-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
+}
+
+.product-category {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.rating {
+    color: #FFB800;
+    font-size: 10px;
+}
+
+.product-title {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+    height: 36px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.product-price {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--accent-red);
+}
+
+.old-price {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.product-actions {
+    margin-top: 15px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-item:hover .product-actions {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.btn-buy-now {
+    width: 100%;
+    padding: 10px;
+    background: var(--black);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-buy-now:hover {
+    background: var(--accent-red);
 }
 
 .product-category {
@@ -2308,7 +2438,9 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 0;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 10px;
 }
 .cart-total-row span:first-child {
     font-family: var(--font-body);
@@ -2407,11 +2539,9 @@ p {
 /* ============================================================ */
 /*  IMG-WRAPPER CURSOR  (makes product images feel clickable)   */
 /* ============================================================ */
+/* IMAGES FEEL CLICKABLE */
 .product-item .img-wrapper {
     cursor: pointer;
-}
-.product-item .img-wrapper .overlay-trigger {
-    background: rgba(212, 175, 55, 0.92);
 }
 
 /* ============================================================ */
@@ -2483,4 +2613,30 @@ p {
         height: 38px;
         font-size: 16px;
     }
+}
+
+/* --- BOUTIQUE PRELOADER --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    transition: opacity 0.5s ease;
+}
+.loader-logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 5px;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
