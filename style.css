@@ -1,33 +1,22 @@
 :root {
-    /* Strict Premium Luxury Palette */
-    --black: #0A0A0A;
-    --dark-grey: #1c1c1c;
+    /* ELITE LUXURY DARK PALETTE */
     --gold: #D4AF37;
-    --gold-bright: #FFD700;
-    --gold-soft: #f4d03f;
-    --off-white: #fdfdfd;
+    --gold-premium: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
     --black: #050505;
-    --boutique-bg: #F9F9FB;
-    --card-white: #FFFFFF;
-    --accent-red: #C1272D; /* Professional Price Color */
-    --text-primary: #1A1A1A;
-    --text-secondary: #666666;
-    --border-soft: #EDEDF0;
+    --deep-grey: #121212;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-luxury: rgba(212, 175, 55, 0.2);
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
     
-    /* GRADIENTS */
-    --grad-gold: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
-    
-    /* SHADOWS */
-    --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
-    --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
-    
-    /* CONSTANTS */
-    --nav-height: 70px;
-    --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* SHADOWS & MOTION */
+    --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.15);
+    --transition-elite: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     
     /* FONTS */
-    --font-heading: 'Montserrat', 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    --nav-height: 80px;
 }
 
 /* --- LIGHT THEME OVERRIDES --- */
@@ -286,7 +275,7 @@ html {
 }
 
 body {
-    background-color: var(--boutique-bg);
+    background-color: var(--black);
     color: var(--text-primary);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -352,22 +341,13 @@ body {
     100% { left: 100%; }
 }
 
-/* Light Theme Variables */
+/* Luxury Elite Light (Only if requested by user) */
 body.light-theme {
-    --boutique-bg: #FFFFFF;
-    --card-white: #FDFDFD;
-    --text-primary: #1A1A1A;
-    --text-secondary: #555555;
-    --border-soft: #F0F0F0;
-}
-
-/* Dark Theme Variables (Luxury Dark Boutique) */
-body.dark-theme {
-    --boutique-bg: #0A0A0A;
-    --card-white: #141414;
-    --text-primary: #FFFFFF;
-    --text-secondary: #A0A0A0;
-    --border-soft: #222222;
+    --black: #FDF9F3; /* Luxury Cream */
+    --card-bg: #FFFFFF;
+    --text-primary: #2C2C2C;
+    --text-secondary: #5C5C5C;
+    --border-luxury: #E2D1B3;
 }
 
 .container {
@@ -395,48 +375,27 @@ h1, h2, h3, h4 {
 }
 
 .section-title {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 15px;
     text-align: center;
+    color: var(--text-primary);
+    letter-spacing: 2px;
 }
 
 .accent-line {
-    width: 60px;
-    height: 3px;
-    background: var(--grad-gold);
-    margin: 0 auto 40px;
+    width: 80px;
+    height: 4px;
+    background: var(--gold-premium);
+    margin: 0 auto 50px;
+    border-radius: 2px;
 }
 
 
-.sticky-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: var(--header-bg);
-    backdrop-filter: blur(15px);
-    padding: 20px 0;
-    transition: var(--transition-smooth);
-}
-
-.sticky-header.scrolled {
-    padding: 12px 0;
-    background: var(--black);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.nav-flex {
-    display: flex;
-    justify-content: center; /* Centrally aligned as a group */
-    align-items: center;
-    height: 100%;
-    gap: 80px; /* Desktop logo to menu spacing: 60–80px */
-}
-
-.logo-wrapper {
+/* --- ELITE LUXURY HEADER --- */
 header {
-    background: var(--boutique-bg);
+    background: rgba(5, 5, 5, 0.9);
     height: var(--nav-height);
     display: flex;
     align-items: center;
@@ -445,9 +404,10 @@ header {
     left: 0;
     width: 100%;
     z-index: 2000;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-luxury);
     padding: 0 5%;
-    border-bottom: 1px solid var(--border-soft);
-    transition: var(--transition-smooth);
+    transition: var(--transition-elite);
 }
 
 .header-container {
@@ -455,7 +415,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
@@ -466,6 +426,18 @@ header {
     text-decoration: none;
 }
 
+/* Luxury Icon Logic */
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-luxury);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -473,43 +445,42 @@ header {
 
 .brand-name {
     font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--gold);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    line-height: 1;
 }
 
 .brand-subline {
-    font-size: 0.6rem;
-    color: var(--accent-red);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: -2px;
+    letter-spacing: 6px;
+    margin-top: 5px;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 40px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition-smooth);
-    padding: 5px 0;
+    letter-spacing: 2px;
+    transition: var(--transition-elite);
+    padding: 8px 0;
     position: relative;
-    opacity: 0.8;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    opacity: 1;
-    color: var(--accent-red);
+    color: var(--gold);
 }
 
 .nav-links a::after {
@@ -518,8 +489,8 @@ header {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 1px;
-    background: var(--accent-red);
+    height: 1.5px;
+    background: var(--gold);
     transition: width 0.3s ease;
 }
 
@@ -528,13 +499,14 @@ header {
     width: 100%;
 }
 
-/* Hero Section */
+/* ELITE HERO SECTION */
 .hero {
     height: 100vh;
     width: 100%;
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: var(--black);
     overflow: hidden;
 }
@@ -552,7 +524,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.6);
+    filter: brightness(0.5) contrast(1.1); /* Deep luxury feel */
 }
 
 .hero-overlay {
@@ -561,52 +533,58 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
     z-index: 2;
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
     text-align: center;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
 .hero-content h1 {
-    font-size: clamp(2.2rem, 8vw, 4.5rem);
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    line-height: 1;
+    margin-bottom: 25px;
     color: var(--text-primary);
+    text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    font-weight: 700;
 }
 
 .hero-content p {
-    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 3vw, 1.4rem);
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 45px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
 .btn-luxury {
     display: inline-block;
-    padding: 16px 40px;
-    background: var(--grad-gold);
+    padding: 18px 45px;
+    background: var(--gold-premium);
     color: var(--black);
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 13px;
+    letter-spacing: 3px;
+    font-size: 14px;
     border-radius: 4px;
-    transition: var(--transition-smooth);
-    box-shadow: var(--shadow-gold);
+    transition: var(--transition-elite);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+    text-decoration: none;
 }
 
 .btn-luxury:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
+    filter: brightness(1.2);
+    color: var(--black);
 }
 
 /* Features Section */
@@ -822,73 +800,75 @@ header {
     font-size: 6rem;
     color: rgba(255, 255, 255, 0.03);
 }
-
-/* BOUTIQUE PRODUCT GRID */
+/* ELITE PRODUCT GRID (SCENTS N STORIES DIMENSIONS) */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); /* Precise Scents N Stories proportions */
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 15px;
     margin: 30px 0;
 }
 
 .product-item {
-    background: var(--card-white);
-    border-radius: 8px; /* High-end subtle rounding */
+    background: var(--card-bg);
+    border-radius: 12px;
     overflow: hidden;
-    padding: 10px;
-    border: 1px solid var(--border-soft);
-    transition: var(--transition-smooth);
+    padding: 12px;
+    border: 1px solid var(--border-luxury);
+    transition: var(--transition-elite);
     display: flex;
     flex-direction: column;
     position: relative;
     height: 100%;
+    backdrop-filter: blur(5px);
 }
 
 .product-item:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(193, 39, 45, 0.1);
+    box-shadow: var(--shadow-gold);
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .product-item .img-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 12px;
-    background: #ffffff; /* Always white for consistent fix */
+    background: #ffffff; /* User FIX: High-contrast white box for product visibility */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 15px; /* USER FIX: Complete visibility */
+    padding: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .product-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* USER FIX: Absolute fit */
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-item:hover img {
-    transform: scale(1.08); /* Sophisticated subtle zoom */
+    transform: scale(1.08);
 }
 
 .floating-cart-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 40px;
-    height: 40px;
-    background: var(--accent-red);
-    color: #fff;
+    width: 38px;
+    height: 38px;
+    background: var(--gold-premium);
+    color: var(--black);
     border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(193, 39, 45, 0.3);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     cursor: pointer;
     z-index: 10;
     transition: 0.3s;
@@ -906,22 +886,21 @@ header {
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding: 2px 5px;
 }
 
 .meta-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 .product-category {
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 600;
 }
 
 .rating {
@@ -930,12 +909,13 @@ header {
 }
 
 .product-title {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--text-primary);
     margin-bottom: 10px;
     font-weight: 700;
     line-height: 1.3;
-    height: 36px;
+    font-family: var(--font-heading);
+    height: 38px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -946,28 +926,29 @@ header {
 .price-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-top: auto;
 }
 
 .product-price {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 800;
-    color: var(--accent-red);
+    color: var(--gold);
+    letter-spacing: 0.5px;
 }
 
 .old-price {
     font-size: 13px;
     color: var(--text-secondary);
     text-decoration: line-through;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .product-actions {
-    margin-top: 15px;
+    margin-top: 18px;
     transform: translateY(20px);
     opacity: 0;
-    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: 0.4s var(--transition-elite);
 }
 
 .product-item:hover .product-actions {
@@ -978,20 +959,21 @@ header {
 .btn-buy-now {
     width: 100%;
     padding: 10px;
-    background: var(--black);
-    color: #fff;
+    background: var(--gold-premium);
+    color: var(--black);
     border: none;
     border-radius: 4px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .btn-buy-now:hover {
-    background: var(--accent-red);
+    filter: brightness(1.2);
+    transform: scale(1.02);
 }
 
 .product-category {
@@ -2614,29 +2596,4 @@ p {
         font-size: 16px;
     }
 }
-
-/* --- BOUTIQUE PRELOADER --- */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-    transition: opacity 0.5s ease;
-}
-.loader-logo {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--gold);
-    letter-spacing: 5px;
-    animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
+/* --- END OF STYLES --- */

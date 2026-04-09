@@ -515,13 +515,13 @@ function init() {
 }
 
 // --- PREMIUM LOADING SCREEN ---
-function initBoutiqueHeader() {
+function initEliteHeader() {
     const navActions = document.querySelector('.nav-actions');
     if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'theme-toggle-btn';
         toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        toggleBtn.setAttribute('title', 'Toggle Dark/Light Mode');
+        toggleBtn.setAttribute('title', 'Toggle Light/Dark Luxury');
         toggleBtn.onclick = toggleTheme;
 
         const mobileMenuBtn = document.createElement('button');
@@ -557,9 +557,10 @@ function initLoadingScreen() {
 
 // Global Initialization
 document.addEventListener('DOMContentLoaded', () => {
-    initBoutiqueHeader();
+    initEliteHeader();
     initLoadingScreen();
-    // ... rest of init calls
+    // Re-trigger AOS if used or other animations
+    if (typeof initAnimations === 'function') initAnimations();
 });
 
 // --- LIVE ORDER POPUP LOGIC ---
