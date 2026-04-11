@@ -2814,9 +2814,173 @@ p {
     background: rgba(0, 0, 0, 0.05);
 }
 
+/* ============================================================ */
+/*  MOBILE NAV — HAMBURGER + SLIDE-DOWN MENU                   */
+/* ============================================================ */
+
+/* Hamburger Button */
+.mobile-only-toggle {
+    display: none;
+    background: transparent;
+    border: 1.5px solid rgba(212, 175, 55, 0.5);
+    color: #D4AF37;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 3000;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mobile-only-toggle:hover {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: #D4AF37;
+}
+
+/* Overlay that dims the page when menu is open */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1900;
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+/* ---- Responsive breakpoints ---- */
+
+/* Tablet & Mobile: hide desktop nav, show hamburger */
+@media (max-width: 900px) {
+
+    /* Make header slightly shorter */
+    header {
+        height: 66px;
+        padding: 0 4%;
+    }
+
+    /* Hide desktop nav by default */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 66px;
+        left: 0;
+        width: 100%;
+        background: rgba(12, 12, 12, 0.99);
+        border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        padding: 20px 0 30px;
+        z-index: 1990;
+        gap: 0;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        /* smooth entrance */
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
+                    opacity 0.3s ease;
+    }
+
+    /* When JS adds .active class */
+    .nav-links.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-links a {
+        padding: 16px 30px;
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
+        width: 100%;
+        display: block;
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: rgba(212, 175, 55, 0.06);
+        color: var(--gold);
+        padding-left: 40px;
+    }
+
+    .nav-links a::after {
+        display: none; /* remove underline effect on mobile */
+    }
+
+    /* Show hamburger button */
+    .mobile-only-toggle {
+        display: flex;
+    }
+
+    /* Shrink logo text on mobile */
+    .brand-name {
+        font-size: 1.35rem;
+        letter-spacing: 2px;
+    }
+
+    .brand-subline {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Small mobile: extra tightening */
+@media (max-width: 480px) {
+    header {
+        height: 60px;
+        padding: 0 18px;
+    }
+
+    .nav-links {
+        top: 60px;
+    }
+
+    .brand-name {
+        font-size: 1.1rem;
+    }
+
+    .brand-subline {
+        display: none;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        margin-left: 0;
+        margin-right: 8px;
+    }
+
+    .mobile-only-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 992px) {
     .theme-toggle-btn {
-        margin-right: 15px;
+        margin-right: 8px;
         margin-left: 0;
         width: 38px;
         height: 38px;

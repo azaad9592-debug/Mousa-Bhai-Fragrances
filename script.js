@@ -532,9 +532,14 @@ function initEliteHeader() {
 
         function openMenu() {
             if (!navLinks) return;
+            // Step 1: make it display:flex first (needed before CSS transition can fire)
+            navLinks.style.display = 'flex';
             navLinks.classList.add('active');
             overlay.style.display = 'block';
-            overlay.style.opacity = '1';
+            // Slight delay so browser paints the block before transition
+            requestAnimationFrame(() => {
+                overlay.style.opacity = '1';
+            });
             document.body.style.overflow = 'hidden';
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
@@ -544,8 +549,14 @@ function initEliteHeader() {
         function closeMenu() {
             if (!navLinks) return;
             navLinks.classList.remove('active');
+            // After fade-out transition reset display
+            setTimeout(() => {
+                if (!navLinks.classList.contains('active')) {
+                    navLinks.style.display = '';
+                }
+            }, 380);
             overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 400);
+            setTimeout(() => { overlay.style.display = 'none'; }, 380);
             document.body.style.overflow = '';
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
