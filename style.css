@@ -448,7 +448,7 @@ h1, h2, h3, h4 {
 
 /* --- ELITE LUXURY HEADER --- */
 header {
-    background: rgba(15, 15, 15, 0.92);
+    background: rgba(12, 12, 12, 0.97);
     height: var(--nav-height);
     display: flex;
     align-items: center;
@@ -457,12 +457,10 @@ header {
     left: 0;
     width: 100%;
     z-index: 2000;
-    backdrop-filter: blur(20px) saturate(1.2);
-    -webkit-backdrop-filter: blur(20px) saturate(1.2);
     border-bottom: 1px solid var(--border-luxury);
     padding: 0 5%;
     transition: var(--transition-elite);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .header-container {
@@ -1597,8 +1595,8 @@ p {
 /* ── HAMBURGER BUTTON: hidden by default, shown on mobile ── */
 .mobile-only-toggle {
     display: none;
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(212, 175, 55, 0.15);
+    border: 1.5px solid #D4AF37;
     color: #D4AF37;
     width: 44px;
     height: 44px;
@@ -1606,14 +1604,22 @@ p {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    position: relative;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    -webkit-appearance: none;
+    outline: none;
 }
 
-.mobile-only-toggle:hover {
-    background: rgba(212, 175, 55, 0.18);
+.mobile-only-toggle:hover,
+.mobile-only-toggle:active {
+    background: rgba(212, 175, 55, 0.3);
     border-color: #D4AF37;
+    transform: scale(1.05);
 }
 
 /* Mobile nav overlay: hidden by default */

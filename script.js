@@ -510,19 +510,10 @@ function initEliteHeader() {
         mobileMenuBtn.setAttribute('aria-label', 'Open Menu');
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        mobileMenuBtn.style.cssText = `
-            background: rgba(212,175,55,0.08);
-            border: 1px solid rgba(212,175,55,0.25);
-            color: #D4AF37;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        `;
+        // Inline style handles only non-display properties; CSS media queries control display
+        mobileMenuBtn.style.color = '#D4AF37';
+        mobileMenuBtn.style.opacity = '1';
+        mobileMenuBtn.style.visibility = 'visible';
         
         navActions.appendChild(toggleBtn);
         navActions.appendChild(cartPlaceholder);
