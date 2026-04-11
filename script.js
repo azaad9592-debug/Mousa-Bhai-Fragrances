@@ -489,37 +489,38 @@ function init() {
     initLoadingScreen();
     initLiveOrderPopup();
     initCarouselNav();
+    initSearch(); // Initialize Elite Search
 }
 
 // --- PREMIUM LOADING SCREEN ---
 function initEliteHeader() {
     const navActions = document.querySelector('.nav-actions');
     if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
+        // Theme Toggle
         const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'theme-toggle-btn';
+        toggleBtn.className = 'header-action-btn theme-toggle-btn';
         toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        toggleBtn.setAttribute('title', 'Toggle Light/Dark Luxury');
+        toggleBtn.setAttribute('title', 'Toggle Light/Dark');
         toggleBtn.onclick = toggleTheme;
 
-        const cartPlaceholder = document.createElement('div');
-        cartPlaceholder.id = 'header-cart-wrap';
+        // Cart Wrapped
+        const cartBtn = document.createElement('button');
+        cartBtn.className = 'header-action-btn';
+        cartBtn.id = 'header-cart-btn';
+        cartBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i><div id="cart-count-badge" style="display:none">0</div>';
+        cartBtn.onclick = toggleCartPanel;
         
+        // Mobile Toggle
         const mobileMenuBtn = document.createElement('button');
         mobileMenuBtn.id = 'mobile-toggle';
-        mobileMenuBtn.className = 'mobile-only-toggle';
-        mobileMenuBtn.setAttribute('aria-label', 'Open Menu');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        // Inline style handles only non-display properties; CSS media queries control display
-        mobileMenuBtn.style.color = '#D4AF37';
-        mobileMenuBtn.style.opacity = '1';
-        mobileMenuBtn.style.visibility = 'visible';
+        mobileMenuBtn.className = 'header-action-btn mobile-only-toggle';
+        mobileMenuBtn.setAttribute('aria-label', 'Menu');
+        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
         
         navActions.appendChild(toggleBtn);
-        navActions.appendChild(cartPlaceholder);
+        navActions.appendChild(cartBtn);
         navActions.appendChild(mobileMenuBtn);
         
-        // Create overlay for closing menu on outside click
         let overlay = document.getElementById('mobile-nav-overlay');
         if (!overlay) {
             overlay = document.createElement('div');
@@ -533,63 +534,101 @@ function initEliteHeader() {
         function openMenu() {
             if (!navLinks) return;
             navLinks.classList.add('active');
-            overlay.style.display = 'block';
-            requestAnimationFrame(() => {
-                overlay.style.opacity = '1';
-            });
+            overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
-                icon.style.transform = 'rotate(180deg)';
-                setTimeout(() => {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-xmark');
-                    icon.style.transform = 'rotate(0deg)';
-                }, 150);
+                icon.classList.remove('fa-bars-staggered');
+                icon.classList.add('fa-xmark');
             }
-            mobileMenuBtn.setAttribute('aria-expanded', 'true');
         }
 
         function closeMenu() {
             if (!navLinks) return;
             navLinks.classList.remove('active');
-            overlay.style.opacity = '0';
-            setTimeout(() => { 
-                if (!navLinks.classList.contains('active')) {
-                    overlay.style.display = 'none'; 
-                }
-            }, 500);
+            overlay.classList.remove('active');
             document.body.style.overflow = '';
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
-                icon.style.transform = 'rotate(-180deg)';
-                setTimeout(() => {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                    icon.style.transform = 'rotate(0deg)';
-                }, 150);
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars-staggered');
             }
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
 
         mobileMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            navLinks && navLinks.classList.contains('active') ? closeMenu() : openMenu();
+            navLinks.classList.contains('active') ? closeMenu() : openMenu();
         });
 
         overlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearch(); } });
+    }
+}
 
-        // Close when a nav link is clicked
-        if (navLinks) {
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
+// --- ELITE SEARCH LOGIC ---
+function initSearch() {
+    const searchOpenBtn = document.getElementById('search-open-btn');
+    const searchCloseBtn = document.getElementById('search-close-btn');
+    const overlay = document.getElementById('search-overlay');
+    const input = document.getElementById('main-search-input');
+    const preview = document.getElementById('search-results-preview');
+
+    if (!searchOpenBtn || !overlay) return;
+
+    searchOpenBtn.onclick = () => {
+        overlay.classList.add('active');
+        input.focus();
+        document.body.style.overflow = 'hidden';
+    };
+
+    searchCloseBtn.onclick = closeSearch;
+
+    input.oninput = (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length < 2) {
+            preview.innerHTML = '';
+            return;
         }
 
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeMenu();
-        });
+        const filtered = products.filter(p => 
+            p.name.toLowerCase().includes(query) || 
+            (p.category && p.category.toLowerCase().includes(query))
+        ).slice(0, 8);
+
+        if (filtered.length === 0) {
+            preview.innerHTML = '<p style="color:var(--gold); opacity:0.6;">No fragrances matched your search...</p>';
+            return;
+        }
+
+        preview.innerHTML = filtered.map(p => `
+            <div class="search-result-item" onclick="handleSearchResultClick('${p.name.replace(/'/g, "\\'")}')">
+                <img src="${p.image || 'assets/placeholders/perfume.png'}" alt="${p.name}">
+                <div class="search-result-info">
+                    <h4>${p.name}</h4>
+                    <p>${p.category || 'Premium Selection'} - Rs. ${p.price}</p>
+                </div>
+            </div>
+        `).join('');
+    };
+}
+
+function closeSearch() {
+    const overlay = document.getElementById('search-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function handleSearchResultClick(name) {
+    closeSearch();
+    // Use existing product modal or redirect to shop
+    if (window.location.pathname.includes('shop.html')) {
+        // Open modal if in shop
+        if (typeof openProductViewModal === 'function') openProductViewModal(name);
+    } else {
+        // Redirect to shop with query or just open general view if available
+        window.location.href = `shop.html?search=${encodeURIComponent(name)}`;
     }
 }
 

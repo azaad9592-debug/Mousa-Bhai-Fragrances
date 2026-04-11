@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     /* ELITE LUXURY DARK PALETTE */
     --gold: #D4AF37;
     --gold-premium: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
@@ -388,14 +388,14 @@ body.light-theme {
 
 /* Typography */
 h1, h2, h3, h4 {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-weight: 800;
     color: var(--text-primary);
     letter-spacing: 0.5px;
 }
 
 .section-title {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-weight: 800;
     font-size: clamp(2.5rem, 6vw, 4rem);
     margin-bottom: 15px;
@@ -500,7 +500,7 @@ header {
 }
 
 .brand-name {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-weight: 700;
     font-size: 1.8rem;
     background: var(--gold-premium);
@@ -508,17 +508,17 @@ header {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     line-height: 1;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .brand-subline {
-    font-family: var(--font-accent);
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     color: var(--gold);
     text-transform: uppercase;
-    letter-spacing: 7px;
+    letter-spacing: 9px;
     margin-top: 6px;
     font-style: italic;
     font-weight: 500;
@@ -661,7 +661,7 @@ header {
 }
 
 .hero-content h1 {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: clamp(2.5rem, 10vw, 5rem);
     line-height: 1;
     margin-bottom: 25px;
@@ -842,7 +842,7 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 800;
     color: var(--gold);
@@ -866,7 +866,7 @@ header {
     font-size: 1.8rem;
     color: var(--text-primary);
     margin-bottom: 5px;
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     letter-spacing: 1px;
     font-weight: 800;
     text-shadow: 0 2px 8px rgba(0,0,0,0.4);
@@ -1061,7 +1061,7 @@ header {
     margin-bottom: 10px;
     font-weight: 800;
     line-height: 1.3;
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     height: 38px;
     overflow: hidden;
     display: -webkit-box;
@@ -1140,7 +1140,7 @@ header {
 }
 
 .product-title {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 1.4rem !important;
     margin-bottom: 8px !important;
     color: #FFFFFF;
@@ -1299,7 +1299,7 @@ header {
 .quote-en {
     font-size: 1.5rem;
     color: var(--gold);
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-style: italic;
     display: block;
     line-height: 1.6;
@@ -1437,7 +1437,7 @@ header {
 
 .footer-col h4 {
     color: white;
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 1.2rem;
     margin-bottom: 30px;
     position: relative;
@@ -1588,7 +1588,7 @@ header {
 }
 
 h3 {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 15px;
@@ -1600,7 +1600,7 @@ p {
     color: var(--text-secondary);
 }
 
-/* ── HAMBURGER BUTTON: hidden by default, shown on mobile ── */
+/* â”€â”€ HAMBURGER BUTTON: hidden by default, shown on mobile â”€â”€ */
 .mobile-only-toggle {
     display: none;
     background: rgba(212, 175, 55, 0.15);
@@ -2337,7 +2337,7 @@ p {
     font-weight: 700;
 }
 .pvm-name {
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 2rem;
     color: white;
     line-height: 1.2;
@@ -2762,7 +2762,7 @@ p {
 }
 
 /* ============================================================ */
-/*  RESPONSIVE – PRODUCT MODAL                                  */
+/*  RESPONSIVE â€“ PRODUCT MODAL                                  */
 /* ============================================================ */
 @media (max-width: 700px) {
     .pv-modal-inner {
@@ -2823,7 +2823,7 @@ p {
 }
 
 /* ============================================================ */
-/*  MOBILE NAV — HAMBURGER + SLIDE-DOWN MENU                   */
+/*  MOBILE NAV â€” HAMBURGER + SLIDE-DOWN MENU                   */
 /* ============================================================ */
 
 /* Hamburger Button */
@@ -2971,7 +2971,7 @@ p {
     .brand-subline {
         display: block !important; /* Force visibility */
         font-size: 0.65rem; /* Increased for readability */
-        letter-spacing: 5px;
+        letter-spacing: 6px;
         margin-top: 4px;
         opacity: 1;
     }
@@ -3048,7 +3048,7 @@ p {
 
 .footer-col h4 {
     color: var(--gold);
-    font-family: var(--font-heading);
+    font-family: 'Cinzel', serif;
     font-size: 1.1rem;
     margin-bottom: 30px;
     text-transform: uppercase;
@@ -3223,3 +3223,40 @@ p {
         gap: 30px;
     }
 }
+
+/* --- ELITE SEARCH OVERLAY (ADDED) --- */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.search-overlay.active { opacity: 1; visibility: visible; }
+.search-close-btn { position: absolute; top: 40px; right: 40px; background: transparent; border: none; color: var(--gold); font-size: 30px; cursor: pointer; transition: 0.3s; }
+.search-close-btn:hover { transform: rotate(90deg) scale(1.1); }
+.search-container { width: 90%; max-width: 800px; text-align: center; }
+.search-container h2 { color: var(--gold); font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 5px; }
+.search-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--border-luxury); padding: 15px 0; font-size: 1.8rem; color: var(--gold); font-family: 'Cinzel', serif; text-align: center; transition: var(--transition-smooth); }
+.search-input:focus { outline: none; border-bottom-color: var(--gold); box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.3); }
+.search-results-preview { margin-top: 50px; max-height: 400px; overflow-y: auto; width: 100%; padding: 20px; }
+.search-result-item { display: flex; align-items: center; gap: 20px; padding: 15px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; margin-bottom: 15px; cursor: pointer; transition: 0.3s; }
+.search-result-item:hover { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); transform: translateX(10px); }
+.search-result-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+.search-result-info h4 { color: var(--gold); font-family: 'Cinzel', serif; margin: 0; }
+.header-action-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-elite); position: relative; padding: 0; }
+.header-action-btn:hover { background: rgba(212,175,55,0.1); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.2); }
+#cart-count-badge { position: absolute; top: -4px; right: -4px; background: var(--gold-premium); color: #000; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid #0A0A0A; z-index: 5; }
+.mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s; }
+.mobile-nav-overlay.active { opacity: 1; visibility: visible; }
