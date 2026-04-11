@@ -532,34 +532,43 @@ function initEliteHeader() {
 
         function openMenu() {
             if (!navLinks) return;
-            // Step 1: make it display:flex first (needed before CSS transition can fire)
-            navLinks.style.display = 'flex';
             navLinks.classList.add('active');
             overlay.style.display = 'block';
-            // Slight delay so browser paints the block before transition
             requestAnimationFrame(() => {
                 overlay.style.opacity = '1';
             });
             document.body.style.overflow = 'hidden';
             const icon = mobileMenuBtn.querySelector('i');
-            if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+            if (icon) {
+                icon.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                    icon.style.transform = 'rotate(0deg)';
+                }, 150);
+            }
             mobileMenuBtn.setAttribute('aria-expanded', 'true');
         }
 
         function closeMenu() {
             if (!navLinks) return;
             navLinks.classList.remove('active');
-            // After fade-out transition reset display
-            setTimeout(() => {
-                if (!navLinks.classList.contains('active')) {
-                    navLinks.style.display = '';
-                }
-            }, 380);
             overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 380);
+            setTimeout(() => { 
+                if (!navLinks.classList.contains('active')) {
+                    overlay.style.display = 'none'; 
+                }
+            }, 500);
             document.body.style.overflow = '';
             const icon = mobileMenuBtn.querySelector('i');
-            if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+            if (icon) {
+                icon.style.transform = 'rotate(-180deg)';
+                setTimeout(() => {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                    icon.style.transform = 'rotate(0deg)';
+                }, 150);
+            }
             mobileMenuBtn.setAttribute('aria-expanded', 'false');
         }
 

@@ -7,10 +7,10 @@
     <meta name="description" content="Experience the finest luxury-inspired fragrances at affordable prices. Smell expensive without the designer price tag.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2.1">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
     <div class="announcement-bar">
@@ -30,10 +30,17 @@
             <div class="logo-container">
                 <a href="index.html" class="logo-flex">
                     <div class="logo-icon">
-                        <svg class="m-symbol" viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
-                            <path d="M30 65 V35 L50 50 L70 35 V65" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M40 22 Q50 16 60 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <svg class="m-symbol luxury-gold-svg" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="48" fill="none" stroke="url(#gold-gradient)" stroke-width="1.5" opacity="0.4"/>
+                            <path d="M30 65 V35 L50 50 L70 35 V65" fill="none" stroke="url(#gold-gradient)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M40 22 Q50 16 60 22" fill="none" stroke="url(#gold-gradient)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#F1D57F;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
                         </svg>
                     </div>
                     <div class="logo-text">
@@ -178,10 +185,17 @@
                 <div class="footer-col">
                     <div class="luxury-logo" style="margin-bottom:20px;">
                         <div class="logo-icon">
-                            <svg class="m-symbol" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="48" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
-                                <path d="M30 65 V35 L50 50 L70 35 V65" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M40 22 Q50 16 60 22" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+                            <svg class="m-symbol luxury-gold-svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="48" fill="none" stroke="url(#gold-gradient-footer)" stroke-width="1.5" opacity="0.4"/>
+                                <path d="M30 65 V35 L50 50 L70 35 V65" fill="none" stroke="url(#gold-gradient-footer)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M40 22 Q50 16 60 22" fill="none" stroke="url(#gold-gradient-footer)" stroke-width="2" stroke-linecap="round"/>
+                                <defs>
+                                    <linearGradient id="gold-gradient-footer" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#F1D57F;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
                             </svg>
                         </div>
                         <div class="logo-text">
