@@ -362,31 +362,8 @@ function init() {
     
     window.addEventListener('scroll', handleScroll);
     
-    // Mobile Menu Toggle
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileToggle && navLinks) {
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-xmark');
-            }
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = mobileToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-xmark');
-                }
-            });
-        });
-    }
+    // Mobile Menu Toggle — handled in initEliteHeader(), not here
+    // (removing duplicate listener that fired before the button existed)
 
     // Modal Closing Logic (kept for general uses or hero btn fallback)
     const orderModal = document.getElementById('order-modal');
@@ -524,25 +501,83 @@ function initEliteHeader() {
         toggleBtn.setAttribute('title', 'Toggle Light/Dark Luxury');
         toggleBtn.onclick = toggleTheme;
 
-        // Move Cart to Header - Triggered through injectCartUI but we prepare placeholder
         const cartPlaceholder = document.createElement('div');
         cartPlaceholder.id = 'header-cart-wrap';
         
         const mobileMenuBtn = document.createElement('button');
         mobileMenuBtn.id = 'mobile-toggle';
         mobileMenuBtn.className = 'mobile-only-toggle';
+        mobileMenuBtn.setAttribute('aria-label', 'Open Menu');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        mobileMenuBtn.style.cssText = `
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.25);
+            color: #D4AF37;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        `;
         
         navActions.appendChild(toggleBtn);
         navActions.appendChild(cartPlaceholder);
         navActions.appendChild(mobileMenuBtn);
         
-        // Mobile Toggle Logic
-        mobileMenuBtn.addEventListener('click', () => {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
-            mobileMenuBtn.querySelector('i').classList.toggle('fa-xmark');
+        // Create overlay for closing menu on outside click
+        let overlay = document.getElementById('mobile-nav-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'mobile-nav-overlay';
+            overlay.className = 'mobile-nav-overlay';
+            document.body.appendChild(overlay);
+        }
+
+        const navLinks = document.querySelector('.nav-links');
+
+        function openMenu() {
+            if (!navLinks) return;
+            navLinks.classList.add('active');
+            overlay.style.display = 'block';
+            overlay.style.opacity = '1';
+            document.body.style.overflow = 'hidden';
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-xmark'); }
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+            if (!navLinks) return;
+            navLinks.classList.remove('active');
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 400);
+            document.body.style.overflow = '';
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) { icon.classList.remove('fa-xmark'); icon.classList.add('fa-bars'); }
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks && navLinks.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        overlay.addEventListener('click', closeMenu);
+
+        // Close when a nav link is clicked
+        if (navLinks) {
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
         });
     }
 }
