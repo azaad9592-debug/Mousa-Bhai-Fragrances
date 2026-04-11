@@ -231,7 +231,7 @@ body.light-theme {
 .trust-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     font-size: 14px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
@@ -514,13 +514,13 @@ header {
 }
 
 .brand-subline {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cinzel', serif;
     font-size: 0.75rem;
     color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 9px;
     margin-top: 6px;
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
     opacity: 0.9;
 }
@@ -1074,7 +1074,7 @@ header {
 .price-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-top: auto;
 }
 
@@ -1151,7 +1151,7 @@ header {
 .price-row {
     display: flex;
     align-items: baseline;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 15px;
 }
 
@@ -1300,7 +1300,7 @@ header {
     font-size: 1.5rem;
     color: var(--gold);
     font-family: 'Cinzel', serif;
-    font-style: italic;
+    font-style: normal;
     display: block;
     line-height: 1.6;
 }
@@ -1388,7 +1388,7 @@ header {
 .trust-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     color: var(--gold);
     font-size: 13px;
     font-weight: 600;
@@ -1467,7 +1467,7 @@ header {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     padding-bottom: 4px;
@@ -2043,7 +2043,7 @@ p {
     z-index: 9999;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .widget-circle {
@@ -2381,7 +2381,7 @@ p {
 .pvm-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     margin-top: 6px;
 }
 .pvm-btn {
@@ -2551,7 +2551,7 @@ p {
     padding: 20px 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     scrollbar-width: thin;
     scrollbar-color: rgba(212,175,55,0.15) transparent;
 }
@@ -2648,7 +2648,7 @@ p {
     border-top: 1px solid rgba(255,255,255,0.07);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     flex-shrink: 0;
 }
 .cart-total-row {
@@ -2957,7 +2957,7 @@ p {
 @media (max-width: 480px) {
     header {
         height: 60px;
-        padding: 0 18px;
+        padding: 0 10px;
     }
 
     .nav-links {
@@ -3133,7 +3133,7 @@ p {
 .footer-email-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     margin-top: 30px;
     padding: 12px 25px;
     background: transparent;
@@ -3259,4 +3259,8 @@ p {
 .header-action-btn:hover { background: rgba(212,175,55,0.1); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.2); }
 #cart-count-badge { position: absolute; top: -4px; right: -4px; background: var(--gold-premium); color: #000; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid #0A0A0A; z-index: 5; }
 .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s; }
-.mobile-nav-overlay.active { opacity: 1; visibility: visible; }
+.mobile-nav-overlay.active { opacity: 1; visibility: visible; }@media (max-width: 480px) {
+    .nav-actions { gap: 6px; }
+    .header-action-btn { width: 36px; height: 36px; }
+    .logo-flex { gap: 8px; }
+}

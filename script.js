@@ -1,4 +1,4 @@
-// --- PRODUCT DATABASE (Local + Default) ---
+﻿// --- PRODUCT DATABASE (Local + Default) ---
 const DEFAULT_PRODUCTS = [
     { id: 1, name: "Wurood", price: "2999", category: "Premium Fragrance", image: "assets/images/wurood-rs-2999.jpeg" },
     { id: 2, name: "Black Scent", price: "1899", category: "Premium Fragrance", image: "assets/images/black-scent-rs-1899.jpeg" },
@@ -93,7 +93,7 @@ const DEFAULT_PRODUCTS = [
 ];
 
 // ============================================================
-// VERSION STAMP — bump this string whenever products change
+// VERSION STAMP â€” bump this string whenever products change
 // so stale localStorage is automatically wiped on next load
 // ============================================================
 const CACHE_VERSION = '2.8';
@@ -145,7 +145,7 @@ function saveProductsToStorage() {
 }
 
 // ============================================================
-// CART STATE — initialized here so it's always ready
+// CART STATE â€” initialized here so it's always ready
 // ============================================================
 let cart = [];
 try {
@@ -356,13 +356,13 @@ function init() {
     initTheme();
     renderProducts();
     injectCartUI();
-    injectThemeToggle();
+    initEliteHeader();
     initAnimations();
     initAdminWidget(); // Live counter for admin
     
     window.addEventListener('scroll', handleScroll);
     
-    // Mobile Menu Toggle — handled in initEliteHeader(), not here
+    // Mobile Menu Toggle â€” handled in initEliteHeader(), not here
     // (removing duplicate listener that fired before the button existed)
 
     // Modal Closing Logic (kept for general uses or hero btn fallback)
@@ -496,6 +496,14 @@ function init() {
 function initEliteHeader() {
     const navActions = document.querySelector('.nav-actions');
     if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
+        // Clear old placeholders if any
+        navActions.innerHTML = `
+            <!-- Search Button -->
+            <button class="header-action-btn" id="search-open-btn" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        `;
+        
         // Theme Toggle
         const toggleBtn = document.createElement('button');
         toggleBtn.className = 'header-action-btn theme-toggle-btn';
@@ -503,12 +511,15 @@ function initEliteHeader() {
         toggleBtn.setAttribute('title', 'Toggle Light/Dark');
         toggleBtn.onclick = toggleTheme;
 
-        // Cart Wrapped
+        // Cart Button
         const cartBtn = document.createElement('button');
         cartBtn.className = 'header-action-btn';
         cartBtn.id = 'header-cart-btn';
-        cartBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i><div id="cart-count-badge" style="display:none">0</div>';
-        cartBtn.onclick = toggleCartPanel;
+        cartBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i><span id="cart-count-badge" style="display:none">0</span>';
+        cartBtn.onclick = (e) => {
+            e.preventDefault();
+            toggleCartPanel();
+        };
         
         // Mobile Toggle
         const mobileMenuBtn = document.createElement('button');
@@ -562,6 +573,9 @@ function initEliteHeader() {
 
         overlay.addEventListener('click', closeMenu);
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearch(); } });
+        
+        // Re-init search since we cleared innerHTML
+        initSearch();
     }
 }
 
@@ -838,16 +852,16 @@ function sendWhatsAppOrder() {
         alert('Your cart is empty! Add products before ordering.');
         return;
     }
-    let message = '🛒 *Order Details:*\n\n';
+    let message = 'ðŸ›’ *Order Details:*\n\n';
     let total = 0;
     cart.forEach((item, i) => {
         const sub = parseInt(item.price) * (item.qty || 1);
         total += sub;
         message += `${i + 1}. *${item.name}*`;
         if (item.qty > 1) message += ` (x${item.qty})`;
-        message += ` — Rs. ${sub}\n`;
+        message += ` â€” Rs. ${sub}\n`;
     });
-    message += `\n💰 *Total: Rs. ${total}*\n\nPlease confirm my order. Thank you! 🙏`;
+    message += `\nðŸ’° *Total: Rs. ${total}*\n\nPlease confirm my order. Thank you! ðŸ™`;
     window.open(`https://wa.me/923101131981?text=${encodeURIComponent(message)}`, '_blank');
 }
 
@@ -960,23 +974,6 @@ function injectCartUI() {
             if (e.target === pvModal) closeProductViewModal();
         });
         document.body.appendChild(pvModal);
-    }
-
-    // ---- Cart Icon ----
-    const target = document.getElementById('header-cart-wrap');
-    if (!target) return;
-    
-    let cartBtn = document.getElementById('cart-icon-btn');
-    if (!cartBtn) {
-        cartBtn = document.createElement('button');
-        cartBtn.id = 'cart-icon-btn';
-        cartBtn.className = 'header-cart-btn';
-        cartBtn.innerHTML = `
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span id="cart-count-badge" style="display:none;">0</span>
-        `;
-        cartBtn.onclick = toggleCartPanel;
-        target.appendChild(cartBtn);
     }
 
     // ---- Cart Overlay ----
