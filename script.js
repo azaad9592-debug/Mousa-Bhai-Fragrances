@@ -1,4 +1,4 @@
-﻿// --- PRODUCT DATABASE (Local + Default) ---
+// --- PRODUCT DATABASE (Local + Default) ---
 const DEFAULT_PRODUCTS = [
     { id: 1, name: "Wurood", price: "2999", category: "Premium Fragrance", image: "assets/images/wurood-rs-2999.jpeg" },
     { id: 2, name: "Black Scent", price: "1899", category: "Premium Fragrance", image: "assets/images/black-scent-rs-1899.jpeg" },
@@ -278,7 +278,8 @@ function generateProductCard(product) {
     // Random discount for visual appeal
     // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    const oldPrice = Math.floor(product.price * 1.3);
+    const volume = (cat.includes('attar') || cat.includes('afnan')) ? '12ml' : 
+                   cat.includes('body spray') ? '200ml' : '50ml';
     
     return `
         <div class="product-item">
@@ -291,13 +292,7 @@ function generateProductCard(product) {
             <div class="product-content">
                 <div class="meta-row">
                     <span class="product-category">${product.category || 'Premium Collection'}</span>
-                    <span class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
+                    <span class="product-volume">${volume}</span>
                 </div>
                 <h3 class="product-title">${product.name}</h3>
                 <div class="price-row">
@@ -591,39 +586,60 @@ function initSearch() {
 
     searchOpenBtn.onclick = () => {
         overlay.classList.add('active');
-        input.focus();
+        if (input) input.focus();
         document.body.style.overflow = 'hidden';
     };
 
-    searchCloseBtn.onclick = closeSearch;
+    const headerInput = document.getElementById('header-search-input');
+    if (headerInput && input) {
+        headerInput.onfocus = () => {
+            overlay.classList.add('active');
+            input.focus();
+            document.body.style.overflow = 'hidden';
+        };
+        headerInput.oninput = (e) => {
+            const query = e.target.value;
+            overlay.classList.add('active');
+            input.value = query;
+            input.focus();
+            input.dispatchEvent(new Event('input')); // Trigger main search logic
+            document.body.style.overflow = 'hidden';
+        };
+    }
 
-    input.oninput = (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        if (query.length < 2) {
-            preview.innerHTML = '';
-            return;
-        }
+    if (searchCloseBtn) searchCloseBtn.onclick = closeSearch;
 
-        const filtered = products.filter(p => 
-            p.name.toLowerCase().includes(query) || 
-            (p.category && p.category.toLowerCase().includes(query))
-        ).slice(0, 8);
+    if (input) {
+        input.oninput = (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            if (query.length < 2) {
+                if (preview) preview.innerHTML = '';
+                return;
+            }
 
-        if (filtered.length === 0) {
-            preview.innerHTML = '<p style="color:var(--gold); opacity:0.6;">No fragrances matched your search...</p>';
-            return;
-        }
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                (p.category && p.category.toLowerCase().includes(query))
+            ).slice(0, 8);
 
-        preview.innerHTML = filtered.map(p => `
-            <div class="search-result-item" onclick="handleSearchResultClick('${p.name.replace(/'/g, "\\'")}')">
-                <img src="${p.image || 'assets/placeholders/perfume.png'}" alt="${p.name}">
-                <div class="search-result-info">
-                    <h4>${p.name}</h4>
-                    <p>${p.category || 'Premium Selection'} - Rs. ${p.price}</p>
-                </div>
-            </div>
-        `).join('');
-    };
+            if (filtered.length === 0) {
+                if (preview) preview.innerHTML = '<p style="color:var(--gold); opacity:0.6;">No fragrances matched your search...</p>';
+                return;
+            }
+
+            if (preview) {
+                preview.innerHTML = filtered.map(p => `
+                    <div class="search-result-item" onclick="handleSearchResultClick('${p.name.replace(/'/g, "\\'")}')">
+                        <img src="${p.image || 'assets/placeholders/perfume.png'}" alt="${p.name}">
+                        <div class="search-result-info">
+                            <h4>${p.name}</h4>
+                            <p>${p.category || 'Premium Selection'} - Rs. ${p.price}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        };
+    }
 }
 
 function closeSearch() {
