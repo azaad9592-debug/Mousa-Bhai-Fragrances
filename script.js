@@ -207,10 +207,15 @@ function renderProducts() {
         initAnimations();
     }
 
-    if (row1Grid && row2Grid) {
-        const perfumesOnly = products.filter(p => !p.category || p.category === 'Premium Fragrance');
-        const half = Math.ceil(perfumesOnly.length / 2);
+    const perfumesOnly = products.filter(p => !p.category || p.category === 'Premium Fragrance');
+    const half = Math.ceil(perfumesOnly.length / 2);
+    
+    if (row1Grid) {
         row1Grid.innerHTML = perfumesOnly.slice(0, half).map(p => generateProductCard(p)).join('');
+        initAnimations();
+    }
+    
+    if (row2Grid) {
         row2Grid.innerHTML = perfumesOnly.slice(half).map(p => generateProductCard(p)).join('');
         initAnimations();
     }
