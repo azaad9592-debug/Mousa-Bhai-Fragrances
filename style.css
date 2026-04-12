@@ -3330,3 +3330,19 @@ p {
     letter-spacing: 1px;
 }
 
+
+/* MOBILE GRID OPTIMIZATION (2-COLUMN) */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+        padding: 0 10px;
+    }
+    .product-title {
+        font-size: 0.85rem;
+    }
+    .btn-cart {
+        padding: 10px;
+        font-size: 0.75rem;
+    }
+}
