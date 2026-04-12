@@ -104,8 +104,7 @@
             <div id="search-results-preview" class="search-results-preview">
                 <!-- Results will appear here -->
             </div>
-        </div>
-    <section id="features" class="section">
+        <section id="features" class="section">
         <div class="container">
             <div class="features-grid">
                 <div class="feature-card fade-up">
@@ -132,47 +131,25 @@
         </div>
     </section>
 
-    <!-- NEW ARRIVALS SLIDER -->
-    <section class="section" style="background: #0A0A0A; padding-top: 60px;">
+    <!-- NEW ARRIVALS -->
+    <section class="section" style="background:#0A0A0A;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">New Arrivals</h2>
                 <div class="accent-line"></div>
             </div>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" id="new-arrivals-prev" aria-label="Previous">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
+            <div class="slider-container shop-row-container">
+                <button class="slider-nav prev-btn" id="new-arrivals-prev"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="slider-viewport" id="new-arrivals-viewport">
-                    <div id="new-arrivals-grid" class="shop-carousel single-row">
-                        <!-- Loaded via JS -->
-                    </div>
+                    <div id="new-arrivals-grid" class="shop-carousel single-row"></div>
                 </div>
-                <button class="slider-nav next-btn" id="new-arrivals-next" aria-label="Next">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                <button class="slider-nav next-btn" id="new-arrivals-next"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- SIGNATURE PERFUMES GRID -->
-    <section id="perfumes" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Signature Perfumes</h2>
-                <p class="section-subtitle">Experience our most requested high-concentration sprays.</p>
-                <div class="accent-line"></div>
-            </div>
-            <div id="shop-grid-row-1" class="product-grid">
-                <!-- Loaded via JS -->
-            </div>
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="shop.html?cat=perfume" class="btn-luxury">View All Perfumes</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="collections" class="section" style="background:#0F0F0F;">
+    <!-- COLLECTIONS -->
+    <section id="collections" class="section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">The Collections</h2>
@@ -181,106 +158,102 @@
             <div class="collection-grid">
                 <div class="collection-card premium-format image-focused fade-up">
                     <div class="collection-img">
-                        <img src="assets/images/kaaf-rs-699.jpeg" alt="Kaaf" class="dimmed-img">
-                        <div class="subtle-veil"></div>
+                        <img src="assets/images/kaaf-rs-699.jpeg" alt="Perfume" class="dimmed-img">
                         <div class="centered-overlay-text">Perfume</div>
                     </div>
                     <div class="collection-info">
-                        <a href="shop.html?cat=perfume" class="btn-luxury collection-btn">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="shop.html?cat=perfume" class="btn-luxury collection-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
-                
-                <div class="collection-card premium-format attar-card image-focused fade-up">
+                <div class="collection-card premium-format image-focused fade-up">
                     <div class="collection-img">
-                        <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" alt="White Oud" class="dimmed-img">
-                        <div class="subtle-veil"></div>
+                        <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" alt="Attar" class="dimmed-img">
                         <div class="centered-overlay-text">Attar</div>
                     </div>
                     <div class="collection-info">
-                        <a href="shop.html?cat=attar" class="btn-luxury collection-btn">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="collection-card premium-format body-spray-card image-focused fade-up">
-                    <div class="collection-img">
-                        <img src="assets/images/body-spray-by-lattafa-rs-950.jpeg" alt="Body Spray Collection" class="dimmed-img">
-                        <div class="subtle-veil"></div>
-                        <div class="centered-overlay-text">Body Spray</div>
-                    </div>
-                    <div class="collection-info">
-                        <a href="shop.html?cat=body-spray" class="btn-luxury collection-btn">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="shop.html?cat=attar" class="btn-luxury collection-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ELITE ATTARS GRID -->
-    <section id="attars" class="section" style="background: #0A0A0A;">
+    <!-- BRAND SLIDERS -->
+    <section class="section" style="background:#0F0F0F;">
+        <div class="container">
+            <!-- Ajmal -->
+            <div class="slider-container shop-row-container" style="margin-bottom:60px;">
+                <h2 class="slider-title">Ajmal Brand</h2>
+                <div class="accent-line" style="margin-bottom:30px; background:var(--gold);"></div>
+                <button class="slider-nav prev-btn" id="ajmal-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="slider-viewport" id="ajmal-viewport">
+                    <div id="ajmal-perfume-grid" class="shop-carousel single-row"></div>
+                </div>
+                <button class="slider-nav next-btn" id="ajmal-next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Surrati -->
+            <div class="slider-container shop-row-container">
+                <h2 class="slider-title">Surrati Brand</h2>
+                <div class="accent-line" style="margin-bottom:30px; background:var(--gold);"></div>
+                <button class="slider-nav prev-btn" id="surrati-prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="slider-viewport" id="surrati-viewport">
+                    <div id="surrati-grid" class="shop-carousel single-row"></div>
+                </div>
+                <button class="slider-nav next-btn" id="surrati-next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN PRODUCT GRIDS -->
+    <section id="products" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Elite Attars</h2>
-                <p class="section-subtitle">Pure concentrated oils that define elegance.</p>
+                <h2 class="section-title">Signature Fragrances</h2>
                 <div class="accent-line"></div>
             </div>
-            <div id="shop-grid-row-2" class="product-grid">
-                <!-- Loaded via JS -->
-            </div>
-            <div style="text-align: center; margin-top: 50px;">
-                <a href="shop.html?cat=attar" class="btn-luxury">Explore All Attars</a>
+            <div id="shop-grid-row-1" class="product-grid"></div>
+            <div style="text-align:center; margin-top:40px;">
+                <a href="shop.html" class="btn-luxury">View Entire Boutique</a>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT US SECTION -->
-    <section id="about" class="section">
+    <!-- ABOUT & CONTACT -->
+    <section id="about" class="section" style="background:#0A0A0A;">
         <div class="container">
-            <div class="about-flex" style="display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
-                <div class="about-img" style="flex: 1; min-width: 300px;">
-                    <img src="assets/images/wurood-rs-2999.jpeg" alt="Musa Bhai Tradition" style="width: 100%; border-radius: 8px; filter: grayscale(1) contrast(1.1); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div class="about-flex" style="display:flex; align-items:center; gap:50px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:300px;">
+                    <img src="assets/images/wurood-rs-2999.jpeg" alt="Heritage" style="width:100%; border-radius:8px; filter:grayscale(0.5); box-shadow:0 10px 30px rgba(0,0,0,0.5);">
                 </div>
-                <div class="about-text" style="flex: 1.2; min-width: 300px;">
-                    <h2 class="section-title" style="text-align: left;">Our Heritage</h2>
-                    <div class="accent-line" style="margin-left: 0;"></div>
-                    <p style="margin-top: 30px; font-size: 1.1rem; line-height: 1.8; opacity: 0.8;">Musa Bhai Fragrances is an uncompromising dedication to the art of olfaction. Founded by a scholar of <strong>Jamia Binoria Al-Alamiyah</strong>, our brand bridges tradition and modern luxury.</p>
-                    <p style="margin-top: 20px; font-size: 1.1rem; line-height: 1.8; opacity: 0.8;">We source precisely matched premium ingredients to ensure every scent profile is a lasting legacy of sophistication. Smell expensive, pay less.</p>
-                    <a href="info.html#about" class="btn-luxury" style="margin-top: 40px;">Read Our Full Story</a>
+                <div style="flex:1.2; min-width:300px;">
+                    <h2 class="section-title" style="text-align:left;">Our Heritage</h2>
+                    <div class="accent-line" style="margin-left:0;"></div>
+                    <p style="margin-top:20px; line-height:1.8; opacity:0.8;">Founded by a scholar of Jamia Binoria Al-Alamiyah, Musa Bhai Fragrances combines tradition with modern luxury. We provide high-fidelity encounters with the world's finest scents.</p>
+                    <a href="info.html#about" class="btn-luxury" style="margin-top:30px;">Deep Dive into Heritage</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact" class="section" style="background: #0F0F0F;">
+    <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Reach Out</h2>
-                <p class="section-subtitle">Inquire about our scents or consult our concierge.</p>
                 <div class="accent-line"></div>
             </div>
-            <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px;">
-                <div class="contact-info-card" style="background: #0A0A0A; padding: 40px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.1);">
-                    <h3 style="color: var(--gold); margin-bottom: 25px; font-family: var(--font-header);">Contact Details</h3>
-                    <div class="contact-method" style="margin-bottom: 20px;">
-                        <i class="fa-solid fa-envelope" style="color: var(--gold); margin-right: 15px;"></i>
-                        <a href="mailto:moosakhanbaloch672@gmail.com" style="color: white; text-decoration: none;">moosakhanbaloch672@gmail.com</a>
-                    </div>
-                    <div class="contact-method" style="margin-bottom: 20px;">
-                        <i class="fa-solid fa-phone" style="color: var(--gold); margin-right: 15px;"></i>
-                        <span>+92 310 1131981</span>
-                    </div>
-                    <div class="contact-method">
-                        <i class="fa-solid fa-location-dot" style="color: var(--gold); margin-right: 15px;"></i>
-                        <span>Rashidabad Road, Karachi, Pakistan</span>
-                    </div>
+            <div class="contact-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:40px;">
+                <div class="contact-info-card" style="background:#0F0F0F; padding:40px; border-radius:12px; border:1px solid rgba(212,175,55,0.1);">
+                    <h3 style="color:var(--gold); margin-bottom:20px;">Concierge Services</h3>
+                    <p style="margin-bottom:15px;"><i class="fa-solid fa-envelope" style="color:var(--gold); margin-right:10px;"></i> moosakhanbaloch672@gmail.com</p>
+                    <p style="margin-bottom:15px;"><i class="fa-solid fa-phone" style="color:var(--gold); margin-right:10px;"></i> +92 310 1131981</p>
+                    <p><i class="fa-solid fa-location-dot" style="color:var(--gold); margin-right:10px;"></i> Rashidabad Road, Karachi, Pakistan</p>
                 </div>
-                <!-- Mini Contact Form -->
                 <div class="contact-form-mini">
-                    <form id="homeContactForm" style="display: flex; flex-direction: column; gap: 15px;">
-                        <input type="text" placeholder="Your Name" required style="padding: 15px; background: #0A0A0A; border: 1px solid rgba(212,175,55,0.2); color: white; border-radius: 4px; outline: none;">
-                        <input type="email" placeholder="Your Email" required style="padding: 15px; background: #0A0A0A; border: 1px solid rgba(212,175,55,0.2); color: white; border-radius: 4px; outline: none;">
-                        <textarea placeholder="Message" rows="4" required style="padding: 15px; background: #0A0A0A; border: 1px solid rgba(212,175,55,0.2); color: white; border-radius: 4px; outline: none;"></textarea>
-                        <button type="submit" class="btn-luxury" style="border: none; cursor: pointer;">Send Message</button>
+                    <form style="display:flex; flex-direction:column; gap:15px;">
+                        <input type="text" placeholder="Name" required style="padding:15px; background:#0F0F0F; border:1px solid rgba(212,175,55,0.2); color:white; border-radius:4px;">
+                        <textarea placeholder="How can we assist?" rows="4" required style="padding:15px; background:#0F0F0F; border:1px solid rgba(212,175,55,0.2); color:white; border-radius:4px;"></textarea>
+                        <button type="submit" class="btn-luxury" style="border:none; cursor:pointer;">Initiate Consult</button>
                     </form>
                 </div>
             </div>

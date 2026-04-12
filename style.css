@@ -2221,8 +2221,13 @@ p {
         flex: 0 0 160px; /* Small professional cards for slider */
     }
     .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* FIXED MOBILE GRID */
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .shop-carousel.product-grid {
+        display: flex;
+        grid-template-columns: none;
     }
     .product-item {
         padding: 6px;
@@ -3331,7 +3336,7 @@ p {
 }
 
 
-/* MOBILE GRID OPTIMIZATION (2-COLUMN) */
+
 @media (max-width: 480px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr) !important;
