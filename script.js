@@ -281,6 +281,9 @@ function generateProductCard(product) {
     }
 
     // Random discount for visual appeal
+    const numPrice = parseInt(product.price.toString().replace(/\D/g,'')) || 0;
+    const oldPrice = numPrice > 0 ? numPrice + Math.floor(numPrice * 0.25) : '';
+
     // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     const volume = (cat.includes('attar') || cat.includes('afnan')) ? '12ml' : 
