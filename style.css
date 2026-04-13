@@ -3337,17 +3337,48 @@ p {
 
 
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    /* Header layout fixes */
+    .header-container { max-width: 100%; justify-content: space-between; }
+    .nav-actions { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+    .theme-toggle-btn { order: 99 !important; margin-left: 5px !important; margin-right: 0 !important; }
+    
+    /* Ensure 3-4 items on mobile screens for carousels */
+    .shop-carousel .product-item {
+        flex: 0 0 calc(100% / 3.4) !important; 
+        min-width: 0 !important;
+        margin-right: 8px !important;
+    }
+    
+    /* Ensure grid shows 3 items on mobile */
     .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px;
-        padding: 0 10px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        padding: 0 5px !important;
     }
-    .product-title {
-        font-size: 0.85rem;
+    
+    /* Shrink the items to fit well */
+    .product-item .img-wrapper { margin-bottom: 8px !important; border-radius: 6px !important; }
+    .product-item .img-wrapper img { display: block; border-radius: 6px !important; }
+    .product-item .product-content { padding: 0 !important; }
+    .product-item .product-title { font-size: 0.70rem !important; margin-bottom: 2px !important; line-height: 1.2 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-item .product-price { font-size: 0.75rem !important; }
+    .product-item .old-price { font-size: 0.60rem !important; }
+    .product-item .btn-buy-now { font-size: 0.60rem !important; padding: 6px !important; margin-top: 5px !important; }
+    .product-item .meta-row { display: none !important; } /* Hide meta row on mobile to save space */
+    .floating-cart-btn { width: 25px !important; height: 25px !important; font-size: 10px !important; bottom: 5px !important; right: 5px !important; }
+}
+
+@media (max-width: 480px) {
+    .shop-carousel .product-item {
+        flex: 0 0 calc(100% / 3.2) !important;
     }
-    .btn-cart {
-        padding: 10px;
-        font-size: 0.75rem;
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
     }
+    .brand-name { font-size: 0.95rem !important; letter-spacing: 1px !important; }
+    .brand-subline { font-size: 0.5rem !important; letter-spacing: 2px !important; }
+    .logo-icon { width: 30px !important; height: 30px !important; }
+    .header-action-btn { width: 34px !important; height: 34px !important; font-size: 14px !important; }
 }
