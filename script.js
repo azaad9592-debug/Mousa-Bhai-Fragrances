@@ -529,9 +529,10 @@ function initEliteHeader() {
         mobileMenuBtn.setAttribute('aria-label', 'Menu');
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
         
-        navActions.appendChild(toggleBtn);
         navActions.appendChild(cartBtn);
         navActions.appendChild(mobileMenuBtn);
+        navActions.appendChild(toggleBtn); // Theme last as per screenshot
+
         
         let overlay = document.getElementById('mobile-nav-overlay');
         if (!overlay) {
@@ -1035,7 +1036,64 @@ function injectCartUI() {
     }
 
     renderCartBadge();
+    initLightbox();
+    initAnnouncementBar();
 }
+
+// ============================================================
+// IMAGE LIGHTBOX (CLICK TO ENLARGE)
+// ============================================================
+function initLightbox() {
+    let overlay = document.getElementById('lightbox-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'lightbox-overlay';
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = '<img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged Product">';
+        document.body.appendChild(overlay);
+        
+        overlay.onclick = () => overlay.classList.remove('active');
+    }
+
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // Attach to all product images (current and future)
+    document.addEventListener('click', e => {
+        const productImg = e.target.closest('.img-wrapper img');
+        if (productImg) {
+            e.preventDefault();
+            lightboxImg.src = productImg.src;
+            overlay.classList.add('active');
+        }
+    });
+}
+
+// ============================================================
+// PREMIUM ANNOUNCEMENT BAR ROTATOR
+// ============================================================
+function initAnnouncementBar() {
+    const bar = document.querySelector('.announcement-bar');
+    if (!bar) return;
+    const spans = bar.querySelectorAll('span');
+    if (spans.length < 2) return;
+
+    let current = 0;
+    setInterval(() => {
+        spans[current].classList.remove('active');
+        spans[current].classList.add('exit');
+        
+        const prev = current;
+        current = (current + 1) % spans.length;
+        
+        spans[current].classList.add('active');
+        
+        setTimeout(() => {
+            spans[prev].classList.remove('exit');
+        }, 800);
+    }, 4500);
+}
+
+
 
 // ============================================================
 // THEME MANAGEMENT
