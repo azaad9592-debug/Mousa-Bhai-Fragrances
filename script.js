@@ -320,8 +320,22 @@ function generateProductCard(product) {
 function openOrderModal(productName) {
     const modal = document.getElementById('order-modal');
     const prodInput = document.getElementById('prod-name');
+    const modalTitle = modal ? modal.querySelector('.modal-header h2') : null;
+    const modalSub = modal ? modal.querySelector('.modal-header p') : null;
+
     if (modal && prodInput) {
-        prodInput.value = productName;
+        if (productName === 'General Inquiry' || productName === 'Contact Us') {
+            if (modalTitle) modalTitle.innerText = "Contact Us";
+            if (modalSub) modalSub.innerText = "Have a question? We're here to help.";
+            prodInput.value = "General Inquiry";
+            prodInput.parentElement.style.display = "none"; // Hide product input for general inquiry
+        } else {
+            if (modalTitle) modalTitle.innerText = "Place Your Order";
+            if (modalSub) modalSub.innerText = "Fill in your details below to place your order quickly and securely.";
+            prodInput.value = productName;
+            prodInput.parentElement.style.display = "flex";
+        }
+        
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
     }
@@ -572,6 +586,22 @@ function initEliteHeader() {
             e.stopPropagation();
             navLinks.classList.contains('active') ? closeMenu() : openMenu();
         });
+
+        // Close menu when clicking links
+        if (navLinks) {
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // If it's the contact link, open the modal instead
+                    if (link.getAttribute('href').includes('#contact')) {
+                        e.preventDefault();
+                        closeMenu();
+                        openOrderModal('Contact Us');
+                    } else {
+                        closeMenu();
+                    }
+                });
+            });
+        }
 
         overlay.addEventListener('click', closeMenu);
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearch(); } });

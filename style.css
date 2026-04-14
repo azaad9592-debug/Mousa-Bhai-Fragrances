@@ -553,42 +553,64 @@ header {
     opacity: 0.9;
 }
 
+/* --- HEADER NAVIGATION (Sidebar Style Globally) --- */
 .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    border-left: 1px solid rgba(212, 175, 55, 0.1);
+    box-shadow: -20px 0 50px rgba(0,0,0,0.5);
+}
+
+.nav-links.active {
+    right: 0;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     transition: var(--transition-elite);
-    padding: 8px 0;
+    padding: 10px 0;
     position: relative;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--gold);
+    transform: scale(1.1);
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 1.5px;
     background: var(--gold);
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-    width: 100%;
+    width: 40px;
 }
 
 /* --- HEADER CART BUTTON --- */
@@ -596,8 +618,8 @@ header {
     background: transparent;
     border: 1px solid var(--border-luxury);
     color: var(--gold);
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -3025,14 +3047,16 @@ p {
     color: var(--gold);
     font-size: 14px;
     opacity: 0.7;
-    margin-left: 10px;
 }
 
 /* Reset visibility - force mobile-style actions group globally */
 .desktop-only { display: none !important; }
 .mobile-only { display: flex !important; }
-.header-search-container { display: none !important; }
 
+/* Force global mobile menu toggle visibility */
+.mobile-only-toggle {
+    display: flex !important;
+}
 
 /* Luxury Product Card Volume Badge */
 .product-volume {
@@ -3045,62 +3069,41 @@ p {
     letter-spacing: 1px;
 }
 
-
-
-@media (min-width: 1px) {
-    /* Header layout - Global Mobile Style */
+/* Global Mobile/Tablet Grid Refinement */
+@media (max-width: 992px) {
     .header-container { max-width: 100%; justify-content: space-between; }
-    .nav-actions { 
-        display: flex; 
-        align-items: center; 
-        gap: 12px; 
-        justify-content: flex-end; 
-        flex-grow: 1;
-    }
     
-    /* Order: Search, Cart, Toggle, Theme */
-    #search-open-btn { order: 1; }
-    .header-cart-btn { order: 2; }
-    #mobile-toggle    { order: 3; }
-    .theme-toggle-wrapper { order: 4; }
-}
-    
-    /* Ensure 3-4 items on mobile screens for carousels */
-    .shop-carousel .product-item {
-        flex: 0 0 calc(100% / 3.4) !important; 
-        min-width: 0 !important;
-        margin-right: 8px !important;
-    }
-    
-    /* Ensure grid shows 3 items on mobile */
+    /* Grid show 3 items on mobile/tablet */
     .product-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 8px !important;
-        padding: 0 5px !important;
+        gap: 12px !important;
+        padding: 0 10px !important;
     }
     
-    /* Shrink the items to fit well */
-    .product-item .img-wrapper { margin-bottom: 8px !important; border-radius: 6px !important; }
-    .product-item .img-wrapper img { display: block; border-radius: 6px !important; }
-    .product-item .product-content { padding: 0 !important; }
-    .product-item .product-title { font-size: 0.70rem !important; margin-bottom: 2px !important; line-height: 1.2 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .product-item .product-price { font-size: 0.75rem !important; }
-    .product-item .old-price { font-size: 0.60rem !important; }
-    .product-item .btn-buy-now { font-size: 0.60rem !important; padding: 6px !important; margin-top: 5px !important; }
-    .product-item .meta-row { display: none !important; } /* Hide meta row on mobile to save space */
-    .floating-cart-btn { width: 25px !important; height: 25px !important; font-size: 10px !important; bottom: 5px !important; right: 5px !important; }
+    .shop-carousel .product-item {
+        flex: 0 0 calc(100% / 3.2) !important; 
+        min-width: 0 !important;
+        margin-right: 10px !important;
+    }
+
+    .product-item .img-wrapper { margin-bottom: 8px !important; border-radius: 8px !important; }
+    .product-item .product-title { font-size: 0.8rem !important; margin-bottom: 4px !important; }
+    .product-item .product-price { font-size: 0.85rem !important; }
+    .product-item .old-price { font-size: 0.7rem !important; }
+    .product-item .btn-buy-now { font-size: 0.7rem !important; padding: 8px !important; }
+    .product-item .meta-row { display: none !important; }
+    .floating-cart-btn { width: 30px !important; height: 30px !important; }
 }
 
 @media (max-width: 480px) {
-    .shop-carousel .product-item {
-        flex: 0 0 calc(100% / 3.2) !important;
-    }
     .product-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 6px !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 is better for very small phones */
+        gap: 10px !important;
     }
-    .brand-name { font-size: 0.95rem !important; letter-spacing: 1px !important; }
-    .brand-subline { font-size: 0.5rem !important; letter-spacing: 2px !important; }
-    .logo-icon { width: 30px !important; height: 30px !important; }
-    .header-action-btn { width: 34px !important; height: 34px !important; font-size: 14px !important; }
+    .shop-carousel .product-item {
+        flex: 0 0 calc(100% / 2.2) !important;
+    }
+    .brand-name { font-size: 1.1rem !important; }
+    .brand-subline { font-size: 0.55rem !important; }
+}ont-size: 14px !important; }
 }
