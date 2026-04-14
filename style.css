@@ -3183,13 +3183,13 @@ p {
     }
     .brand-name { font-size: 1.2rem !important; }
     .brand-subline { font-size: 0.6rem !important; }
-/* PROFESSIONAL PRODUCT SLIDER */
+/* COMPACT PRODUCT SLIDER & CARDS */
 .product-slider {
     display: flex !important;
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
     gap: 20px;
-    padding: 20px 0;
+    padding: 20px 5px;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -3202,18 +3202,51 @@ p {
 }
 
 .product-slider .product-item {
-    flex: 0 0 300px !important;
+    flex: 0 0 280px !important; /* Compact width */
+    max-width: 280px;
+    height: 380px !important; /* Extremely compact as requested */
     scroll-snap-align: start;
+    background: #111;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (max-width: 991px) {
+@media (min-width: 1025px) {
     .product-slider .product-item {
-        flex: 0 0 200px !important;
+        flex: 0 0 calc((100% - 40px) / 3) !important; /* Exactly 3 visible cards */
     }
 }
 
-@media (max-width: 480px) {
+
+@media (max-width: 1024px) and (min-width: 601px) {
     .product-slider .product-item {
-        flex: 0 0 160px !important;
+        flex: 0 0 calc((100% - 20px) / 2) !important; /* 2 visible cards */
     }
-}
+}
+
+@media (max-width: 600px) {
+    .product-slider .product-item {
+        flex: 0 0 85% !important; /* 1 visible card with peek */
+    }
+}
+
+/* Card Content Scaling */
+.product-item .img-wrapper {
+    height: 180px !important;
+    width: 100%;
+}
+.product-item .product-content {
+    padding: 15px !important;
+}
+.product-item .product-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 5px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
