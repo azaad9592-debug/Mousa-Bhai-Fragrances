@@ -642,38 +642,7 @@ header {
         opacity: 1 !important;
     }
 }
-    
-    .nav-links a {
-        font-size: 1.2rem;
-        letter-spacing: 4px;
-    }
-    
-    .nav-links a::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-        width: 50px;
-    }
-}
-    
-    .nav-links a {
-        font-size: 1.1rem;
-        letter-spacing: 3px;
-    }
-    
-    .nav-links a::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-        width: 40px;
-    }
-}
+
 
 /* --- HEADER ACTIONS & BUTTONS --- */
 .header-cart-btn {
@@ -759,6 +728,7 @@ header {
     z-index: 1;
 }
 
+@keyframes zoomHero {
     from { transform: scale(1); }
     to { transform: scale(1.1); }
 }
