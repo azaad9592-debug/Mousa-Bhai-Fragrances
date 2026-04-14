@@ -543,25 +543,29 @@ header {
 .logo-text-group {
     display: flex;
     flex-direction: column;
-    line-height: 1;
+    justify-content: center;
+    line-height: 1.1;
+    margin-left: 10px;
 }
 
 .logo-text {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-family: 'Cinzel', serif; /* Use the professional brand font */
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--gold);
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .logo-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-top: 2px;
-    opacity: 0.8;
+    letter-spacing: 5px;
+    margin-top: 1px;
+    opacity: 0.9;
+    font-weight: 500;
 }
 
 /* --- ADAPTIVE ELITE HEADER --- */
@@ -3183,56 +3187,46 @@ p {
     }
     .brand-name { font-size: 1.2rem !important; }
     .brand-subline { font-size: 0.6rem !important; }
-/* COMPACT PRODUCT SLIDER & CARDS */
+/* PROFESSIONAL COMPACT SLIDER */
 .product-slider {
     display: flex !important;
     overflow-x: auto !important;
     scroll-snap-type: x mandatory !important;
-    gap: 20px;
-    padding: 20px 5px;
+    gap: 15px; /* Tighter gap for professional look */
+    padding: 20px 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
     width: 100%;
 }
 
-.product-slider::-webkit-scrollbar {
-    display: none;
-}
+.product-slider::-webkit-scrollbar { display: none; }
 
 .product-slider .product-item {
-    flex: 0 0 280px !important; /* Compact width */
-    max-width: 280px;
-    height: 380px !important; /* Extremely compact as requested */
-    scroll-snap-align: start;
-    background: #111;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-    border-radius: 10px;
+    flex: 0 0 240px !important; /* Strictly small size */
+    min-width: 240px;
+    max-width: 240px;
+    height: 350px !important; /* Compact height as requested */
+    scroll-snap-align: center;
+    background: #151515;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 8px;
+    margin-right: 5px;
     overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 }
 
 @media (min-width: 1025px) {
     .product-slider .product-item {
-        flex: 0 0 calc((100% - 40px) / 3) !important; /* Exactly 3 visible cards */
+        flex: 0 0 calc((100% - 30px) / 3) !important; /* 3 visible cards */
+        max-width: 320px;
     }
 }
-
-
-@media (max-width: 1024px) and (min-width: 601px) {
+@media (max-width: 480px) {
     .product-slider .product-item {
-        flex: 0 0 calc((100% - 20px) / 2) !important; /* 2 visible cards */
+        flex: 0 0 190px !important; /* Small mobile cards */
     }
 }
 
-@media (max-width: 600px) {
-    .product-slider .product-item {
-        flex: 0 0 85% !important; /* 1 visible card with peek */
-    }
-}
 
 /* Card Content Scaling */
 .product-item .img-wrapper {
