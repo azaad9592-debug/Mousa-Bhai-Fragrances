@@ -1,151 +1,414 @@
-<!-- Deployment Ref: 2026-04-14-0322 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Musa Bhai Fragrances | Luxury Inspired Scents</title>
-    <meta name="description" content="Experience the finest luxury-inspired fragrances at affordable prices. Smell expensive without the designer price tag.">
+    <title>Musa Bhai Fragrances | Luxury Inspired</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=2.1">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D57F 50%, #D4AF37 100%);
+            --red-gold: linear-gradient(90deg, #8B0000 0%, #D4AF37 100%);
+            --black: #050505;
+            --black-alt: #0c0c0c;
+            --white: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --radius: 5px;
+            --transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --font-heading: 'Cinzel', serif;
+            --font-accent: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        /* --- GLOBAL BASICS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--black); 
+            color: var(--white); 
+            font-family: var(--font-body); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* --- LOADING SCREEN --- */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        #loading-screen.fade-out { opacity: 0; pointer-events: none; }
+        .loader-logo { width: 100px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.3; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.3; transform: scale(0.9); } }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background: var(--red-gold);
+            color: var(--white);
+            text-align: center;
+            padding: 8px 0;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- STICKY HEADER --- */
+        header {
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        header.shrink { padding: 12px 0; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-flex { display: flex; align-items: center; gap: 12px; }
+        .logo-img { width: 45px; height: 45px; }
+        .logo-text { font-family: var(--font-heading); color: var(--gold); font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links li a { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links li a:hover { color: var(--gold); }
+
+        .mobile-toggle { display: none; color: var(--gold); font-size: 24px; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 5%; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(40px, 8vw, 80px); line-height: 1.1; margin-bottom: 20px; color: var(--gold); }
+        .hero p { font-size: clamp(16px, 3vw, 20px); color: var(--white); margin-bottom: 40px; }
+
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--black);
+            padding: 18px 45px;
+            font-weight: 800;
+            border-radius: var(--radius);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5); }
+
+        /* --- FEATURES STRIP --- */
+        .features-strip { padding: 80px 0; background: var(--black-alt); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-card {
+            background: #111;
+            padding: 40px;
+            text-align: center;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+        .feature-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .feature-card i { font-size: 35px; color: var(--gold); margin-bottom: 20px; }
+        .feature-card h3 { font-family: var(--font-heading); font-size: 18px; margin-bottom: 10px; }
+        .feature-card p { font-size: 14px; color: var(--text-secondary); }
+
+        /* --- COLLECTIONS --- */
+        .collections { padding: 100px 0; background: #0c0c0c; text-align: center; }
+        .section-title { font-family: var(--font-heading); font-size: 40px; margin-bottom: 60px; color: var(--gold); letter-spacing: 2px; }
+        .collection-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        
+        .collection-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+        .collection-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .collection-card:hover .collection-img { transform: scale(1.1); }
+        
+        .collection-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .collection-card:hover .collection-overlay { background: rgba(0,0,0,0.6); }
+        
+        .collection-overlay h3 { font-family: var(--font-heading); font-size: 32px; color: var(--gold); margin-bottom: 20px; }
+        .btn-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            backdrop-filter: blur(5px);
+        }
+        .collection-card:hover .btn-outline { background: var(--gold); color: var(--black); }
+
+        /* --- WHY CHOOSE US & TRUST STRIP --- */
+        .why-us { padding: 100px 0; }
+        .trust-strip { padding: 50px 0; background: #111; margin-top: 50px; }
+        .trust-flex { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; }
+        .trust-item { display: flex; align-items: center; gap: 15px; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+        .trust-item i { color: var(--gold); font-size: 20px; }
+
+        /* --- FOOTER --- */
+        footer { padding: 100px 0 30px; background: #080808; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        
+        .footer-col h4 { font-family: var(--font-heading); color: var(--gold); margin-bottom: 30px; font-size: 16px; letter-spacing: 2px; }
+        .footer-col p { font-size: 14px; color: var(--text-secondary); margin-bottom: 25px; }
+        
+        .social-icons { display: flex; gap: 15px; }
+        .social-icons a { width: 35px; height: 35px; border: 1px solid rgba(212, 175, 55, 0.2); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--gold); }
+        .social-icons a:hover { background: var(--gold-gradient); color: var(--black); }
+
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links li a { font-size: 14px; color: var(--text-secondary); }
+        .footer-links li a:hover { color: var(--gold); padding-left: 5px; }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; text-align: center; color: var(--text-secondary); font-size: 13px; }
+
+        /* --- FLOATING ELEMENTS --- */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            z-index: 2000;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+        .whatsapp-fixed:hover { transform: scale(1.1); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5); }
+
+        .live-popup {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #fff;
+            color: #333;
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1500;
+            transform: translateY(150px);
+            transition: 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .live-popup.show { transform: translateY(0); }
+        .live-popup i { color: #25D366; font-size: 20px; }
+        .popup-text { font-size: 13px; font-weight: 500; }
+        .popup-text b { color: var(--gold); }
+
+        /* --- ORDER MODAL --- */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content { background: #111; width: 100%; max-width: 500px; padding: 40px; border: 1px solid var(--gold); border-radius: var(--radius); position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 24px; cursor: pointer; color: var(--gold); }
+        
+        .modal h2 { font-family: var(--font-heading); color: var(--gold); margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; color: var(--gold); }
+        .form-group input, .form-group select { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 5px; font-family: inherit; }
+        .form-group input:focus { border-color: var(--gold); outline: none; }
+
+        /* --- ANIMATIONS & UTILS --- */
+        .fade-up { opacity: 0; transform: translateY(50px); transition: 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+        }
+        @media (max-width: 768px) {
+            .collection-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 45px; }
+            .trust-flex { justify-content: flex-start; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero { height: 80vh; }
+            .live-popup { display: none; }
+        }
+    </style>
 </head>
-<body class="theme-dark">
-    <div class="announcement-bar">
-        <span class="active"><i class="fa-solid fa-truck-fast"></i> Premium Quality Fragrances - Trusted by Thousands</span>
-        <span><i class="fa-solid fa-gem"></i> Luxury Scents. Affordable Prices.</span>
-        <span><i class="fa-solid fa-rotate-left"></i> FAST Delivery Across Pakistan!</span>
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <svg class="loader-logo" viewBox="0 0 100 100">
+            <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </div>
 
-    <div class="top-branding-bar">
-        <i class="fa-solid fa-gem"></i> Premium Quality Fragrances at Best Prices
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        ⬥ Premium Quality Fragrances at Best Prices
     </div>
 
+    <!-- STICKY HEADER -->
     <header id="main-header">
-        <div class="header-container">
-            <div class="logo-container">
-                <a href="index.html" class="logo-flex">
-                    <div class="logo-icon">
-                        <svg class="m-symbol luxury-gold-svg" viewBox="0 0 100 100">
-                            <!-- Golden Aura -->
-                            <circle cx="50" cy="50" r="48" fill="none" stroke="url(#gold-gradient-new)" stroke-width="0.5" opacity="0.3"/>
-                            
-                            <!-- Majesty Crown Cap -->
-                            <path d="M42 22 L58 22 L62 32 L38 32 Z" fill="url(#gold-gradient-new)"/>
-                            <path d="M40 22 Q50 10 60 22" fill="none" stroke="url(#gold-gradient-new)" stroke-width="2"/>
-                            <circle cx="50" cy="12" r="3" fill="url(#gold-gradient-new)"/>
-
-                            <!-- Crystal Bottle Body -->
-                            <path d="M35 35 L65 35 L72 75 C 72 85, 60 92, 50 92 C 40 92, 28 85, 28 75 Z" fill="none" stroke="url(#gold-gradient-new)" stroke-width="2.5"/>
-                            <path d="M38 38 L62 38 L68 74 C 68 82, 58 88, 50 88 C 42 88, 32 82, 32 74 Z" fill="url(#gold-gradient-new)" opacity="0.15"/>
-
-                            <!-- Central Gold Emblem 'M' -->
-                            <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="url(#gold-gradient-new)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                            
-                            <defs>
-                                <linearGradient id="gold-gradient-new" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#D4AF37" />
-                                    <stop offset="50%" stop-color="#F1D57F" />
-                                    <stop offset="100%" stop-color="#B8860B" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                    <div class="logo-text">
-                        <span class="brand-name">Musa Bhai</span>
-                        <span class="brand-subline">Fragrances</span>
-                    </div>
+        <div class="container header-flex">
+            <div class="logo-area">
+                <a href="#" class="logo-flex">
+                    <svg class="logo-img" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.3"/>
+                        <path d="M42 22 L58 22 L62 32 L38 32 Z" fill="#D4AF37"/>
+                        <path d="M35 35 L65 35 L72 75 C 72 85, 60 92, 50 92 C 40 92, 28 85, 28 75 Z" fill="none" stroke="#D4AF37" stroke-width="3"/>
+                        <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="#D4AF37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">MUSA BHAI</span>
                 </a>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="index.html#collections">Collections</a>
-                <a href="shop.html">Shop</a>
-                <a href="info.html#about">About</a>
-                <a href="info.html#contact">Contact</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
             </nav>
-            <div class="nav-actions">
-                <!-- Persistent Search for Desktop -->
-                <div class="header-search-container desktop-only">
-                    <input type="text" id="header-search-input" placeholder="Search fragrances...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <!-- Search Button for Mobile -->
-                <button class="header-action-btn mobile-only" id="search-open-btn" aria-label="Search Products">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-                
-                <!-- Shared Theme Toggle & Cart will be managed via script.js -->
-            </div>
         </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-img">
-            <img src="assets/whatsapp-image-2026-03-29-at-5.56.40-am.jpeg" alt="Musa Bhai Fragrances Signature Scent">
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="assets/whatsapp-image-2026-03-29-at-5.56.40-am.jpeg" alt="Musa Bhai Hero">
         </div>
         <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content fade-up visible">
-                <h1>Smell Expensive.<br>Pay Less.</h1>
-                <p>Luxury-inspired fragrances crafted for everyday elegance.</p>
-                <a href="shop.html" id="hero-shop-now" class="btn-luxury">Shop Now</a>
+        <div class="hero-content">
+            <h1 class="fade-up">Smell Expensive.<br>Pay Less.</h1>
+            <p class="fade-up">Luxury-inspired fragrances crafted for everyday elegance.</p>
+            <div class="fade-up">
+                <a href="#collections" class="btn-gold">Shop Now</a>
             </div>
         </div>
     </section>
 
-    <!-- ELITE SEARCH OVERLAY -->
-    <div id="search-overlay" class="search-overlay">
-        <button id="search-close-btn" class="search-close-btn" aria-label="Close Search">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="search-container">
-            <h2>Search fragrances</h2>
-            <div class="search-input-wrapper">
-                <input type="text" id="main-search-input" class="search-input" placeholder="What are you looking for?" autocomplete="off">
+    <!-- FEATURES STRIP -->
+    <section class="features-strip">
+        <div class="container features-grid">
+            <div class="feature-card fade-up">
+                <i class="fa-solid fa-gem"></i>
+                <h3>Luxury Inspired</h3>
+                <p>Scents that rival the world's most famous designer houses.</p>
             </div>
-            <div id="search-results-preview" class="search-results-preview">
-                <!-- Results will appear here -->
+            <div class="feature-card fade-up">
+                <i class="fa-solid fa-tag"></i>
+                <h3>Affordable Prices</h3>
+                <p>Premium quality without the high designer price tag.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <i class="fa-solid fa-hourglass-half"></i>
+                <h3>Long Lasting</h3>
+                <p>High concentration oils ensure your scent stays all day.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Fast Delivery</h3>
+                <p>Reliable shipping across all of Pakistan.</p>
             </div>
         </div>
-    </div>
+    </section>
+
     <!-- COLLECTIONS -->
-    <section id="collections" class="section">
+    <section id="collections" class="collections">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Explore by Category</h2>
-                <div class="accent-line"></div>
-            </div>
+            <h2 class="section-title fade-up">The Collections</h2>
             <div class="collection-grid">
-                <div class="collection-card premium-format image-focused fade-up">
-                    <div class="collection-img">
-                        <img src="assets/images/kaaf-rs-699.jpeg" alt="Perfume" class="dimmed-img">
-                        <div class="centered-overlay-text">Perfume</div>
-                    </div>
-                    <div class="collection-info">
-                        <a href="shop.html?cat=perfume" class="btn-luxury collection-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="collection-card premium-format image-focused fade-up">
-                    <div class="collection-img">
-                        <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" alt="Attar" class="dimmed-img">
-                        <div class="centered-overlay-text">Attar</div>
-                    </div>
-                    <div class="collection-info">
-                        <a href="shop.html?cat=attar" class="btn-luxury collection-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Card 1 -->
+                <div class="collection-card fade-up" onclick="openOrderModal('Kaaf Perfume (Rs. 699)')">
+                    <img src="assets/images/kaaf-rs-699.jpeg" alt="Perfume" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3>Perfume</h3>
+                        <div class="btn-outline">Explore Collection</div>
                     </div>
                 </div>
-                <div class="collection-card premium-format image-focused fade-up">
-                    <div class="collection-img">
-                        <img src="assets/images/body-spray-by-lattafa-rs-950.jpeg" alt="Body Spray" class="dimmed-img">
-                        <div class="centered-overlay-text">Body Spray</div>
+                <!-- Card 2 -->
+                <div class="collection-card fade-up" onclick="openOrderModal('White Oud by Surrati (Rs. 3499)')">
+                    <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" alt="Attar" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3>Attar</h3>
+                        <div class="btn-outline">Explore Collection</div>
                     </div>
-                    <div class="collection-info">
-                        <a href="shop.html?cat=body-spray" class="btn-luxury collection-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <!-- Card 3 -->
+                <div class="collection-card fade-up" onclick="openOrderModal('Body Spray by Lattafa (Rs. 950)')">
+                    <img src="assets/images/body-spray-by-lattafa-rs-950.jpeg" alt="Body Spray" class="collection-img">
+                    <div class="collection-overlay">
+                        <h3>Body Spray</h3>
+                        <div class="btn-outline">Explore Collection</div>
                     </div>
                 </div>
             </div>
@@ -153,216 +416,233 @@
     </section>
 
     <!-- WHY CHOOSE US -->
-    <section id="features" class="section" style="background:#0A0A0A;">
+    <section class="why-us">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" style="font-size: 2.2rem; margin-top:20px;">Why you choose us</h2>
-                <div class="accent-line"></div>
-            </div>
-            <div style="max-width: 800px; margin: 0 auto 50px; text-align: center; color: rgba(255,255,255,0.85); font-size: 1.15rem; line-height: 1.8; letter-spacing: 0.5px; font-weight: 300;">
-                <p>Welcome to a world of unparalleled olfactory excellence. At Musa Bhai Fragrances, we believe that true luxury lies in the masterful details. We meticulously source our ingredients from the world's most prestigious origins, ensuring every drop delivers a sophisticated, long-lasting aura. Elevate your daily encounters with an exquisite scent that speaks volumes before you even say a word, leaving an unforgettable impression of elegance and charm.</p>
-            </div>
+            <h2 class="section-title fade-up" style="text-align: center;">Why Musa Bhai?</h2>
             <div class="features-grid">
                 <div class="feature-card fade-up">
-                    <i class="fa-solid fa-gem"></i>
-                    <h3>Luxury Inspired</h3>
-                    <p>Scents that rival the world's most famous designer houses.</p>
+                    <i class="fa-solid fa-certificate"></i>
+                    <h3>100% Original</h3>
+                    <p>We guarantee the authenticity of every single essence we provide.</p>
                 </div>
                 <div class="feature-card fade-up">
-                    <i class="fa-solid fa-tag"></i>
-                    <h3>Affordable Prices</h3>
-                    <p>Premium quality without the premium price tag.</p>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Trusted by Thousands</h3>
+                    <p>Over 10,000 satisfied customers across Pakistan.</p>
                 </div>
                 <div class="feature-card fade-up">
-                    <i class="fa-solid fa-clock"></i>
-                    <h3>Long Lasting</h3>
-                    <p>High concentration oils ensure your scent stays all day.</p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h3>Easy WhatsApp Ordering</h3>
+                    <p>Order in seconds directly via a WhatsApp chat.</p>
                 </div>
                 <div class="feature-card fade-up">
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <h3>Fast Delivery</h3>
-                    <p>Reliable shipping across all of Pakistan.</p>
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <h3>Hassle-Free Returns</h3>
+                    <p>Not satisfied? Send it back within 7 days for a full refund.</p>
                 </div>
+            </div>
+        </div>
+        
+        <!-- TRUST STRIP -->
+        <div class="trust-strip">
+            <div class="container trust-flex">
+                <div class="trust-item"><i class="fa-solid fa-check"></i> 100% Original</div>
+                <div class="trust-item"><i class="fa-solid fa-bolt"></i> Fast Delivery</div>
+                <div class="trust-item"><i class="fa-solid fa-star"></i> Trusted by Customers</div>
+                <div class="trust-item"><i class="fa-solid fa-lock"></i> Secure Checkout</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <!-- UNIFIED LUXURY FOOTER -->
-    <footer class="elite-footer">
-        <div class="container">
-            <!-- Footer Trust Row -->
-            <div class="footer-trust-row">
-                <div class="footer-trust-item">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>Secure Checkout</span>
-                </div>
-                <div class="footer-trust-item">
-                    <i class="fa-solid fa-award"></i>
-                    <span>Premium Quality</span>
-                </div>
-                <div class="footer-trust-item">
-                    <i class="fa-solid fa-medal"></i>
-                    <span>Trusted Brand</span>
-                </div>
-                <div class="footer-trust-item">
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <span>Fast Shipping</span>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4 style="font-size: 20px;">Musa Bhai</h4>
+                <p>Luxury inspired fragrances that leave a lasting impression. Smell expensive, pay less.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
             </div>
-
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="luxury-logo" style="margin-bottom:20px;">
-                        <div class="logo-icon">
-                            <svg class="m-symbol luxury-gold-svg" viewBox="0 0 100 100">
-                                <!-- Golden Aura -->
-                                <circle cx="50" cy="50" r="48" fill="none" stroke="url(#gold-gradient-footer-new)" stroke-width="0.5" opacity="0.3"/>
-                                
-                                <!-- Majesty Crown Cap -->
-                                <path d="M42 22 L58 22 L62 32 L38 32 Z" fill="url(#gold-gradient-footer-new)"/>
-                                <path d="M40 22 Q50 10 60 22" fill="none" stroke="url(#gold-gradient-footer-new)" stroke-width="2"/>
-                                <circle cx="50" cy="12" r="3" fill="url(#gold-gradient-footer-new)"/>
-
-                                <!-- Crystal Bottle Body -->
-                                <path d="M35 35 L65 35 L72 75 C 72 85, 60 92, 50 92 C 40 92, 28 85, 28 75 Z" fill="none" stroke="url(#gold-gradient-footer-new)" stroke-width="2.5"/>
-                                <path d="M38 38 L62 38 L68 74 C 68 82, 58 88, 50 88 C 42 88, 32 82, 32 74 Z" fill="url(#gold-gradient-footer-new)" opacity="0.15"/>
-
-                                <!-- Central Gold Emblem 'M' -->
-                                <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="url(#gold-gradient-footer-new)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                                <defs>
-                                    <linearGradient id="gold-gradient-footer-new" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#D4AF37" />
-                                        <stop offset="50%" stop-color="#F1D57F" />
-                                        <stop offset="100%" stop-color="#B8860B" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <div class="logo-text">
-                            <span class="brand-name">MUSA BHAI</span>
-                            <span class="brand-subline">FRAGRANCES</span>
-                        </div>
-                    </div>
-                    <p>Luxury inspired scents that leave a lasting impression. Smell expensive, pay less.</p>
-                    <h4 style="margin-top: 30px; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px;">Follow Us</h4>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/moosa__bhai_3?igsh=MWIwdDZkN29lYTNoOQ%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@musa_bhai_3?_r=1&_t=ZS-9561n1hFcyP" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                        <a href="https://youtube.com/@moosa_perfumes" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://www.facebook.com/share/1FwWywycSQ/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="mailto:moosakhanbaloch672@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Products</a></li>
-                        <li><a href="info.html#about">About Us</a></li>
-                        <li><a href="info.html#privacy">Privacy Policy</a></li>
-                        <li><a href="info.html#shipping">Shipping Info</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul class="footer-contact-list">
-                        <li>
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Rashidabad Road, Karachi, Pakistan</span>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-phone"></i>
-                            <span>+92 310 1131981</span>
-                        </li>
-                        <li>
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>moosakhanbaloch672@gmail.com</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="footer-col">
+                <h4>Shop Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Full Collection</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Musa Bhai Fragrances. All Rights Reserved. Defined by Excellence.</p>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="info.html">Privacy Policy</a></li>
+                    <li><a href="info.html">Terms & Conditions</a></li>
+                    <li><a href="info.html">Return Policy</a></li>
+                    <li><a href="info.html">Shipping Info</a></li>
+                    <li><a href="info.html">FAQ</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h4>The Boutique</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fa-solid fa-gem" style="color:var(--gold)"></i> 100% Original</a></li>
+                    <li><a href="#"><i class="fa-solid fa-truck-fast" style="color:var(--gold)"></i> Fast Delivery</a></li>
+                    <li><a href="#"><i class="fa-solid fa-shield-halved" style="color:var(--gold)"></i> SSL Encrypted</a></li>
+                    <li><a href="#"><i class="fa-solid fa-headset" style="color:var(--gold)"></i> 24/7 Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Musa Bhai Fragrances. All Rights Reserved. | WhatsApp: +923101131981</p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/923101131981" target="_blank" class="floating-whatsapp">
+    <!-- FLOATING WA BUTTON -->
+    <a href="https://wa.me/923101131981" class="whatsapp-fixed" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Order Form Modal -->
+    <!-- LIVE POPUP -->
+    <div id="live-popup" class="live-popup">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <div class="popup-text" id="popup-content">
+            Ahmed from Karachi just ordered <b>Kaaf Perfume</b>
+        </div>
+    </div>
+
+    <!-- ORDER MODAL -->
     <div id="order-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Place Your Order</h2>
-                <p>Fill in your details below to place your order quickly and securely.</p>
-            </div>
-            <div class="accent-line" style="margin: 10px auto 25px;"></div>
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Complete Your Order</h2>
             <form id="orderForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cust-name">Full Name</label>
-                        <input type="text" id="cust-name" placeholder="Enter your full name" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cust-phone">Phone Number</label>
-                        <input type="tel" id="cust-phone" placeholder="+92 300 1234567" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cust-email">Email Address</label>
-                        <input type="email" id="cust-email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cust-city">City</label>
-                        <input type="text" id="cust-city" placeholder="Enter your city" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group" style="flex: 2;">
-                        <label for="prod-name">Product Name</label>
-                        <input type="text" id="prod-name" placeholder="Enter product name" required>
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label for="order-qty">Quantity</label>
-                        <input type="number" id="order-qty" min="1" value="1" required>
-                    </div>
-                </div>
-
                 <div class="form-group">
-                    <label for="del-address">Full Delivery Address</label>
-                    <textarea id="del-address" rows="3" placeholder="Enter your full address" required></textarea>
+                    <label>Product Name</label>
+                    <input type="text" id="prod-name" readonly>
                 </div>
-
                 <div class="form-group">
-                    <label for="order-notes">Additional Notes (optional)</label>
-                    <textarea id="order-notes" rows="2" placeholder="Any special instructions for delivery?"></textarea>
+                    <label>Your Full Name</label>
+                    <input type="text" id="cust-name" required placeholder="Enter your name">
                 </div>
-
-                <div class="order-actions" style="grid-template-columns: 1fr;">
-                    <button type="submit" id="place-order-top-btn" class="btn-luxury" style="width: 100%; border: none; cursor: pointer; padding: 20px; font-size: 15px;">
-                        <i class="fa-solid fa-check-double"></i> Place Order
-                    </button>
-                    <p style="text-align: center; font-size: 11px; opacity: 0.6; margin-top: 10px;">Your WhatsApp and Email apps will open to send the order.</p>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="text" id="cust-phone" required placeholder="03XXXXXXXXX">
                 </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="cust-city" required placeholder="e.g. Karachi">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <input type="text" id="del-address" required placeholder="House number, Street, Area">
+                </div>
+                <button type="submit" class="btn-gold" style="width: 100%; border: none;">Order on WhatsApp</button>
             </form>
         </div>
     </div>
 
+    <script>
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initLoadingScreen();
+            initAnimations();
+            initHeaderScroll();
+            initLivePopup();
+            initOrderModal();
+        });
 
-    <script src="script.js"></script>
+        // 1. Loading Screen
+        function initLoadingScreen() {
+            const screen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                screen.classList.add('fade-out');
+                setTimeout(() => screen.style.display = 'none', 800);
+            }, 1500);
+        }
+
+        // 2. Scroll Animations
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        }
+
+        // 3. Header Scroll
+        function initHeaderScroll() {
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shrink');
+                } else {
+                    header.classList.remove('shrink');
+                }
+            });
+        }
+
+        // 4. Live Order Popup
+        function initLivePopup() {
+            const names = ["Ahmed", "Sajid", "Fatima", "Zainab", "Ali", "Hassan", "Ayesha", "Usman", "Kashif", "Sara"];
+            const cities = ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Multan", "Peshawar", "Quetta", "Sialkot"];
+            const prods = ["Kaaf Perfume", "White Oud", "Body Spray by Lattafa", "Royal Musk", "Janan Inspired"];
+            const popup = document.getElementById('live-popup');
+            const content = document.getElementById('popup-content');
+
+            setInterval(() => {
+                const name = names[Math.floor(Math.random() * names.length)];
+                const city = cities[Math.floor(Math.random() * cities.length)];
+                const prod = prods[Math.floor(Math.random() * prods.length)];
+                
+                content.innerHTML = `${name} from ${city} just ordered <b>${prod}</b>`;
+                popup.classList.add('show');
+                
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 4000);
+            }, 12000);
+        }
+
+        // 5. Order Modal
+        const modal = document.getElementById('order-modal');
+        const orderForm = document.getElementById('orderForm');
+        
+        function openOrderModal(prod) {
+            document.getElementById('prod-name').value = prod;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function initOrderModal() {
+            document.getElementById('close-modal').onclick = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+
+            orderForm.onsubmit = (e) => {
+                e.preventDefault();
+                const name = document.getElementById('cust-name').value;
+                const phone = document.getElementById('cust-phone').value;
+                const city = document.getElementById('cust-city').value;
+                const prod = document.getElementById('prod-name').value;
+                const addr = document.getElementById('del-address').value;
+
+                const message = `New Order:\nProduct: ${prod}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${addr}`;
+                const encodedMsg = encodeURIComponent(message);
+                window.open(`https://wa.me/923101131981?text=${encodedMsg}`, '_blank');
+                
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                orderForm.reset();
+            };
+        }
+    </script>
 </body>
 </html>
