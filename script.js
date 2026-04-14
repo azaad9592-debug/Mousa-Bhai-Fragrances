@@ -444,30 +444,28 @@ function init() {
                 const orderMessage = `New Order:\nName: ${name}\nPhone: ${phone}\nProduct: ${product}\nQuantity: ${quantity}\nAddress: ${address}\nNotes: ${notes}`;
                 const encodedMessage = encodeURIComponent(orderMessage);
 
-                // --- EMAIL ACTION (AUTOMATED via EmailJS) ---
-                const serviceID = "YOUR_SERVICE_ID";
-                const templateID = "YOUR_TEMPLATE_ID";
-                const publicKey = "YOUR_PUBLIC_KEY";
-
-                // Prepare EmailJS Data
-                const templateParams = {
-                    from_name: name,
-                    phone: phone,
-                    product: product,
-                    quantity: quantity,
-                    address: address,
-                    notes: notes,
-                    message: orderMessage
-                };
-
-                // Initialize if not already (or just send)
-                if (typeof emailjs !== 'undefined') {
-                    emailjs.send(serviceID, templateID, templateParams, publicKey)
-                        .then(() => {
-                            console.log('Email Sent Successfully to moosakhanbaloch672@gmail.com');
-                        }, (err) => {
-                            console.log('EmailJS Error:', err);
-                        });
+                // --- EMAIL ACTION (AUTOMATED via FormSubmit AJAX) ---
+                if (typeof fetch !== 'undefined') {
+                    fetch("https://formsubmit.co/ajax/moosakhanbaloch672@gmail.com", {
+                        method: "POST",
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            _subject: `New Fragrance Order: ${name} - ${product}`,
+                            Name: name,
+                            Phone: phone,
+                            Product: product,
+                            Quantity: quantity,
+                            Address: address,
+                            Notes: notes,
+                            TotalAmount: `Rs. ${(parseInt(price) * parseInt(quantity)) || 0}`
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => console.log('Automated Order Email Sent to moosakhanbaloch672@gmail.com'))
+                    .catch(err => console.error('Email Submit Error:', err));
                 }
 
                 // --- WHATSAPP ACTION (STILL WORKING) ---

@@ -325,7 +325,52 @@
             if (hash) {
                 showTab(hash);
             }
-            document.getElementById('loading-screen').style.display = 'none';
+            if(document.getElementById('loading-screen')) {
+                document.getElementById('loading-screen').style.display = 'none';
+            }
+            
+            // Connect Contact Form to FormSubmit
+            const contactForm = document.getElementById('contactForm');
+            if(contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const ogText = btn.innerHTML;
+                    btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+                    
+                    fetch("https://formsubmit.co/ajax/moosakhanbaloch672@gmail.com", {
+                        method: "POST",
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            _subject: "New Website Consultation Inquiry",
+                            Name: this.querySelector('input[type="text"]').value,
+                            Email: this.querySelector('input[type="email"]').value,
+                            Message: this.querySelector('textarea').value
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        btn.innerHTML = 'Inquiry Sent <i class="fa-solid fa-check"></i>';
+                        btn.style.background = '#25D366';
+                        btn.style.color = '#fff';
+                        this.reset();
+                        setTimeout(() => { 
+                            btn.innerHTML = ogText; 
+                            btn.style.background = '';
+                            btn.style.color = '';
+                        }, 5000);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        btn.innerHTML = 'Error Sending';
+                        setTimeout(() => { btn.innerHTML = ogText; }, 4000);
+                    });
+                });
+            }
+            }
         });
     </script>
     <script src="script.js"></script>
