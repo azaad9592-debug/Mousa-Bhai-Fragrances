@@ -2578,6 +2578,12 @@ p {
 /* IMAGES FEEL CLICKABLE */
 .product-item .img-wrapper {
     cursor: pointer;
+    width: 100%;
+    aspect-ratio: 1 / 1.1; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ============================================================ */
@@ -3164,7 +3170,7 @@ p {
         padding: 0 10px;
     }
     
-    .product-item .img-wrapper { border-radius: 6px; margin-bottom: 10px; }
+    .product-item .img-wrapper { border-radius: 6px; margin-bottom: 10px; max-height: 160px; aspect-ratio: auto; }
     .product-item .product-title { font-size: 0.85rem !important; margin-bottom: 5px; height: 2.2rem; }
     .product-item .product-price { font-size: 0.9rem !important; }
     .product-item .btn-buy-now { font-size: 10px !important; padding: 10px 5px !important; }

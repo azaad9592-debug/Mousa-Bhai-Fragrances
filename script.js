@@ -307,11 +307,14 @@ function generateProductCard(product) {
                     <div class="product-price">Rs. ${product.price}</div>
                     <div class="old-price">Rs. ${oldPrice}</div>
                 </div>
-                <div class="product-actions">
-                    <button onclick="openOrderModal('${safeName}')" class="btn-buy-now">
-                        <i class="fa-solid fa-bag-shopping"></i> Order Now
-                    </button>
-                </div>
+                <div class="product-actions" style="display:flex; gap: 5px;">
+                <button onclick="openOrderModal('${safeName}')" class="btn-buy-now" style="flex:1;">
+                    <i class="fa-solid fa-bag-shopping"></i> Order Now
+                </button>
+                <a href="mailto:moosakhanbaloch672@gmail.com?subject=Product Inquiry — ${safeName}" class="btn-email-inquiry" style="background:#555; color:#fff; display:inline-flex; align-items:center; justify-content:center; padding:12px; border-radius:8px;" title="Email Inquiry">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
             </div>
         </div>
     `;
@@ -377,9 +380,15 @@ function init() {
     initAnimations();
     initAdminWidget(); // Live counter for admin
     
+    // Check if we need to open cart
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('openCart') === 'true') {
+        setTimeout(toggleCartPanel, 600);
+    }
+    
     window.addEventListener('scroll', handleScroll);
     
-    // Mobile Menu Toggle â€” handled in initEliteHeader(), not here
+    // Mobile Menu Toggle — handled in initEliteHeader(), not here
     // (removing duplicate listener that fired before the button existed)
 
     // Modal Closing Logic (kept for general uses or hero btn fallback)
@@ -906,16 +915,16 @@ function sendWhatsAppOrder() {
         alert('Your cart is empty! Add products before ordering.');
         return;
     }
-    let message = 'ðŸ›’ *Order Details:*\n\n';
+    let message = '🛍️ *Order Details:*\n\n';
     let total = 0;
     cart.forEach((item, i) => {
         const sub = parseInt(item.price) * (item.qty || 1);
         total += sub;
         message += `${i + 1}. *${item.name}*`;
         if (item.qty > 1) message += ` (x${item.qty})`;
-        message += ` â€” Rs. ${sub}\n`;
+        message += ` — Rs. ${sub}\n`;
     });
-    message += `\nðŸ’° *Total: Rs. ${total}*\n\nPlease confirm my order. Thank you! ðŸ™`;
+    message += `\n💰 *Total: Rs. ${total}*\n\nPlease confirm my order. Thank you! 🙏`;
     window.open(`https://wa.me/923101131981?text=${encodeURIComponent(message)}`, '_blank');
 }
 
@@ -957,14 +966,20 @@ function openProductViewModal(productName) {
     document.getElementById('pvm-price').textContent      = `Rs. ${product.price}`;
     document.getElementById('pvm-old-price').textContent  = `Rs. ${oldPrice}`;
 
-    document.getElementById('pvm-add-cart-btn').onclick = () => {
+    // Update buttons with correct product name
+    const cartBtn = document.getElementById('pvm-add-cart-btn');
+    const buyBtn = document.getElementById('pvm-buy-now-btn');
+    const emailBtn = document.getElementById('pvm-email-btn');
+
+    cartBtn.onclick = () => {
         addToCart(productName);
         closeProductViewModal();
     };
-    document.getElementById('pvm-buy-now-btn').onclick = () => {
+    buyBtn.onclick = () => {
         closeProductViewModal();
         openOrderModal(productName);
     };
+    emailBtn.href = `mailto:moosakhanbaloch672@gmail.com?subject=Product Inquiry — ${encodeURIComponent(productName)}`;
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1019,6 +1034,9 @@ function injectCartUI() {
                             <button id="pvm-buy-now-btn" class="pvm-btn pvm-btn-buy">
                                 <i class="fa-brands fa-whatsapp"></i> Buy Now
                             </button>
+                            <a id="pvm-email-btn" class="pvm-btn pvm-btn-email" style="background:#555; color:#fff; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; padding:10px; border-radius:5px;">
+                                <i class="fa-solid fa-envelope"></i> Email Inquiry
+                            </a>
                         </div>
                     </div>
                 </div>

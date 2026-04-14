@@ -705,7 +705,7 @@
                     <span class="logo-text">MUSA BHAI</span>
                 </a>
             </div>
-            <nav>
+            <nav style="display:flex; align-items:center; gap: 15px;">
                 <ul class="nav-links" id="main-nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#collections">Collections</a></li>
@@ -713,7 +713,12 @@
                     <li><a href="info.html#about">About</a></li>
                     <li><a href="info.html#contact">Contact</a></li>
                 </ul>
-                <div class="mobile-toggle" id="index-mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
+                <div class="nav-actions" style="display:flex; gap: 10px; align-items:center;">
+                    <a href="shop.html?openCart=true" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:18px;">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+                    <div class="mobile-toggle" id="index-mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -765,7 +770,7 @@
             <h2 class="section-title fade-up">The Collections</h2>
             <div class="collection-grid">
                 <!-- Card 1 -->
-                <div class="collection-card fade-up" onclick="openOrderModal('Kaaf Perfume (Rs. 699)')">
+                <div class="collection-card fade-up" onclick="window.location.href='shop.html?cat=perfume'">
                     <img src="assets/images/kaaf-rs-699.jpeg" alt="Perfume" class="collection-img">
                     <div class="collection-overlay">
                         <h3>Perfume</h3>
@@ -773,7 +778,7 @@
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="collection-card fade-up" onclick="openOrderModal('White Oud by Surrati (Rs. 3499)')">
+                <div class="collection-card fade-up delay-1" onclick="window.location.href='shop.html?cat=attar'">
                     <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" alt="Attar" class="collection-img">
                     <div class="collection-overlay">
                         <h3>Attar</h3>
@@ -781,7 +786,7 @@
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="collection-card fade-up" onclick="openOrderModal('Body Spray by Lattafa (Rs. 950)')">
+                <div class="collection-card fade-up delay-2" onclick="window.location.href='shop.html?cat=body'">
                     <img src="assets/images/body-spray-by-lattafa-rs-950.jpeg" alt="Body Spray" class="collection-img">
                     <div class="collection-overlay">
                         <h3>Body Spray</h3>
@@ -837,11 +842,13 @@
             <div class="footer-col">
                 <h4 style="font-size: 20px;">Musa Bhai</h4>
                 <p>Luxury inspired fragrances that leave a lasting impression. Smell expensive, pay less.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <h4 style="margin-top: 30px; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px;">Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/moosa__bhai_3?igsh=MWIwdDZkN29lYTNoOQ%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@musa_bhai_3?_r=1&_t=ZS-9561n1hFcyP" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com/@moosa_perfumes" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/share/1FwWywycSQ/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="mailto:moosakhanbaloch672@gmail.com?subject=General Inquiry" target="_blank" title="Email"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
             <div class="footer-col">
