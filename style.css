@@ -540,30 +540,28 @@ header {
     flex-direction: column;
 }
 
-.brand-name {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-    background: var(--gold-premium);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-transform: uppercase;
-    letter-spacing: 6px;
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
     line-height: 1;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
-.brand-subline {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
     color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.logo-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: #fff;
     text-transform: uppercase;
-    letter-spacing: 9px;
-    margin-top: 6px;
-    font-style: normal;
-    font-weight: 500;
-    opacity: 0.9;
+    letter-spacing: 4px;
+    margin-top: 2px;
+    opacity: 0.8;
 }
 
 /* --- ADAPTIVE ELITE HEADER --- */
@@ -3185,4 +3183,37 @@ p {
     }
     .brand-name { font-size: 1.2rem !important; }
     .brand-subline { font-size: 0.6rem !important; }
+/* PROFESSIONAL PRODUCT SLIDER */
+.product-slider {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 20px;
+    padding: 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    width: 100%;
 }
+
+.product-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.product-slider .product-item {
+    flex: 0 0 300px !important;
+    scroll-snap-align: start;
+}
+
+@media (max-width: 991px) {
+    .product-slider .product-item {
+        flex: 0 0 200px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-slider .product-item {
+        flex: 0 0 160px !important;
+    }
+}
