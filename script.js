@@ -518,13 +518,6 @@ function initEliteHeader() {
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         `;
-        
-        // Theme Toggle
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'header-action-btn theme-toggle-btn';
-        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        toggleBtn.setAttribute('title', 'Toggle Light/Dark');
-        toggleBtn.onclick = toggleTheme;
 
         // Cart Button
         const cartBtn = document.createElement('button');
@@ -535,17 +528,25 @@ function initEliteHeader() {
             e.preventDefault();
             toggleCartPanel();
         };
-        
+
         // Mobile Toggle
         const mobileMenuBtn = document.createElement('button');
         mobileMenuBtn.id = 'mobile-toggle';
-        mobileMenuBtn.className = 'header-action-btn mobile-only-toggle';
+        mobileMenuBtn.className = 'header-action-btn mobile-only';
         mobileMenuBtn.setAttribute('aria-label', 'Menu');
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
         
+        // Theme Toggle
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'header-action-btn theme-toggle-btn';
+        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        toggleBtn.setAttribute('title', 'Toggle Light/Dark');
+        toggleBtn.onclick = toggleTheme;
+
+        // Order: Search (already there), Cart, Mobile Menu, Theme
         navActions.appendChild(cartBtn);
         navActions.appendChild(mobileMenuBtn);
-        navActions.appendChild(toggleBtn); // Theme last as per screenshot
+        navActions.appendChild(toggleBtn);
 
         
         let overlay = document.getElementById('mobile-nav-overlay');
