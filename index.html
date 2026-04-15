@@ -669,8 +669,6 @@
 
             .live-popup {
                 display: none;
-            }
-        }
     </style>
 </head>
 
@@ -686,7 +684,7 @@
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        ⬥ Premium Quality Fragrances at Best Prices
+        ↓ Premium Quality Fragrances at Best Prices
     </div>
 
     <!-- STICKY HEADER -->
@@ -702,9 +700,9 @@
                         <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="#D4AF37" stroke-width="4"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <div class="logo-text-group" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; margin-left: 10px;">
-                        <span class="logo-text" style="font-size: 1.6rem; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 1px; display: block; line-height: 1;">Moosa Bhai</span>
-                        <span class="logo-subtitle" style="font-size: 0.7rem; letter-spacing: 5px; font-weight: 400; font-family: 'Montserrat', sans-serif; text-transform: uppercase; color: #fff; display: block; margin-top: 4px;">Fragrances</span>
+                    <div class="logo-text-group" style="display: flex; flex-direction: column; line-height: 1;">
+                        <span class="logo-text" style="font-size: 26px; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 2px; text-transform: uppercase;">Moosa Bhai</span>
+                        <span class="logo-subtitle" style="font-size: 11px; letter-spacing: 6px; font-weight: 400; font-family: 'Playfair Display', serif; font-style: italic; color: #fff; margin-top: 4px; opacity: 0.9;">FRAGRANCES</span>
                     </div>
                 </a>
             </div>
@@ -717,7 +715,7 @@
                     <li><a href="info.html#contact">Contact</a></li>
                 </ul>
                 <div class="nav-actions" style="display:flex; gap: 15px; align-items:center;">
-                    <a href="shop.html?openCart=true" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span id="cart-count-badge" style="background: var(--gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: 800;">0</span>
                     </a>
@@ -802,34 +800,878 @@
     </section>
 
     <!-- RESTORED PRODUCT SLIDER -->
-    <section id="shop" style="padding: 60px 0; background: #fff;">
-        <div class="container">
-            <h2 class="section-title fade-up" style="text-align: center; color: #000; margin-bottom: 40px; font-family: var(--font-heading);">Featured Products</h2>
+    <section id="shop" style="padding: 60px 0; background: #fff; position: relative;">
+        <div class="container" style="position: relative;">
+            <h2 class="section-title fade-up" style="text-align: center; margin-bottom: 40px;">Our Premium Collection</h2>
             
-            <div style="position: relative;">
-                <!-- Navigation Arrows -->
-                <button onclick="scrollSlider('featured-products-slider', -1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.8); color: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">←</button>
-                <button onclick="scrollSlider('featured-products-slider', 1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.8); color: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">→</button>
+            <!-- Slider Container -->
+            <div style="position: relative; padding: 0 40px;">
+                <!-- Arrows -->
+                <button class="slider-arrow slider-left" onclick="slideLeft()"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-arrow slider-right" onclick="slideRight()"><i class="fa-solid fa-chevron-right"></i></button>
+                
+                <div id="productSlider" style="
+                    display: flex;
+                    overflow-x: auto;
+                    gap: 20px;
+                    padding: 20px 10px;
+                    scroll-snap-type: x mandatory;
+                    scrollbar-width: none;
+                    -webkit-overflow-scrolling: touch;
+                ">                    <!-- [RESTORED PRODUCT CARDS 1-30] -->
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/wurood-rs-2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Wurood">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Wurood</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Wurood')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/black-scent-rs-1899.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Black Scent">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Black Scent</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1899</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Black Scent')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/romance-2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="ROMANCE">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">ROMANCE</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('ROMANCE')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/tiger-black-rs-1799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Tiger Black">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Tiger Black</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Tiger Black')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/al-watani-rs-1799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="AL-WATANI">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">AL-WATANI</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('AL-WATANI')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/noble-man-rs-1999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Noble Man">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Noble Man</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Noble Man')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/divine-rs-1699.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="DIVINE">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">DIVINE</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1699</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('DIVINE')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/history-rs-2499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="HISTORY">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">HISTORY</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('HISTORY')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/maxi-rs-4999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="MAXI">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">MAXI</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 4999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('MAXI')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/nta-by-blazer-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="NTA By BLAZER">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">NTA By BLAZER</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('NTA By BLAZER')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/tea-rose-mesk-rs-1999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="TEA ROSE MESK">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">TEA ROSE MESK</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('TEA ROSE MESK')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/musk-al-hawameer-rs-2499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="MUSK AL-HAWAMEER">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">MUSK AL-HAWAMEER</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('MUSK AL-HAWAMEER')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/najoom-rs-1699.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="NAJOOM">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">NAJOOM</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1699</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('NAJOOM')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/marquis-rs-3799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="MARQUIS">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">MARQUIS</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('MARQUIS')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/khumaar-rs-4499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="KHUMAR">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">KHUMAR</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 4499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('KHUMAR')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/janan-sports-by-j.-rs-6299.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="JANAN SPORT By J.">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">JANAN SPORT By J.</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 6299</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('JANAN SPORT By J.')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/janan-oud-by-j.-rs-6299.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="JANAN OUD By J.">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">JANAN OUD By J.</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 6299</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('JANAN OUD By J.')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/white-musk-rs-4999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="WHITE MUSK BY J.">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">WHITE MUSK BY J.</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 4999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('WHITE MUSK BY J.')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/marj-by-ahmed-al-maghrabi-rs-13999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="MARJ By AHMED AL-MAGHRABI">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">MARJ By AHMED AL-MAGHRABI</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 13999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('MARJ By AHMED AL-MAGHRABI')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/kaaf-rs-699.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="KAAF">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">KAAF</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 6999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('KAAF')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/blue-lady-rs-2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Blue Lady">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Blue Lady</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Blue Lady')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/al-faras-rs3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="AL-FARAS">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">AL-FARAS</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('AL-FARAS')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/lamsat-harir-rs--2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="LAMSAT HARIR">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">LAMSAT HARIR</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('LAMSAT HARIR')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/mousof-rs-3999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="MOUSOF">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">MOUSOF</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('MOUSOF')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/oud-hayat-rs-2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="OUD HAYAT">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">OUD HAYAT</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('OUD HAYAT')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/uroosa-by-j.-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="UROOSA By J.">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">UROOSA By J.</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('UROOSA By J.')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Premium Fragrance">
+                        <img src="assets/images/wardat-4-by-rasasi-rs-4499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Wurood 4 by Rasasi">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Wurood 4 by Rasasi</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 4499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Wurood 4 by Rasasi')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/musk-silk-ajmal-rs-4999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Musk Silk Ajmal">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Musk Silk Ajmal</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 4999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Musk Silk Ajmal')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/applause-12ml-rs-2999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Applause">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Applause</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Applause')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ashwaaq-12ml-rs-2599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ashwaaq">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ashwaaq</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ashwaaq')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/lucky-12ml-rs-2799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Lucky">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Lucky</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Lucky')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/musk-rose-12ml-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Musk Rose">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Musk Rose</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Musk Rose')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oud-e-aswad-12ml-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oud E Aswad">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oud E Aswad</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oud E Aswad')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oudh-o-oudh-12ml-rs-3999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oudh O Oudh">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oudh O Oudh</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oudh O Oudh')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/sweet-oud-12ml-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Sweet Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Sweet Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Sweet Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ward-no1-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ward No 1">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ward No 1</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ward No 1')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/amber-oud-by-surrati-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Amber Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Amber Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Amber Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/banafsaji-by-surrati-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Banafsaji">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Banafsaji</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Banafsaji')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/black-oud-by-surrati-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Black Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Black Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Black Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/dehan-oud-ateeq-by-surrati-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Dehan Oud Ateeq">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Dehan Oud Ateeq</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Dehan Oud Ateeq')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/musk-al-bait-by-surrati-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Musk Al-Bait">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Musk Al-Bait</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Musk Al-Bait')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/white-oud-by-surrati-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="White Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">White Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('White Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Afnan">
+                        <img src="assets/images/afnan.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Afnan Premium">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Afnan Premium</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Afnan Premium')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Afnan">
+                        <img src="assets/images/dehan-al-oud-abiyad-rs-by-afnan-rs-2799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Dehan Al-Oud Abiyad">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Dehan Al-Oud Abiyad</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Dehan Al-Oud Abiyad')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Afnan">
+                        <img src="assets/images/mukhallat-abiyad-by-afnan-rs-2799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Mukhallat Abiyad">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Mukhallat Abiyad</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Mukhallat Abiyad')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Afnan">
+                        <img src="assets/images/musk-abiyad-by-afnan-rs-2799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Musk Abiyad">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Musk Abiyad</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Musk Abiyad')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/alifun-lailatun--wa-lailah-12ml-rs-2799.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Alifun Lailatun Wa Lailah">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Alifun Lailatun Wa Lailah</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2799</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Alifun Lailatun Wa Lailah')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ameer-ul-oud-12ml-rs-1499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ameer Ul Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ameer Ul Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ameer Ul Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/aventus-creed-12ml-rs-1699.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Aventus Creed">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Aventus Creed</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1699</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Aventus Creed')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/bad-e-saba-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Bad E Saba">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Bad E Saba</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Bad E Saba')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/bakarat-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Bakarat">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Bakarat</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Bakarat')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/david-beckham-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="David Beckham">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">David Beckham</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('David Beckham')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ehsaas-12ml-rs-1399.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ehsaas">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ehsaas</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1399</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ehsaas')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/fogg-12ml-rs-1499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Fogg">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Fogg</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Fogg')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/gucci-flora-12ml-rs-1099.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Gucci Flora">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Gucci Flora</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1099</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Gucci Flora')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/husn-e-yousuf-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Husn E Yousuf">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Husn E Yousuf</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Husn E Yousuf')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/imperial-creed-12ml-rs-1699.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Imperial Creed">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Imperial Creed</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1699</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Imperial Creed')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ispak-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ispak">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ispak</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ispak')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/janat-ul-firdous-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Janat Ul Firdous">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Janat Ul Firdous</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Janat Ul Firdous')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/kashmiri-oud-12ml-rs-2599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Kashmiri Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Kashmiri Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Kashmiri Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/khus-al-shuyukh-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Khus Al Shuyukh">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Khus Al Shuyukh</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Khus Al Shuyukh')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/london-night-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="London Night">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">London Night</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('London Night')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/lovly-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Lovely">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Lovely</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Lovely')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/mukhallat-shams-12ml-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Mukhallat Shams">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Mukhallat Shams</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Mukhallat Shams')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/musk-riyal-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Musk Riyal">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Musk Riyal</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Musk Riyal')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/najma-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Najma">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Najma</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Najma')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/narciso-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Narciso">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Narciso</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Narciso')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/night-queen-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Night Queen">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Night Queen</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Night Queen')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/no-5-chanel-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="No 5 Chanel">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">No 5 Chanel</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('No 5 Chanel')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oud-e-khas-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oud E Khas">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oud E Khas</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oud E Khas')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oud-e-ward-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oud E Ward">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oud E Ward</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oud E Ward')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oud-malaki-12ml-rs-2599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oud Malaki">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oud Malaki</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 2599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oud Malaki')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oud-mukhallat-12ml-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oud Mukhallat">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oud Mukhallat</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oud Mukhallat')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/oudh-ateeq-12ml-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Oudh Ateeq">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Oudh Ateeq</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Oudh Ateeq')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/rose-oud-12ml-rs-3499.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Rose Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Rose Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 3499</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Rose Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/shamama-tul-amber-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Shamama Tul Amber">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Shamama Tul Amber</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Shamama Tul Amber')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/shaikh-ul-shuyukh-12ml-rs-5999.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Shaikh Ul Shuyukh">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Shaikh Ul Shuyukh</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 5999</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Shaikh Ul Shuyukh')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/ultramarine-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Ultramarine">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Ultramarine</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Ultramarine')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/versace-eros-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Versace Eros">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Versace Eros</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Versace Eros')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/wild-oud-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Wild Oud">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Wild Oud</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Wild Oud')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/y-man-ysl-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Y Man YSL">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Y Man YSL</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Y Man YSL')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/yal-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Yal">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Yal</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Yal')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/yar-12ml-rs-1599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Yar">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Yar</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 1599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Yar')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card" style="min-width: 220px; max-width: 220px; height: 320px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; flex-shrink: 0; background: #f9f9f9; display: flex; flex-direction: column; position: relative; scroll-snap-align: start; transition: 0.3s;" onmouseover="this.querySelector('.hover-btn').style.opacity='1'; this.querySelector('.hover-btn').style.transform='translateY(0)';" onmouseout="this.querySelector('.hover-btn').style.opacity='0'; this.querySelector('.hover-btn').style.transform='translateY(10px)';" data-category="Attar">
+                        <img src="assets/images/zam-zam-12ml-rs-599.jpeg" style="width: 100%; height: 200px; object-fit: cover;" alt="Zam Zam">
+                        <div style="padding: 15px;">
+                            <p style="font-size:15px; font-weight:700; color:#333; margin: 0;">Zam Zam</p>
+                            <p style="font-size:14px; color:#D4AF37; font-weight: 700; margin-top: 5px;">Rs. 599</p>
+                        </div>
+                        <div class="hover-btn" style="position: absolute; bottom: 15px; left: 10px; right: 10px; opacity: 0; transform: translateY(10px); transition: 0.3s;">
+                            <button onclick="addToCart('Zam Zam')" style="width: 100%; padding: 10px; background: #000; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Add To Cart</button>
+                        </div>
+                    </div>
 
-                <div id="featured-products-slider" class="product-slider" style="
-                  display: flex;
-                  overflow-x: auto;
-                  gap: 25px;
-                  padding: 15px 10px;
-                  scroll-snap-type: x mandatory;
-                  -webkit-overflow-scrolling: touch;
-                  scrollbar-width: none;
-                ">
-                    <!-- Products loaded via script.js -->
                 </div>
+                
+                <!-- Right Arrow -->
+                <button class="slider-arrow slider-right" onclick="slideRight()"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-            
+
             <div style="text-align: center; margin-top: 40px;">
-                <a href="shop.html" class="btn-gold" style="padding: 12px 35px; border: 1px solid var(--gold);">View Full Collection</a>
+                <p style="color: #666; font-size: 14px; margin-bottom: 20px;">+80 more premium fragrances available in our full catalog</p>
+                <a href="shop.html" class="btn-outline" style="padding: 12px 30px; display: inline-block; text-decoration: none;">View Full Catalog</a>
             </div>
         </div>
     </section>
-
     <!-- WHY CHOOSE US -->
     <section class="why-us">
         <div class="container">
@@ -943,7 +1785,7 @@
                 <ul class="footer-links">
                     <li><i class="fa-solid fa-location-dot"></i> Rashidabad Road, Karachi</li>
                     <li><i class="fa-solid fa-envelope"></i> moosakhanbaloch672@gmail.com</li>
-                    <li><a href="https://wa.me/923101131981" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp: +92 310 1131981</a></li>
+                    <li><a href="https://wa.me/923101131981" target="_blank" class="footer-wa-link" style="display: flex; align-items: center; gap: 8px;"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chat with us on WhatsApp</a></li>
                 </ul>
             </div>
         </div>
@@ -954,75 +1796,20 @@
 
 
 
-    <script>
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            initLoadingScreen();
-            initAnimations();
-            initHeaderScroll();
-            initOrderModal();
-            initMobileMenu();
-        });
-
-        // Mobile Menu Logic
-        function initMobileMenu() {
-            const toggleBtn = document.getElementById('index-mobile-toggle');
-            const navLinks = document.getElementById('main-nav-links');
-            if (toggleBtn && navLinks) {
-                toggleBtn.addEventListener('click', () => {
-                    const isActive = navLinks.classList.toggle('active');
-                    if (isActive) {
-                        navLinks.style.display = 'flex';
-                        navLinks.style.flexDirection = 'column';
-                        navLinks.style.position = 'absolute';
-                        navLinks.style.top = '100%';
-                        navLinks.style.left = '0';
-                        navLinks.style.width = '100%';
-                        navLinks.style.background = 'rgba(0, 0, 0, 0.95)';
-                        navLinks.style.padding = '20px 0';
-                    } else {
-                        navLinks.style.display = '';
-                    }
-                });
-            }
-        }
-
-        // 1. Loading Screen
-        function initLoadingScreen() {
-            const screen = document.getElementById('loading-screen');
-            setTimeout(() => {
-                screen.classList.add('fade-out');
-                setTimeout(() => screen.style.display = 'none', 800);
-            }, 1500);
-        }
-
-        // 2. Scroll Animations
-        function initAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-        }
-
-        // 3. Header Scroll
-        function initHeaderScroll() {
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('shrink');
-                } else {
-                    header.classList.remove('shrink');
-                }
-            });
-        }
-
-    </script>
     <script src="script.js"></script>
+    <script>
+        function slideLeft() { 
+            const slider = document.getElementById("productSlider");
+            const scrollAmount = window.innerWidth < 768 ? slider.clientWidth : 480;
+            slider.scrollBy({ left: -scrollAmount, behavior: "smooth" }); 
+        }
+        function slideRight() { 
+            const slider = document.getElementById("productSlider");
+            const scrollAmount = window.innerWidth < 768 ? slider.clientWidth : 480;
+            slider.scrollBy({ left: scrollAmount, behavior: "smooth" }); 
+        }
+    </script>
 </body>
 
 </html>
+

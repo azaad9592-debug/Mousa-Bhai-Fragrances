@@ -388,7 +388,7 @@ function handleScroll() {
 
 // --- INITIALIZATION ---
 function init() {
-    renderProducts();
+    // renderProducts(); // Disabled to prevent duplication with hardcoded index.html cards
     injectCartUI();
     initEliteHeader();
     initAnimations();
@@ -535,12 +535,7 @@ function initEliteHeader() {
     const navActions = document.querySelector('.nav-actions');
     if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
         // Clear old placeholders if any
-        navActions.innerHTML = `
-            <!-- Search Button -->
-            <button class="header-action-btn" id="search-open-btn" aria-label="Search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        `;
+        navActions.innerHTML = '';
 
         // Cart Button
         const cartBtn = document.createElement('button');
@@ -819,11 +814,7 @@ function clearCart() {
 }
 
 function renderCartBadge() {
-    const badge = document.getElementById('cart-count-badge');
-    if (!badge) return;
-    const total = cart.reduce((sum, c) => sum + (c.qty || 1), 0);
-    badge.textContent = total;
-    badge.style.display = total > 0 ? 'flex' : 'none';
+    updateCartBadge();
 }
 
 function renderCartPanel() {
@@ -1071,8 +1062,6 @@ function updateCartBadge() {
         badge.style.transform = 'scale(1.2)';
         setTimeout(() => badge.style.transform = 'scale(1)', 300);
         badge.style.display = totalQty > 0 ? 'inline-block' : 'none';
-        badge.style.background = 'var(--gold)';
-        badge.style.color = '#000';
     });
 }
 
@@ -1082,7 +1071,7 @@ function toggleCartPanel() {
     if (panel && overlay) {
         const isOpen = panel.classList.toggle('open');
         overlay.classList.toggle('open');
-        if (isOpen) renderCartItems();
+        if (isOpen) renderCartPanel();
     }
 }
 
