@@ -856,12 +856,18 @@ function renderCartPanel() {
 }
 
 function toggleCartPanel() {
-    const panel   = document.getElementById('cart-panel');
+    const panel = document.getElementById('cart-panel');
     const overlay = document.getElementById('cart-overlay');
-    if (!panel) return;
-    const isOpen = panel.classList.toggle('open');
-    if (overlay) overlay.classList.toggle('open', isOpen);
-    if (isOpen) renderCartPanel();
+    if (panel) {
+        const isOpen = panel.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('open', isOpen);
+        if (isOpen) renderCartPanel();
+        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    } else {
+        // If elements don't exist (e.g. index.html before inject), call inject first
+        injectCartUI();
+        toggleCartPanel();
+    }
 }
 
 function sendWhatsAppOrder() {
@@ -1066,15 +1072,7 @@ function updateCartBadge() {
     });
 }
 
-function toggleCartPanel() {
-    const panel = document.getElementById('cart-panel');
-    const overlay = document.getElementById('cart-overlay');
-    if (panel && overlay) {
-        const isOpen = panel.classList.toggle('open');
-        overlay.classList.toggle('open');
-        if (isOpen) renderCartPanel();
-    }
-}
+
 
 function toggleCartDrawer() {
     toggleCartPanel();
