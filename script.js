@@ -730,13 +730,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initAnimations === 'function') initAnimations();
 });
 
-
-    setTimeout(() => {
-        notify.classList.remove('active');
-        setTimeout(() => notify.remove(), 500);
-    }, 4000);
-}
-
 // --- CAROUSEL NAVIGATION ---
 function initCarouselNav() {
     setupSlider('body-spray-prev', 'body-spray-next', 'body-spray-viewport');
