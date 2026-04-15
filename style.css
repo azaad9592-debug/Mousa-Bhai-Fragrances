@@ -3201,6 +3201,29 @@ p {
 
 .product-slider::-webkit-scrollbar { display: none !important; }
 
+/* HOVER EFFECT FOR BUTTONS */
+.ultimate-product-card .buy-now-btn {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    transform: translateY(10px) !important;
+    position: absolute !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    width: calc(100% - 24px) !important;
+    z-index: 10 !important;
+}
+
+.ultimate-product-card:hover .buy-now-btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    position: relative !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
 .product-slider .product-item {
     min-width: 220px !important;
     max-width: 220px !important;
@@ -3216,6 +3239,7 @@ p {
     margin: 0 !important;
     border: none !important;
 }
+
 
 .product-slider .product-item .img-wrapper {
     width: 100% !important;

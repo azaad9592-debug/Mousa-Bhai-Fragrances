@@ -277,10 +277,10 @@ function generateProductCard(product) {
     
     return `
     <!-- MANUALLY STYLED COMPACT CARD -->
-    <div style="
+    <div class="ultimate-product-card" style="
       min-width: 220px;
       max-width: 220px;
-      height: 320px;
+      height: 340px;
       border-radius: 14px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       overflow: hidden;
@@ -290,17 +290,33 @@ function generateProductCard(product) {
       display: flex;
       flex-direction: column;
       border: none;
-      margin: 0;
+      transition: all 0.3s ease;
+      position: relative;
     ">
       <img src="${product.image || 'assets/placeholder-perfume.jpg'}" style="
         width: 100%;
         height: 180px;
         object-fit: cover;
       "/>
-      <div style="padding: 12px;">
+      <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
         <p style="font-size:14px; font-weight:600; margin:0; color: #000; font-family: sans-serif;">${product.name}</p>
         <p style="font-size:13px; color:#888; margin:4px 0; font-family: sans-serif;">Rs. ${product.price}</p>
-        <button onclick="openOrderModal('${safeName}')" style="
+        
+        <button onclick="addToCart('${safeName}')" style="
+          width: 100%;
+          padding: 8px;
+          background: #555;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 13px;
+          margin-top: 6px;
+          font-family: sans-serif;
+          transition: background 0.3s ease;
+        ">Add to Cart</button>
+
+        <button class="buy-now-btn" onclick="openOrderModal('${safeName}')" style="
           width: 100%;
           padding: 8px;
           background: #000;
@@ -311,11 +327,13 @@ function generateProductCard(product) {
           font-size: 13px;
           margin-top: 6px;
           font-family: sans-serif;
+          /* Hover logic handled via CSS class */
         ">Buy Now</button>
       </div>
     </div>
     `;
 }
+
 
 
 function openOrderModal(productName) {
