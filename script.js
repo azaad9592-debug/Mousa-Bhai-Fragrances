@@ -298,37 +298,37 @@ function generateProductCard(product) {
         height: 180px;
         object-fit: cover;
       "/>
-      <div style="padding: 12px; flex: 1; display: flex; flex-direction: column;">
+      <div style="padding: 12px; flex: 1; display: flex; flex-direction: column; position: relative;">
         <p style="font-size:14px; font-weight:600; margin:0; color: #000; font-family: sans-serif;">${product.name}</p>
         <p style="font-size:13px; color:#888; margin:4px 0; font-family: sans-serif;">Rs. ${product.price}</p>
         
-        <button onclick="addToCart('${safeName}')" style="
-          width: 100%;
-          padding: 8px;
-          background: #555;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 13px;
-          margin-top: 6px;
-          font-family: sans-serif;
-          transition: background 0.3s ease;
-        ">Add to Cart</button>
+        <div class="hover-action-container">
+            <button class="atc-btn" onclick="addToCart('${safeName}')" style="
+              width: 100%;
+              padding: 8px;
+              background: #555;
+              color: #fff;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 13px;
+              margin-top: 6px;
+              font-family: sans-serif;
+            ">Add to Cart</button>
 
-        <button class="buy-now-btn" onclick="openOrderModal('${safeName}')" style="
-          width: 100%;
-          padding: 8px;
-          background: #000;
-          color: #fff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 13px;
-          margin-top: 6px;
-          font-family: sans-serif;
-          /* Hover logic handled via CSS class */
-        ">Buy Now</button>
+            <button class="buy-now-btn" onclick="openOrderModal('${safeName}')" style="
+              width: 100%;
+              padding: 8px;
+              background: #000;
+              color: #fff;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 13px;
+              margin-top: 6px;
+              font-family: sans-serif;
+            ">Buy Now</button>
+        </div>
       </div>
     </div>
     `;
@@ -561,19 +561,10 @@ function initEliteHeader() {
         mobileMenuBtn.setAttribute('aria-label', 'Menu');
         mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
         
-        // Theme Toggle
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'header-action-btn theme-toggle-btn';
-        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        toggleBtn.setAttribute('title', 'Toggle Light/Dark');
-        toggleBtn.onclick = toggleTheme;
-
-        // Order: Search (already there), Cart, Mobile Menu, Theme
+        // Order: Search (already there), Cart, Mobile Menu
         navActions.appendChild(cartBtn);
         navActions.appendChild(mobileMenuBtn);
-        navActions.appendChild(toggleBtn);
 
-        
         let overlay = document.getElementById('mobile-nav-overlay');
         if (!overlay) {
             overlay = document.createElement('div');

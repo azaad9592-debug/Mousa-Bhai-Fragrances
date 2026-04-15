@@ -3202,7 +3202,7 @@ p {
 .product-slider::-webkit-scrollbar { display: none !important; }
 
 /* HOVER EFFECT FOR BUTTONS */
-.ultimate-product-card .buy-now-btn {
+.ultimate-product-card .hover-action-container {
     opacity: 0 !important;
     visibility: hidden !important;
     transition: all 0.3s ease !important;
@@ -3212,16 +3212,13 @@ p {
     left: 12px !important;
     width: calc(100% - 24px) !important;
     z-index: 10 !important;
+    background: #f9f9f9;
 }
 
-.ultimate-product-card:hover .buy-now-btn {
+.ultimate-product-card:hover .hover-action-container {
     opacity: 1 !important;
     visibility: visible !important;
     transform: translateY(0) !important;
-    position: relative !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
 }
 
 .product-slider .product-item {

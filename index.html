@@ -799,24 +799,6 @@
                 </div>
             </div>
         </div>
-    <!-- PRODUCT SLIDER SECTION (MANUAL FIX) -->
-    <section id="shop" style="padding: 40px 20px; background: #fff; position: relative;">
-        <!-- Navigation Arrows -->
-        <button onclick="scrollSlider('featured-products-slider', -1)" style="position: absolute; left: 10px; top: 55%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">←</button>
-        <button onclick="scrollSlider('featured-products-slider', 1)" style="position: absolute; right: 10px; top: 55%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">→</button>
-
-        <div id="featured-products-slider" style="
-          display: flex;
-          overflow-x: auto;
-          gap: 20px;
-          padding: 10px 40px;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-        ">
-            <!-- Products will be loaded here via script.js using the ULTIMATE card structure -->
-        </div>
-    </section>
 
     <!-- WHY CHOOSE US -->
     <section class="why-us">
@@ -856,6 +838,45 @@
             </div>
         </div>
     </section>
+
+    <!-- LIVE POPUP -->
+    <div id="live-popup" class="live-popup">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <div class="popup-text" id="popup-content">
+            Ahmed from Karachi just ordered <b>Kaaf Perfume</b>
+        </div>
+    </div>
+
+    <!-- ORDER MODAL -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2>Complete Your Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="prod-name" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Your Full Name</label>
+                    <input type="text" id="cust-name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number</label>
+                    <input type="text" id="cust-phone" required placeholder="03XXXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="cust-city" required placeholder="e.g. Karachi">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <input type="text" id="del-address" required placeholder="House number, Street, Area">
+                </div>
+                <button type="submit" class="btn-gold" style="width: 100%; border: none;">Order on WhatsApp</button>
+            </form>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -909,44 +930,6 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- LIVE POPUP -->
-    <div id="live-popup" class="live-popup">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <div class="popup-text" id="popup-content">
-            Ahmed from Karachi just ordered <b>Kaaf Perfume</b>
-        </div>
-    </div>
-
-    <!-- ORDER MODAL -->
-    <div id="order-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <h2>Complete Your Order</h2>
-            <form id="orderForm">
-                <div class="form-group">
-                    <label>Product Name</label>
-                    <input type="text" id="prod-name" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Your Full Name</label>
-                    <input type="text" id="cust-name" required placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label>WhatsApp Number</label>
-                    <input type="text" id="cust-phone" required placeholder="03XXXXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>City</label>
-                    <input type="text" id="cust-city" required placeholder="e.g. Karachi">
-                </div>
-                <div class="form-group">
-                    <label>Delivery Address</label>
-                    <input type="text" id="del-address" required placeholder="House number, Street, Area">
-                </div>
-                <button type="submit" class="btn-gold" style="width: 100%; border: none;">Order on WhatsApp</button>
-            </form>
-        </div>
-    </div>
 
     <script>
         // --- INITIALIZATION ---
