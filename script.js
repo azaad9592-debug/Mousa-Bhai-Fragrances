@@ -96,9 +96,10 @@ const DEFAULT_PRODUCTS = [
 // VERSION STAMP â€” bump this string whenever products change
 // so stale localStorage is automatically wiped on next load
 // ============================================================
-const CACHE_VERSION = '2.9';
+const CACHE_VERSION = '3.0';
 if (localStorage.getItem('musa_cache_v') !== CACHE_VERSION) {
     localStorage.removeItem('musa_products');
+    localStorage.removeItem('musa_cart'); // Clear cart to avoid corruption
     localStorage.setItem('musa_cache_v', CACHE_VERSION);
 }
 
@@ -273,6 +274,7 @@ function renderProducts() {
 }
 
 function generateProductCard(product) {
+    if (!product || !product.name) return '';
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     
     return `
@@ -388,10 +390,16 @@ function handleScroll() {
 
 // --- INITIALIZATION ---
 function init() {
-    renderProducts();
-    injectCartUI();
-    initEliteHeader();
-    initAnimations();
+    initLoadingScreen(); // Move to start so it always runs
+    try {
+        renderProducts();
+    } catch(e) { console.error("Product rendering failed", e); }
+    
+    try {
+        injectCartUI();
+        initEliteHeader();
+        initAnimations();
+    } catch(e) { console.error("UI injection failed", e); }
     
     // Check if we need to open cart
     const urlParams = new URLSearchParams(window.location.search);
@@ -524,7 +532,7 @@ function init() {
         }
     }
 
-    initLoadingScreen();
+    // initLoadingScreen(); // Removed from here
     initLiveOrderPopup();
     initCarouselNav();
     initSearch(); // Initialize Elite Search
