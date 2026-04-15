@@ -178,6 +178,11 @@ function initAdminWidget() {
 
 // --- RENDERING ---
 function renderProducts() {
+    const featuredGrid = document.getElementById('featured-products-slider');
+    if (featuredGrid) {
+        featuredGrid.innerHTML = products.slice(0, 15).map(p => generateProductCard(p)).join('');
+    }
+
     const row1Grid = document.getElementById('shop-grid-row-1');
     const row2Grid = document.getElementById('shop-grid-row-2');
     const ajmalGrid = document.getElementById('ajmal-perfume-grid');
@@ -268,57 +273,50 @@ function renderProducts() {
 }
 
 function generateProductCard(product) {
-    // Determine professional placeholder based on category
-    let placeholderImg = 'assets/placeholders/perfume.png';
-    const cat = (product.category || '').toLowerCase();
-    
-    if (cat.includes('attar') || cat.includes('afnan')) {
-        placeholderImg = 'assets/placeholders/attar.png';
-    } else if (cat.includes('body')) {
-        placeholderImg = 'assets/placeholders/bodyspray.png';
-    } else {
-        placeholderImg = 'assets/placeholders/perfume.png';
-    }
-
-    // Random discount for visual appeal
-    const numPrice = parseInt(product.price.toString().replace(/\D/g,'')) || 0;
-    const oldPrice = numPrice > 0 ? numPrice + Math.floor(numPrice * 0.25) : '';
-
-    // Safe name for inline onclick (escape single quotes)
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    const volume = (cat.includes('attar') || cat.includes('afnan')) ? '12ml' : 
-                   cat.includes('body spray') ? '200ml' : '50ml';
     
     return `
-        <div class="product-item">
-            <div class="img-wrapper" onclick="openProductViewModal('${safeName}')">
-                <img src="${product.image || 'assets/placeholder-perfume.jpg'}" alt="${product.name}" loading="lazy">
-                <button onclick="event.stopPropagation(); addToCart('${safeName}')" class="floating-cart-btn" title="Add to Cart">
-                    <i class="fa-solid fa-cart-plus"></i>
-                </button>
-            </div>
-            <div class="product-content">
-                <div class="meta-row">
-                    <span class="product-category">${product.category || 'Premium Collection'}</span>
-                    <span class="product-volume">${volume}</span>
-                </div>
-                <h3 class="product-title">${product.name}</h3>
-                <div class="price-row">
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <div class="old-price">Rs. ${oldPrice}</div>
-                </div>
-                <div class="product-actions" style="display:flex; gap: 5px;">
-                <button onclick="openOrderModal('${safeName}')" class="btn-buy-now" style="flex:1;">
-                    <i class="fa-solid fa-bag-shopping"></i> Order Now
-                </button>
-                <a href="mailto:moosakhanbaloch672@gmail.com?subject=Product Inquiry — ${safeName}" class="btn-email-inquiry" style="background:#555; color:#fff; display:inline-flex; align-items:center; justify-content:center; padding:12px; border-radius:8px;" title="Email Inquiry">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
-            </div>
-            </div>
-        </div>
+    <!-- MANUALLY STYLED COMPACT CARD -->
+    <div style="
+      min-width: 220px;
+      max-width: 220px;
+      height: 320px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      border: none;
+      margin: 0;
+    ">
+      <img src="${product.image || 'assets/placeholder-perfume.jpg'}" style="
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      "/>
+      <div style="padding: 12px;">
+        <p style="font-size:14px; font-weight:600; margin:0; color: #000; font-family: sans-serif;">${product.name}</p>
+        <p style="font-size:13px; color:#888; margin:4px 0; font-family: sans-serif;">Rs. ${product.price}</p>
+        <button onclick="openOrderModal('${safeName}')" style="
+          width: 100%;
+          padding: 8px;
+          background: #000;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 13px;
+          margin-top: 6px;
+          font-family: sans-serif;
+        ">Buy Now</button>
+      </div>
+    </div>
     `;
 }
+
 
 function openOrderModal(productName) {
     const modal = document.getElementById('order-modal');
