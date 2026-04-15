@@ -388,7 +388,7 @@ function handleScroll() {
 
 // --- INITIALIZATION ---
 function init() {
-    // renderProducts(); // Disabled to prevent duplication with hardcoded index.html cards
+    renderProducts();
     injectCartUI();
     initEliteHeader();
     initAnimations();
