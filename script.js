@@ -339,15 +339,15 @@ function generateProductCard(product) {
 function openOrderModal(productName) {
     const modal = document.getElementById('order-modal');
     const prodInput = document.getElementById('prod-name');
-    const modalTitle = modal ? modal.querySelector('.modal-header h2') : null;
-    const modalSub = modal ? modal.querySelector('.modal-header p') : null;
+    const modalTitle = modal ? modal.querySelector('.modal-header h2') || modal.querySelector('h2') : null;
+    const modalSub = modal ? modal.querySelector('.modal-header p') || modal.querySelector('p') : null;
 
     if (modal && prodInput) {
         if (productName === 'General Inquiry' || productName === 'Contact Us') {
             if (modalTitle) modalTitle.innerText = "Contact Us";
             if (modalSub) modalSub.innerText = "Have a question? We're here to help.";
             prodInput.value = "General Inquiry";
-            prodInput.parentElement.style.display = "none"; // Hide product input for general inquiry
+            prodInput.parentElement.style.display = "none"; 
         } else {
             if (modalTitle) modalTitle.innerText = "Place Your Order";
             if (modalSub) modalSub.innerText = "Fill in your details below to place your order quickly and securely.";
@@ -355,7 +355,7 @@ function openOrderModal(productName) {
             prodInput.parentElement.style.display = "flex";
         }
         
-        modal.style.display = "block";
+        modal.classList.add('active');
         document.body.style.overflow = "hidden";
     }
 }
@@ -444,7 +444,8 @@ function init() {
                 const emailInput = document.getElementById('cust-email');
                 const email = emailInput ? emailInput.value : 'N/A';
                 const product = document.getElementById('prod-name').value;
-                const quantity = document.getElementById('order-qty').value;
+                const qtyInput = document.getElementById('order-qty');
+                const quantity = qtyInput ? qtyInput.value : '1';
                 const addressText = document.getElementById('del-address').value;
                 const cityInput = document.getElementById('cust-city');
                 const city = cityInput ? cityInput.value : '';
@@ -516,7 +517,7 @@ function init() {
                 window.open(waUrl, "_blank");
 
                 // Clear and Close
-                orderModal.style.display = "none";
+                orderModal.classList.remove('active');
                 document.body.style.overflow = "auto";
                 orderForm.reset();
             };

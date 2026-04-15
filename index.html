@@ -991,61 +991,6 @@
             });
         }
 
-        // 4. Live Order Popup
-        function initLivePopup() {
-            const names = ["Ahmed", "Sajid", "Fatima", "Zainab", "Ali", "Hassan", "Ayesha", "Usman", "Kashif", "Sara"];
-            const cities = ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Multan", "Peshawar", "Quetta", "Sialkot"];
-            const prods = ["Kaaf Perfume", "White Oud", "Body Spray by Lattafa", "Royal Musk", "Janan Inspired"];
-            const popup = document.getElementById('live-popup');
-            const content = document.getElementById('popup-content');
-
-            setInterval(() => {
-                const name = names[Math.floor(Math.random() * names.length)];
-                const city = cities[Math.floor(Math.random() * cities.length)];
-                const prod = prods[Math.floor(Math.random() * prods.length)];
-
-                content.innerHTML = `${name} from ${city} just ordered <b>${prod}</b>`;
-                popup.classList.add('show');
-
-                setTimeout(() => {
-                    popup.classList.remove('show');
-                }, 4000);
-            }, 12000);
-        }
-
-        // 5. Order Modal
-        const modal = document.getElementById('order-modal');
-        const orderForm = document.getElementById('orderForm');
-
-        function openOrderModal(prod) {
-            document.getElementById('prod-name').value = prod;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function initOrderModal() {
-            document.getElementById('close-modal').onclick = () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            };
-
-            orderForm.onsubmit = (e) => {
-                e.preventDefault();
-                const name = document.getElementById('cust-name').value;
-                const phone = document.getElementById('cust-phone').value;
-                const city = document.getElementById('cust-city').value;
-                const prod = document.getElementById('prod-name').value;
-                const addr = document.getElementById('del-address').value;
-
-                const message = `New Order:\nProduct: ${prod}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${addr}`;
-                const encodedMsg = encodeURIComponent(message);
-                window.open(`https://wa.me/923101131981?text=${encodedMsg}`, '_blank');
-
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                orderForm.reset();
-            };
-        }
     </script>
     <script src="script.js"></script>
 </body>
