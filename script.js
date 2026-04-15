@@ -147,7 +147,7 @@ function saveProductsToStorage() {
 // ============================================================
 // CART STATE â€” initialized here so it's always ready
 // ============================================================
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('musa_cart')) || [];
 try {
     cart = JSON.parse(localStorage.getItem('musa_cart')) || [];
     if (!Array.isArray(cart)) cart = [];
@@ -1122,10 +1122,14 @@ function injectCartUI() {
 
 function updateCartBadge() {
     const badges = document.querySelectorAll('#cart-count-badge');
+    const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
     badges.forEach(badge => {
-        badge.innerText = cart.length;
+        badge.innerText = totalQty;
         badge.style.transform = 'scale(1.2)';
         setTimeout(() => badge.style.transform = 'scale(1)', 300);
+        badge.style.display = totalQty > 0 ? 'inline-block' : 'none';
+        badge.style.background = 'var(--gold)';
+        badge.style.color = '#000';
     });
 }
 
