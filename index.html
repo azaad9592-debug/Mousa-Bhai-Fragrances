@@ -737,7 +737,7 @@
             <h1 class="fade-up">Smell Expensive.<br>Pay Less.</h1>
             <p class="fade-up">Luxury-inspired fragrances crafted for everyday elegance.</p>
             <div class="fade-up">
-                <a href="shop.html" class="btn-gold">Shop Now</a>
+                <a href="#shop" class="btn-gold">Shop Now</a>
             </div>
         </div>
     </section>
@@ -799,6 +799,36 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- RESTORED PRODUCT SLIDER -->
+    <section id="shop" style="padding: 60px 0; background: #fff;">
+        <div class="container">
+            <h2 class="section-title fade-up" style="text-align: center; color: #000; margin-bottom: 40px; font-family: var(--font-heading);">Featured Products</h2>
+            
+            <div style="position: relative;">
+                <!-- Navigation Arrows -->
+                <button onclick="scrollSlider('featured-products-slider', -1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.8); color: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">←</button>
+                <button onclick="scrollSlider('featured-products-slider', 1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.8); color: #fff; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">→</button>
+
+                <div id="featured-products-slider" class="product-slider" style="
+                  display: flex;
+                  overflow-x: auto;
+                  gap: 25px;
+                  padding: 15px 10px;
+                  scroll-snap-type: x mandatory;
+                  -webkit-overflow-scrolling: touch;
+                  scrollbar-width: none;
+                ">
+                    <!-- Products loaded via script.js -->
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="shop.html" class="btn-gold" style="padding: 12px 35px; border: 1px solid var(--gold);">View Full Collection</a>
+            </div>
+        </div>
+    </section>
 
     <!-- WHY CHOOSE US -->
     <section class="why-us">
