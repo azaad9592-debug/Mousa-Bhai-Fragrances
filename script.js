@@ -358,6 +358,7 @@ function openOrderModal(productName) {
         }
         
         modal.classList.add('active');
+        modal.style.display = 'flex'; // Force visibility
         document.body.style.overflow = "hidden";
     }
 }
