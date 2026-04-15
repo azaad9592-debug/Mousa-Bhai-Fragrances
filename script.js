@@ -388,13 +388,10 @@ function handleScroll() {
 
 // --- INITIALIZATION ---
 function init() {
-    console.log("Musa Bhai Fragrances: Engine Started.");
-    initTheme();
     renderProducts();
     injectCartUI();
     initEliteHeader();
     initAnimations();
-    initAdminWidget(); // Live counter for admin
     
     // Check if we need to open cart
     const urlParams = new URLSearchParams(window.location.search);
@@ -737,53 +734,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initAnimations === 'function') initAnimations();
 });
 
-// --- LIVE ORDER POPUP LOGIC ---
-function initLiveOrderPopup() {
-    const popup = document.getElementById('live-order-popup');
-    const nameEl = document.getElementById('order-user-name');
-    const productEl = document.getElementById('order-product-name');
-    
-    if (!popup) return;
-
-    const names = ["Ali from Karachi", "Sarah from Lahore", "Osman from Islamabad", "Bilal from Quetta", "Hassan from Peshawar", "Zainab from Multan", "Faisal from Faisalabad"];
-    const productsList = products.map(p => p.name);
-
-    function showPopup() {
-        const randomName = names[Math.floor(Math.random() * names.length)];
-        const randomProduct = productsList[Math.floor(Math.random() * productsList.length)];
-        
-        nameEl.innerText = randomName;
-        productEl.innerText = `just ordered ${randomProduct}`;
-        
-        popup.classList.add('active');
-        
-        setTimeout(() => {
-            popup.classList.remove('active');
-        }, 5000); // Show for 5 seconds
-    }
-
-    // Initial delay
-    setTimeout(() => {
-        showPopup();
-        setInterval(showPopup, 12000); // Every 12 seconds
-    }, 5000);
-}
-
-// --- ORDER NOTIFICATION UTILITY ---
-function showOrderNotification(message) {
-    const notify = document.createElement('div');
-    notify.className = 'order-notify';
-    notify.innerHTML = `
-        <div class="notify-content">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    document.body.appendChild(notify);
-    
-    setTimeout(() => {
-        notify.classList.add('active');
-    }, 100);
 
     setTimeout(() => {
         notify.classList.remove('active');
@@ -848,6 +798,7 @@ function addToCart(productName) {
     
     saveCart();
     updateCartBadge();
+    renderCartPanel(); 
     showCartAddedNotification(product.name);
 }
 
@@ -1193,57 +1144,6 @@ function initAnnouncementBar() {
 
 
 
-// ============================================================
-// THEME MANAGEMENT
-// ============================================================
-function initTheme() {
-    const savedTheme = localStorage.getItem('musa_theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-    }
-}
-
-function injectThemeToggle() {
-    if (document.getElementById('theme-toggle-container')) return;
-    
-    const headerNav = document.querySelector('.nav-flex');
-    if (!headerNav) return;
-
-    const themeContainer = document.createElement('div');
-    themeContainer.id = 'theme-toggle-container';
-    themeContainer.className = 'theme-toggle-wrapper';
-    themeContainer.innerHTML = `
-        <button onclick="toggleTheme()" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
-            <i class="fa-solid ${document.body.classList.contains('light-theme') ? 'fa-moon' : 'fa-sun'}"></i>
-        </button>
-    `;
-    
-    // Find a good place to insert - after logo or before mobile toggle
-    const mobileToggle = document.getElementById('mobile-toggle');
-    if (mobileToggle) {
-        headerNav.insertBefore(themeContainer, mobileToggle);
-    } else {
-        headerNav.appendChild(themeContainer);
-    }
-}
-
-function toggleTheme() {
-    const body = document.body;
-    const isLight = body.classList.toggle('light-theme');
-    localStorage.setItem('musa_theme', isLight ? 'light' : 'dark');
-    
-    // Update Icons
-    const icon = document.querySelector('.theme-toggle-btn i');
-    if (icon) {
-        if (isLight) {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        } else {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-    }
-}
 
 // Ensure init runs after DOM is ready
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
