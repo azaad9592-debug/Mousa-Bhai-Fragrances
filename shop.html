@@ -60,9 +60,9 @@
                             </defs>
                         </svg>
                     </div>
-                    <div class="logo-text-group">
-                        <span class="logo-text" style="font-size: 1.6rem; font-weight: 800;">Moosa Bhai</span>
-                        <span class="logo-subtitle" style="font-size: 0.75rem; letter-spacing: 3px; font-weight: 400; font-family: 'Cinzel', serif;">Fragrances</span>
+                    <div class="logo-text-group" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; margin-left: 10px;">
+                        <span class="logo-text" style="font-size: 1.6rem; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 1px; display: block; line-height: 1;">Moosa Bhai</span>
+                        <span class="logo-subtitle" style="font-size: 0.7rem; letter-spacing: 5px; font-weight: 400; font-family: 'Montserrat', sans-serif; text-transform: uppercase; color: #fff; display: block; margin-top: 4px;">Fragrances</span>
                     </div>
                 </a>
             </div>
@@ -72,6 +72,10 @@
                 <a href="shop.html" class="active">Shop</a>
                 <a href="info.html#about">About</a>
                 <a href="info.html#contact">Contact</a>
+                <a href="#" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count-badge" style="background: var(--gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: 800;">0</span>
+                </a>
             </nav>
             <div class="nav-actions">
                 <!-- Persistent Search for Desktop -->
@@ -116,8 +120,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">New Attars</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="new-attar-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('new-attar-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('new-attar-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="new-attar-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- New Attars will be loaded via script.js -->
                     </div>
                 </div>
@@ -126,8 +132,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">New Arrivals</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="new-arrivals-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('new-arrivals-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('new-arrivals-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="new-arrivals-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- New Arrivals will be loaded via script.js -->
                     </div>
                 </div>
@@ -136,8 +144,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Fresh Attars</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="fresh-attars-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('fresh-attars-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('fresh-attars-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="fresh-attars-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Fresh Attars will be loaded via script.js -->
                     </div>
                 </div>
@@ -146,8 +156,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Ajmal Brand</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="ajmal-perfume-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('ajmal-perfume-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('ajmal-perfume-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="ajmal-perfume-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Ajmal products (Attars) will be loaded via script.js -->
                     </div>
                 </div>
@@ -157,8 +169,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Surrati Brand</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="surrati-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('surrati-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('surrati-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="surrati-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Surrati products will be loaded via script.js -->
                     </div>
                 </div>
@@ -168,8 +182,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Afnan Brand</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="afnan-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('afnan-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('afnan-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="afnan-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Afnan products will be loaded via script.js -->
                     </div>
                 </div>
@@ -179,8 +195,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Curated Selection - Part I</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="shop-grid-row-1" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('shop-grid-row-1', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('shop-grid-row-1', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="shop-grid-row-1" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Row 1 products -->
                     </div>
                 </div>
@@ -190,8 +208,10 @@
             <div class="shop-grid-section" style="margin-bottom: 80px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Curated Selection - Part II</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="shop-grid-row-2" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('shop-grid-row-2', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('shop-grid-row-2', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="shop-grid-row-2" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Row 2 products -->
                     </div>
                 </div>
@@ -201,8 +221,10 @@
             <div class="shop-grid-section" style="margin-bottom: 100px;">
                 <h2 style="font-family: var(--font-body); font-weight: 700; text-align: center; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 2.2rem; margin-bottom: 10px;">Body Spray</h2>
                 <div class="accent-line" style="margin-bottom: 40px; background: var(--gold);"></div>
-                <div class="container">
-                    <div id="body-spray-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                <div class="container" style="position: relative;">
+                    <button onclick="scrollSlider('body-spray-grid', -1)" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">←</button>
+                    <button onclick="scrollSlider('body-spray-grid', 1)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10;">→</button>
+                    <div id="body-spray-grid" style="display: flex; overflow-x: auto; gap: 20px; padding: 10px 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
                         <!-- Body Sprays will be loaded via script.js -->
                     </div>
                 </div>

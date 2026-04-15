@@ -842,7 +842,8 @@ function initCarouselNav() {
 function addToCart(productName) {
     const product = products.find(p => p.name === productName);
     if (!product) return;
-    const existing = cart.find(c => c.name === productName);
+    
+    const existing = cart.find(c => c.name === product.name);
     if (existing) {
         existing.qty = (existing.qty || 1) + 1;
     } else {
@@ -853,10 +854,12 @@ function addToCart(productName) {
             qty: 1
         });
     }
+    
     saveCart();
-    renderCartBadge();
+    updateCartBadge();
     showCartAddedNotification(product.name);
 }
+
 
 function removeFromCart(productName) {
     cart = cart.filter(c => c.name !== productName);
@@ -1012,6 +1015,17 @@ function closeProductViewModal() {
 // ============================================================
 // INJECT ALL NEW UI (Cart + Product Modal) INTO PAGE
 // ============================================================
+// --- NAVIGATION HELPERS ---
+function scrollSlider(id, dir) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const scrollAmount = 300;
+    el.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+}
+
+// ============================================================
+// INJECT ALL NEW UI (Cart + Product Modal) INTO PAGE
+// ============================================================
 function injectCartUI() {
     // ---- Product View Modal ----
     if (!document.getElementById('product-view-modal')) {
@@ -1068,6 +1082,7 @@ function injectCartUI() {
     if (!document.getElementById('cart-overlay')) {
         const overlay = document.createElement('div');
         overlay.id = 'cart-overlay';
+        overlay.className = 'cart-overlay';
         overlay.onclick = toggleCartPanel;
         document.body.appendChild(overlay);
     }
@@ -1100,9 +1115,32 @@ function injectCartUI() {
         document.body.appendChild(panel);
     }
 
-    renderCartBadge();
+    updateCartBadge();
     initLightbox();
     initAnnouncementBar();
+}
+
+function updateCartBadge() {
+    const badges = document.querySelectorAll('#cart-count-badge');
+    badges.forEach(badge => {
+        badge.innerText = cart.length;
+        badge.style.transform = 'scale(1.2)';
+        setTimeout(() => badge.style.transform = 'scale(1)', 300);
+    });
+}
+
+function toggleCartPanel() {
+    const panel = document.getElementById('cart-panel');
+    const overlay = document.getElementById('cart-overlay');
+    if (panel && overlay) {
+        const isOpen = panel.classList.toggle('open');
+        overlay.classList.toggle('open');
+        if (isOpen) renderCartItems();
+    }
+}
+
+function toggleCartDrawer() {
+    toggleCartPanel();
 }
 
 // ============================================================

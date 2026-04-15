@@ -702,9 +702,9 @@
                         <path d="M40 65 V50 L50 60 L60 50 V65" fill="none" stroke="#D4AF37" stroke-width="4"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <div class="logo-text-group">
-                        <span class="logo-text" style="font-size: 1.6rem; font-weight: 800;">Moosa Bhai</span>
-                        <span class="logo-subtitle" style="font-size: 0.75rem; letter-spacing: 3px; font-weight: 400; font-family: 'Cinzel', serif;">Fragrances</span>
+                    <div class="logo-text-group" style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; margin-left: 10px;">
+                        <span class="logo-text" style="font-size: 1.6rem; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 1px; display: block; line-height: 1;">Moosa Bhai</span>
+                        <span class="logo-subtitle" style="font-size: 0.7rem; letter-spacing: 5px; font-weight: 400; font-family: 'Montserrat', sans-serif; text-transform: uppercase; color: #fff; display: block; margin-top: 4px;">Fragrances</span>
                     </div>
                 </a>
             </div>
@@ -716,9 +716,10 @@
                     <li><a href="info.html#about">About</a></li>
                     <li><a href="info.html#contact">Contact</a></li>
                 </ul>
-                <div class="nav-actions" style="display:flex; gap: 10px; align-items:center;">
-                    <a href="shop.html?openCart=true" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:18px;">
+                <div class="nav-actions" style="display:flex; gap: 15px; align-items:center;">
+                    <a href="shop.html?openCart=true" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
                         <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="cart-count-badge" style="background: var(--gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: 800;">0</span>
                     </a>
                     <div class="mobile-toggle" id="index-mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
                 </div>
@@ -799,14 +800,18 @@
             </div>
         </div>
     <!-- PRODUCT SLIDER SECTION (MANUAL FIX) -->
-    <section id="shop" style="padding: 40px 20px; background: #fff;">
+    <section id="shop" style="padding: 40px 20px; background: #fff; position: relative;">
         <h2 style="text-align:center; margin-bottom: 30px; font-family: sans-serif; color: #000;">Our Products</h2>
         
+        <!-- Navigation Arrows -->
+        <button onclick="scrollSlider('featured-products-slider', -1)" style="position: absolute; left: 10px; top: 55%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">←</button>
+        <button onclick="scrollSlider('featured-products-slider', 1)" style="position: absolute; right: 10px; top: 55%; transform: translateY(-50%); background: rgba(0,0,0,0.7); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; z-index: 10; font-size: 20px;">→</button>
+
         <div id="featured-products-slider" style="
           display: flex;
           overflow-x: auto;
           gap: 20px;
-          padding: 10px;
+          padding: 10px 40px;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
