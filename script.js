@@ -96,7 +96,7 @@ const DEFAULT_PRODUCTS = [
 // VERSION STAMP â€” bump this string whenever products change
 // so stale localStorage is automatically wiped on next load
 // ============================================================
-const CACHE_VERSION = '2.8';
+const CACHE_VERSION = '2.9';
 if (localStorage.getItem('musa_cache_v') !== CACHE_VERSION) {
     localStorage.removeItem('musa_products');
     localStorage.setItem('musa_cache_v', CACHE_VERSION);
