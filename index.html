@@ -844,22 +844,6 @@
 
 <body>
 
-    <!-- ELITE SEARCH OVERLAY -->
-    <div id="search-overlay" class="search-overlay">
-        <button id="search-close-btn" class="search-close-btn" aria-label="Close Search">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="search-container">
-            <h2>Search fragrances</h2>
-            <div class="search-input-wrapper">
-                <input type="text" id="main-search-input" class="search-input" placeholder="What are you looking for?" autocomplete="off">
-            </div>
-            <div id="search-results-preview" class="search-results-preview">
-                <!-- Results will appear here -->
-            </div>
-        </div>
-    </div>
-
     <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <svg class="loader-logo" viewBox="0 0 100 100">
@@ -1159,6 +1143,20 @@
 
     <script src="script.js"></script>
 
+    <!-- ELITE SEARCH OVERLAY -->
+    <div id="search-overlay" class="search-overlay">
+        <button id="search-close-btn" class="search-close-btn" aria-label="Close Search">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <input type="text" id="main-search-input" class="search-input" placeholder="Search fragrances..." autocomplete="off">
+            </div>
+            <div id="search-results-preview" class="search-results-preview">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
