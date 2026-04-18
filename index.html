@@ -525,19 +525,21 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
-            align-items: center;
-            gap: 12px;
+            align-items: flex-start; /* Align icon with first line */
+            gap: 15px;
             color: var(--text-secondary);
             font-size: 14px;
+            line-height: 1.6;
         }
 
         .footer-links li i {
             color: var(--gold);
             font-size: 16px;
-            min-width: 20px;
+            min-width: 25px;
             text-align: center;
+            padding-top: 4px; /* Move icon down to first line */
         }
 
         .footer-links li a {
@@ -1105,9 +1107,20 @@
             <div class="footer-col">
                 <h4 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 25px;">Contact Us</h4>
                 <ul class="footer-links">
-                    <li><i class="fa-solid fa-location-dot"></i> Rashidabad Road, Karachi</li>
-                    <li><i class="fa-solid fa-envelope"></i> moosakhanbaloch672@gmail.com</li>
-                    <li><a href="https://wa.me/923101131981" target="_blank" class="footer-wa-link" style="display: flex; align-items: center; gap: 8px;"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chat with us on WhatsApp</a></li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i> 
+                        <span>Rashidabad Road, Karachi</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i> 
+                        <span style="word-break: break-all;">moosakhanbaloch672@gmail.com</span>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/923101131981" target="_blank" class="footer-wa-link" style="display: flex; align-items: flex-start; gap: 8px; color: inherit; text-decoration: none;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; padding-top: 2px;"></i> 
+                            <span>Chat with us on WhatsApp</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
