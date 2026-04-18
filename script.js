@@ -546,9 +546,10 @@ function openSearch() {
     if (overlay) {
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+        window.location.hash = 'search'; // Push state for back button support
         if (input) {
             input.value = '';
-            setTimeout(() => input.focus(), 100);
+            setTimeout(() => input.focus(), 150);
         }
     }
 }
@@ -558,8 +559,22 @@ function closeSearch() {
     if (overlay) {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
+        if (window.location.hash === '#search') {
+            window.history.back(); // Clean up hash
+        }
     }
 }
+
+// Global back button listener for search
+window.onhashchange = function() {
+    if (window.location.hash !== '#search') {
+        const overlay = document.getElementById('search-overlay');
+        if (overlay && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+};
 
 function initSearch() {
     const searchOpenBtn = document.getElementById('search-open-btn');
@@ -572,6 +587,16 @@ function initSearch() {
     if (searchCloseBtn) searchCloseBtn.onclick = closeSearch;
 
     if (input) {
+        input.onkeydown = (e) => {
+            if (e.key === 'Escape') closeSearch();
+            if (e.key === 'Enter') {
+                const firstResult = preview.querySelector('.search-result-item');
+                if (firstResult) {
+                    firstResult.click();
+                }
+            }
+        };
+
         input.oninput = (e) => {
             const query = e.target.value.toLowerCase().trim();
             if (query.length < 2) {
