@@ -589,10 +589,15 @@ function initSearch() {
 
             if (filtered.length === 0) {
                 if (preview) preview.innerHTML = `
-                    <div style="text-align:center; padding: 40px 20px;">
-                        <p style="color:var(--gold); font-size: 18px; margin-bottom: 10px;">آپ کی مطلوبہ خوشبو یہاں نظر نہیں آ رہی؟</p>
-                        <p style="color:#fff; opacity:0.8; line-height: 1.6;">پریشان نہ ہوں! ہمارے پاس اس کے علاوہ بھی بہت سی خوشبوئیں موجود ہیں۔ آپ بس ہم سے رابطہ کریں، انشااللہ آپ کی پسندیدہ خوشبو مل جائے گی۔</p>
-                        <a href="https://wa.me/923101131981" target="_blank" style="display:inline-block; margin-top: 20px; color:var(--gold); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; text-decoration:none;">رابطہ کریں</a>
+                    <div class="search-no-results" style="padding: 60px 20px; text-align: center; background: rgba(212, 175, 55, 0.02); border: 1px dashed rgba(212, 175, 55, 0.2); border-radius: 20px; margin-top: 30px;">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 40px; color: var(--gold); margin-bottom: 25px; display: block;"></i>
+                        <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 22px; margin-bottom: 15px; letter-spacing: 1px;">تلاش جاری ہے...</h3>
+                        <p style="color: #fff; font-size: 16px; line-height: 1.8; max-width: 500px; margin: 0 auto 30px; opacity: 0.9;">
+                            ہماری دکان میں سینکڑوں ایسی خوشبوئیں موجود ہیں جو شاید یہاں لسٹ نہ ہوں۔ آپ بس ایک بار ہم سے واٹس ایپ پر رابطہ کریں، ہم آپ کی پسندیدہ خوشبو آپ کے گھر پہنچائیں گے۔
+                        </p>
+                        <a href="https://wa.me/923101131981" target="_blank" class="btn-luxury" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 700;">
+                            <i class="fa-brands fa-whatsapp"></i> ابھی رابطہ کریں
+                        </a>
                     </div>
                 `;
                 return;
