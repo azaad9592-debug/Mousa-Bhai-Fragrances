@@ -539,7 +539,28 @@ function toggleCartDrawer() {
     toggleCartPanel();
 }
 
-// --- ELITE SEARCH LOGIC ---
+// --- SEARCH FALLBACKS ---
+function openSearch() {
+    const overlay = document.getElementById('search-overlay');
+    const input = document.getElementById('main-search-input');
+    if (overlay) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (input) {
+            input.value = '';
+            setTimeout(() => input.focus(), 100);
+        }
+    }
+}
+
+function closeSearch() {
+    const overlay = document.getElementById('search-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
 function initSearch() {
     const searchOpenBtn = document.getElementById('search-open-btn');
     const searchCloseBtn = document.getElementById('search-close-btn');
@@ -547,31 +568,7 @@ function initSearch() {
     const input = document.getElementById('main-search-input');
     const preview = document.getElementById('search-results-preview');
 
-    if (!searchOpenBtn || !overlay) return;
-
-    searchOpenBtn.onclick = () => {
-        overlay.classList.add('active');
-        if (input) input.focus();
-        document.body.style.overflow = 'hidden';
-    };
-
-    const headerInput = document.getElementById('header-search-input');
-    if (headerInput && input) {
-        headerInput.onfocus = () => {
-            overlay.classList.add('active');
-            input.focus();
-            document.body.style.overflow = 'hidden';
-        };
-        headerInput.oninput = (e) => {
-            const query = e.target.value;
-            overlay.classList.add('active');
-            input.value = query;
-            input.focus();
-            input.dispatchEvent(new Event('input')); // Trigger main search logic
-            document.body.style.overflow = 'hidden';
-        };
-    }
-
+    if (searchOpenBtn) searchOpenBtn.onclick = openSearch;
     if (searchCloseBtn) searchCloseBtn.onclick = closeSearch;
 
     if (input) {
@@ -589,7 +586,7 @@ function initSearch() {
 
             if (filtered.length === 0) {
                 if (preview) preview.innerHTML = `
-                    <div class="search-no-results" style="padding: 60px 20px; text-align: center; background: rgba(212, 175, 55, 0.02); border: 1px dashed rgba(212, 175, 55, 0.2); border-radius: 20px; margin-top: 30px;">
+                    <div class="search-no-results" style="padding: 60px 20px; text-align: center; background: rgba(212, 175, 55, 0.01); border: 1px dashed rgba(212, 175, 55, 0.2); border-radius: 20px; margin-top: 30px;">
                         <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 40px; color: var(--gold); margin-bottom: 25px; display: block;"></i>
                         <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 22px; margin-bottom: 15px; letter-spacing: 1px;">تلاش جاری ہے...</h3>
                         <p style="color: #fff; font-size: 16px; line-height: 1.8; max-width: 500px; margin: 0 auto 30px; opacity: 0.9;">
@@ -615,14 +612,6 @@ function initSearch() {
                 `).join('');
             }
         };
-    }
-}
-
-function closeSearch() {
-    const overlay = document.getElementById('search-overlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
     }
 }
 
