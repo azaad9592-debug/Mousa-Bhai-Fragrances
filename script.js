@@ -357,10 +357,16 @@ function init() {
         initAnimations();
     } catch(e) { console.error("UI injection failed", e); }
     
-    // Check if we need to open cart
+    // Check if we need to open cart or search modal
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('openCart') === 'true') {
         setTimeout(toggleCartPanel, 600);
+    }
+    const searchParam = urlParams.get('search');
+    if (searchParam) {
+        setTimeout(() => {
+            if (typeof openProductViewModal === 'function') openProductViewModal(decodeURIComponent(searchParam));
+        }, 800);
     }
     
     window.addEventListener('scroll', handleScroll);
@@ -543,30 +549,49 @@ function toggleCartDrawer() {
 function openSearch() {
     const overlay = document.getElementById('search-overlay');
     const input = document.getElementById('main-search-input');
+    const preview = document.getElementById('search-results-preview');
+    
     if (overlay) {
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
-        window.location.hash = 'search'; // Push state for back button support
+        
+        // Use hash for back-button closure on mobile
+        if (window.location.hash !== '#search') {
+            window.history.pushState(null, null, '#search');
+        }
+
         if (input) {
             input.value = '';
-            setTimeout(() => input.focus(), 150);
+            setTimeout(() => input.focus(), 200);
+            
+            // KEYBOARD NAVIGATION
+            input.onkeydown = (e) => {
+                if (e.key === 'Escape') closeSearch();
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (preview) {
+                        const firstResult = preview.querySelector('.search-result-item');
+                        if (firstResult) firstResult.click();
+                    }
+                }
+            };
         }
     }
 }
 
 function closeSearch() {
     const overlay = document.getElementById('search-overlay');
-    if (overlay) {
+    if (overlay && overlay.classList.contains('active')) {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
         if (window.location.hash === '#search') {
-            window.history.back(); // Clean up hash
+            window.history.back();
         }
     }
 }
 
-// Global back button listener for search
-window.onhashchange = function() {
+// Global back button listener for search closure
+window.addEventListener('popstate', () => {
     if (window.location.hash !== '#search') {
         const overlay = document.getElementById('search-overlay');
         if (overlay && overlay.classList.contains('active')) {
@@ -574,29 +599,18 @@ window.onhashchange = function() {
             document.body.style.overflow = '';
         }
     }
-};
+});
 
 function initSearch() {
     const searchOpenBtn = document.getElementById('search-open-btn');
     const searchCloseBtn = document.getElementById('search-close-btn');
-    const overlay = document.getElementById('search-overlay');
     const input = document.getElementById('main-search-input');
     const preview = document.getElementById('search-results-preview');
 
-    if (searchOpenBtn) searchOpenBtn.onclick = openSearch;
-    if (searchCloseBtn) searchCloseBtn.onclick = closeSearch;
+    if (searchOpenBtn) searchOpenBtn.onclick = (e) => { e.preventDefault(); openSearch(); };
+    if (searchCloseBtn) searchCloseBtn.onclick = (e) => { e.preventDefault(); closeSearch(); };
 
     if (input) {
-        input.onkeydown = (e) => {
-            if (e.key === 'Escape') closeSearch();
-            if (e.key === 'Enter') {
-                const firstResult = preview.querySelector('.search-result-item');
-                if (firstResult) {
-                    firstResult.click();
-                }
-            }
-        };
-
         input.oninput = (e) => {
             const query = e.target.value.toLowerCase().trim();
             if (query.length < 2) {
