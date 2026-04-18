@@ -545,7 +545,7 @@ function toggleCartDrawer() {
     toggleCartPanel();
 }
 
-// --- SEARCH FALLBACKS ---
+// --- SEARCH LOGIC ---
 function openSearch() {
     const overlay = document.getElementById('search-overlay');
     const input = document.getElementById('main-search-input');
@@ -555,24 +555,66 @@ function openSearch() {
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Use hash for back-button closure on mobile
+        // Push state for hardware back button support
         if (window.location.hash !== '#search') {
-            window.history.pushState(null, null, '#search');
+            window.location.hash = 'search';
         }
 
         if (input) {
             input.value = '';
-            setTimeout(() => input.focus(), 200);
+            setTimeout(() => input.focus(), 250);
             
-            // KEYBOARD NAVIGATION
+            // KEYBOARD NAV
             input.onkeydown = (e) => {
                 if (e.key === 'Escape') closeSearch();
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    if (preview) {
-                        const firstResult = preview.querySelector('.search-result-item');
-                        if (firstResult) firstResult.click();
-                    }
+                    const first = preview ? preview.querySelector('.search-result-item') : null;
+                    if (first) first.click();
+                }
+            };
+
+            // SEARCHING LOGIC (Consolidated here for reliability)
+            input.oninput = (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                if (query.length < 2) {
+                    if (preview) preview.innerHTML = '';
+                    return;
+                }
+
+                // Use products or fallback to DEFAULT_PRODUCTS
+                const searchPool = (products && products.length > 0) ? products : DEFAULT_PRODUCTS;
+                const filtered = searchPool.filter(p => 
+                    p.name.toLowerCase().includes(query) || 
+                    (p.category && p.category.toLowerCase().includes(query))
+                ).slice(0, 10);
+
+                if (filtered.length === 0) {
+                    if (preview) preview.innerHTML = `
+                        <div class="search-no-results" style="padding: 60px 20px; text-align: center; background: rgba(212, 175, 55, 0.01); border: 1px dashed rgba(212, 175, 55, 0.2); border-radius: 20px; margin-top: 30px;">
+                            <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 40px; color: var(--gold); margin-bottom: 25px; display: block;"></i>
+                            <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 20px; margin-bottom: 15px;">تلاش جاری ہے...</h3>
+                            <p style="color: #fff; font-size: 15px; line-height: 1.8; max-width: 400px; margin: 0 auto 30px; opacity: 0.8;">
+                                ہماری دکان میں سینکڑوں ایسی خوشبوئیں موجود ہیں جو شاید یہاں لسٹ نہ ہوں۔ آپ بس واٹس ایپ پر رابطہ کریں۔
+                            </p>
+                            <a href="https://wa.me/923101131981" target="_blank" class="btn-luxury" style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-weight: 700;">
+                                <i class="fa-brands fa-whatsapp"></i> ابھی رابطہ کریں
+                            </a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (preview) {
+                    preview.innerHTML = filtered.map(p => `
+                        <div class="search-result-item" onclick="handleSearchResultClick('${p.name.replace(/'/g, "\\'")}')">
+                            <img src="${p.image || 'assets/placeholders/perfume.png'}" alt="${p.name}">
+                            <div class="search-result-info">
+                                <h4>${p.name}</h4>
+                                <p>${p.category || 'Premium Selection'} - Rs. ${p.price}</p>
+                            </div>
+                        </div>
+                    `).join('');
                 }
             };
         }
@@ -590,8 +632,8 @@ function closeSearch() {
     }
 }
 
-// Global back button listener for search closure
-window.addEventListener('popstate', () => {
+// Ensure back button always closes the search
+window.onhashchange = function() {
     if (window.location.hash !== '#search') {
         const overlay = document.getElementById('search-overlay');
         if (overlay && overlay.classList.contains('active')) {
@@ -599,59 +641,13 @@ window.addEventListener('popstate', () => {
             document.body.style.overflow = '';
         }
     }
-});
+};
 
 function initSearch() {
-    const searchOpenBtn = document.getElementById('search-open-btn');
-    const searchCloseBtn = document.getElementById('search-close-btn');
-    const input = document.getElementById('main-search-input');
-    const preview = document.getElementById('search-results-preview');
-
-    if (searchOpenBtn) searchOpenBtn.onclick = (e) => { e.preventDefault(); openSearch(); };
-    if (searchCloseBtn) searchCloseBtn.onclick = (e) => { e.preventDefault(); closeSearch(); };
-
-    if (input) {
-        input.oninput = (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            if (query.length < 2) {
-                if (preview) preview.innerHTML = '';
-                return;
-            }
-
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                (p.category && p.category.toLowerCase().includes(query))
-            ).slice(0, 8);
-
-            if (filtered.length === 0) {
-                if (preview) preview.innerHTML = `
-                    <div class="search-no-results" style="padding: 60px 20px; text-align: center; background: rgba(212, 175, 55, 0.01); border: 1px dashed rgba(212, 175, 55, 0.2); border-radius: 20px; margin-top: 30px;">
-                        <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 40px; color: var(--gold); margin-bottom: 25px; display: block;"></i>
-                        <h3 style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 22px; margin-bottom: 15px; letter-spacing: 1px;">تلاش جاری ہے...</h3>
-                        <p style="color: #fff; font-size: 16px; line-height: 1.8; max-width: 500px; margin: 0 auto 30px; opacity: 0.9;">
-                            ہماری دکان میں سینکڑوں ایسی خوشبوئیں موجود ہیں جو شاید یہاں لسٹ نہ ہوں۔ آپ بس ایک بار ہم سے واٹس ایپ پر رابطہ کریں، ہم آپ کی پسندیدہ خوشبو آپ کے گھر پہنچائیں گے۔
-                        </p>
-                        <a href="https://wa.me/923101131981" target="_blank" class="btn-luxury" style="display: inline-flex; align-items: center; gap: 12px; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 700;">
-                            <i class="fa-brands fa-whatsapp"></i> ابھی رابطہ کریں
-                        </a>
-                    </div>
-                `;
-                return;
-            }
-
-            if (preview) {
-                preview.innerHTML = filtered.map(p => `
-                    <div class="search-result-item" onclick="handleSearchResultClick('${p.name.replace(/'/g, "\\'")}')">
-                        <img src="${p.image || 'assets/placeholders/perfume.png'}" alt="${p.name}">
-                        <div class="search-result-info">
-                            <h4>${p.name}</h4>
-                            <p>${p.category || 'Premium Selection'} - Rs. ${p.price}</p>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        };
-    }
+    const openBtn = document.getElementById('search-open-btn');
+    const closeBtn = document.getElementById('search-close-btn');
+    if (openBtn) openBtn.onclick = (e) => { e.preventDefault(); openSearch(); };
+    if (closeBtn) closeBtn.onclick = (e) => { e.preventDefault(); closeSearch(); };
 }
 
 function handleSearchResultClick(name) {
