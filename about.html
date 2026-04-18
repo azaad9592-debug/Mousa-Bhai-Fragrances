@@ -188,9 +188,7 @@
             </ul>
 
             <div class="nav-actions" style="display:flex; align-items:center;">
-                <a href="javascript:void(0)" id="search-open-btn" class="header-action-btn" aria-label="Search" style="color:var(--gold); font-size:20px; margin-right: 15px; text-decoration:none;">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
+
                 <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration:none; position:relative;">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cart-count-badge" style="position:absolute; top:-5px; right:-5px; background:var(--gold); color:#000; width:15px; height:15px; border-radius:50%; font-size:9px; display:flex; align-items:center; justify-content:center; font-weight:700;">0</span>
@@ -282,19 +280,6 @@
     </script>
     <script src="script.js"></script>
 
-    <!-- ELITE SEARCH OVERLAY -->
-    <div id="search-overlay" class="search-overlay">
-        <button id="search-close-btn" class="search-close-btn" aria-label="Close Search">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="search-container">
-            <div class="search-input-wrapper">
-                <input type="text" id="main-search-input" class="search-input" placeholder="Search fragrances..." autocomplete="off">
-            </div>
-            <div id="search-results-preview" class="search-results-preview">
-                <!-- Results will appear here -->
-            </div>
-        </div>
-    </div>
+
 </body>
 </html>
