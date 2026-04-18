@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Musa Bhai Fragrances</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('assets/images/alifun-lailatun--wa-lailah-12ml-rs-2799.jpeg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .about-section {
+            padding: 100px 0;
+            background: #0a0a0a;
+        }
+
+        .about-content-flex {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .about-content-flex:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .stat-item h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+        }
+
+        @media (max-width: 991px) {
+            .about-content-flex, .about-content-flex:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-hero h1 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR (Copy from index) -->
+    <div class="top-bar">
+        <div class="top-bar-scroll">
+            <span>↓ Premium Quality Fragrances at Best Prices</span>
+            <span>↓ Fast 2-Day Delivery in Karachi</span>
+            <span>↓ 3-4 Days Delivery Across Pakistan</span>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER -->
+    <header id="main-header">
+        <div class="container header-flex">
+            <div class="logo-area">
+                <a href="index.html" class="logo-flex">
+                    <svg class="logo-img" viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="gold-shine" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#D4AF37" />
+                                <stop offset="50%" stop-color="#F1D57F" />
+                                <stop offset="100%" stop-color="#B8860B" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="url(#gold-shine)" stroke-width="1.5" />
+                        <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gold-shine)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine)" />
+                    </svg>
+                    <div class="logo-text-group" style="display: flex; flex-direction: column; line-height: 1;">
+                        <span class="logo-text" style="font-size: 26px; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 2px; text-transform: uppercase;">Moosa Bhai</span>
+                        <span class="logo-subtitle" style="font-size: 10px; letter-spacing: 8px; font-weight: 700; font-family: 'Cinzel', serif; color: #fff; margin-top: 6px; opacity: 0.9; text-transform: uppercase;">FRAGRANCES</span>
+                    </div>
+                </a>
+            </div>
+
+            <ul class="nav-links desktop-only" id="main-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="info.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="header-action-btn" id="cart-trigger">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count-badge">0</span>
+                </button>
+                <div class="mobile-toggle" id="mobile-nav-toggle">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="fade-up">Our Legacy</h1>
+            <p class="fade-up" style="color: #fff; opacity: 0.8; letter-spacing: 1px;">Defining Luxury Fragrances Since Inception</p>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content-flex fade-up">
+                <div class="about-image">
+                    <img src="assets/images/ameer-ul-oud-12ml-rs-1499.jpeg" alt="Luxury Fragrance">
+                </div>
+                <div class="about-text">
+                    <h2>The Musa Bhai Story</h2>
+                    <p>At **Musa Bhai Fragrances**, we believe that a scent is more than just a smell; it's a signature, a memory, and a statement of elegance. Born in the heart of Karachi, we set out with a simple mission: to make high-end, luxury-inspired fragrances accessible to everyone without compromising on quality.</p>
+                    <p>Every bottle we curate is a masterpiece of olfactory art, blending traditional craftsmanship with modern sophistication. Our team of experts spends countless hours perfecting every essence to ensure it leaves a lasting impression.</p>
+                </div>
+            </div>
+
+            <div class="about-content-flex fade-up">
+                <div class="about-image">
+                    <img src="assets/images/dehan-oud-ateeq-by-surrati-rs-5999.jpeg" alt="Perfume Mastery">
+                </div>
+                <div class="about-text">
+                    <h2>Our Commitment</h2>
+                    <p>We guarantee the authenticity and longevity of every single essence we provide. Our collection ranges from deep, woody Ouds to fresh, citrusy perfumes, ensuring there's a Moosa Bhai scent for every personality and occasion.</p>
+                    <p>With thousands of satisfied customers across Pakistan, our reputation is built on trust, quality, and the pursuit of excellence in every drop.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item fade-up">
+                    <h3>10k+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3>500+</h3>
+                    <p>Essence Blends</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3>100%</h3>
+                    <p>Pure Quality</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3>24h</h3>
+                    <p>Expert Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="luxury-logo" style="margin-bottom:20px; display: flex; align-items: center; gap: 15px;">
+                    <div class="logo-icon" style="width: 50px; height: 50px;">
+                        <svg class="m-symbol" viewBox="0 0 100 100">
+                            <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="#D4AF37" stroke-width="2" />
+                            <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="#D4AF37" />
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="brand-name" style="font-family: 'Cinzel', serif; font-weight: 800; color: var(--gold); letter-spacing: 2px; font-size: 1.4rem; display: block; line-height: 1;">MUSA BHAI</span>
+                        <span class="brand-subline" style="font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 6px; color: #fff; opacity: 0.8; text-transform: uppercase; font-weight: 700; display: block; margin-top: 4px;">FRAGRANCES</span>
+                    </div>
+                </div>
+                <p>Luxury inspired fragrances that leave a lasting impression. Smell expensive, pay less.</p>
+                <h4 style="margin-top: 30px; margin-bottom: 15px; font-size: 0.9rem; letter-spacing: 2px;">Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/moosa__bhai_3" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@musa_bhai_3" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com/@moosa_perfumes" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/share/1FwWywycSQ/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Shortcuts</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Product Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="info.html#privacy">Privacy Policy</a></li>
+                    <li><a href="info.html#shipping">Shipping Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Visit Offline</h4>
+                <ul class="footer-contact-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i> 
+                        <a href="https://www.google.com/maps/search/?api=1&query=Rashidabad+Road+Karachi" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed var(--gold);">Rashidabad Road, Karachi</a>
+                    </li>
+                    <li>
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <a href="https://wa.me/923101131981" target="_blank" style="color: inherit; text-decoration: none;">Chat on WhatsApp</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Musa Bhai Fragrances. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Init animations for about page
+        window.addEventListener('scroll', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
