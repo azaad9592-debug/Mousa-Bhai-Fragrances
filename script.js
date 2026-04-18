@@ -1058,7 +1058,6 @@ function injectCartUI() {
     }
 
     updateCartBadge();
-    initLightbox();
     initAnnouncementBar();
 }
 
@@ -1082,30 +1081,7 @@ function toggleCartDrawer() {
 // ============================================================
 // IMAGE LIGHTBOX (CLICK TO ENLARGE)
 // ============================================================
-function initLightbox() {
-    let overlay = document.getElementById('lightbox-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'lightbox-overlay';
-        overlay.className = 'lightbox-overlay';
-        overlay.innerHTML = '<img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged Product">';
-        document.body.appendChild(overlay);
-        
-        overlay.onclick = () => overlay.classList.remove('active');
-    }
 
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    // Attach to all product images (current and future)
-    document.addEventListener('click', e => {
-        const productImg = e.target.closest('.img-wrapper img');
-        if (productImg) {
-            e.preventDefault();
-            lightboxImg.src = productImg.src;
-            overlay.classList.add('active');
-        }
-    });
-}
 
 // ============================================================
 // PREMIUM ANNOUNCEMENT BAR ROTATOR
