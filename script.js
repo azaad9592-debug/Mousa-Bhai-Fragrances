@@ -1111,6 +1111,90 @@ function initAnnouncementBar() {
 
 
 
+function openEmailSheet() {
+    let modal = document.getElementById('email-sheet-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'email-sheet-modal';
+        modal.className = 'modal'; 
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 500px; padding: 40px; background: #111; border: 1px solid var(--gold); border-radius: 12px; position: relative;">
+                <span class="close-modal" onclick="closeEmailSheet()" style="position: absolute; top: 20px; right: 20px; font-size: 28px; cursor: pointer; color: var(--gold);">&times;</span>
+                <h2 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px; font-size: 24px; text-align: center;">Email Order / Inquiry</h2>
+                <p style="font-size: 14px; margin-bottom: 30px; opacity: 0.8; text-align: center; color: #fff;">Fill the form below to send us your order details or inquiries via email.</p>
+                <form id="emailSheetForm">
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; color: var(--gold); font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Your Full Name</label>
+                        <input type="text" name="Customer Name" required placeholder="Enter your name" style="width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 14px; border-radius: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; color: var(--gold); font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Email / Contact Info</label>
+                        <input type="text" name="Contact" required placeholder="How should we reach you?" style="width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 14px; border-radius: 8px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label style="display: block; color: var(--gold); font-size: 12px; text-transform: uppercase; margin-bottom: 8px;">Order Details / Message</label>
+                        <textarea name="Message" rows="5" required placeholder="Enter the fragrance name, quantity, and your address for ordering..." style="width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 14px; border-radius: 8px; resize: none;"></textarea>
+                    </div>
+                    <button type="submit" class="btn-gold" style="width: 100%; border: none; padding: 18px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; border-radius: 8px;">Send Email Inquiry</button>
+                    <p id="email-status" style="text-align: center; margin-top: 15px; font-weight: 600; display: none;"></p>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        const form = document.getElementById('emailSheetForm');
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const status = document.getElementById('email-status');
+            btn.innerText = 'SENDING...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data._subject = "New Order/Inquiry via Email Sheet";
+
+            fetch("https://formsubmit.co/ajax/moosakhanbaloch672@gmail.com", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(() => {
+                btn.innerText = 'SENT SUCCESSFULLY!';
+                status.innerText = 'Thank you! We will reply via email shortly.';
+                status.style.display = 'block';
+                status.style.color = '#25D366';
+                setTimeout(() => {
+                    closeEmailSheet();
+                    form.reset();
+                    btn.innerText = 'Send Email Inquiry';
+                    btn.disabled = false;
+                    status.style.display = 'none';
+                }, 4000);
+            })
+            .catch(err => {
+                console.error(err);
+                btn.innerText = 'ERROR SENDING';
+                btn.disabled = false;
+            });
+        };
+    }
+    modal.style.display = 'flex';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeEmailSheet() {
+    const modal = document.getElementById('email-sheet-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+
 // Ensure init runs after DOM is ready
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     init();
