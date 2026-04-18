@@ -3507,4 +3507,34 @@ p {
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
+/* ============================================================ */
+/*  MOBILE TOGGLE & HEADER ACTIONS                              */
+/* ============================================================ */
+.mobile-toggle {
+    display: none;
+    color: var(--gold);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+@media (max-width: 991px) {
+    .mobile-toggle.mobile-only {
+        display: flex !important;
+    }
+    .mobile-toggle:active {
+        background: rgba(212, 175, 55, 0.1);
+        transform: scale(0.9);
+    }
+}
+
+.header-action-btn:hover, .header-cart-btn:hover {
+    color: #fff !important;
+    transform: translateY(-2px);
+}
