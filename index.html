@@ -121,35 +121,74 @@
 
         /* --- TOP BAR --- */
         .top-bar {
-            background: var(--red-gold);
+            background: linear-gradient(90deg, #800000 0%, #B8860B 50%, #800000 100%);
             color: var(--white);
-            text-align: center;
-            padding: 8px 0;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            padding: 6px 0;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .top-bar-scroll {
+            display: flex;
+            white-space: nowrap;
+            animation: topBarMarquee 20s linear infinite;
+        }
+
+        .top-bar-scroll span {
+            padding: 0 40px;
+        }
+
+        @keyframes topBarMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* --- STICKY HEADER --- */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
+            padding: 15px 0;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-self: end;
         }
 
         header.shrink {
-            padding: 12px 0;
+            padding: 8px 0;
         }
 
         .header-flex {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto 1fr auto; /* Logo | Links | Actions */
             align-items: center;
+            gap: 20px;
+        }
+
+        .desktop-only { display: flex; }
+        .mobile-only { display: none; }
+
+        @media (max-width: 1024px) {
+            .desktop-only { display: none; }
+            .mobile-only { display: flex; }
+            .header-flex {
+                display: flex;
+                justify-content: space-between;
+            }
         }
 
         .logo-flex {
@@ -173,14 +212,20 @@
 
         .nav-links {
             display: flex;
+            justify-self: center; /* Center links in the grid */
             gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
         .nav-links li a {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            color: var(--white);
+            transition: var(--transition);
         }
 
         .nav-links li a:hover {
@@ -188,10 +233,15 @@
         }
 
         .mobile-toggle {
-            display: none;
+            display: none; /* Hidden on Desktop */
             color: var(--gold);
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* --- HERO SECTION --- */
@@ -647,11 +697,48 @@
         /* --- RESPONSIVENESS --- */
         @media (max-width: 1024px) {
             .nav-links {
-                display: none;
+                align-items: center;
+                z-index: 10001; /* Higher than header */
+                gap: 30px;
+                padding: 0;
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+                transform: translateX(100%);
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .mobile-nav-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                z-index: 10000;
+                opacity: 0;
+                visibility: hidden;
+                transition: 0.4s ease;
+            }
+
+            .mobile-nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
             }
 
             .mobile-toggle {
-                display: block;
+                display: block; /* Shown on Mobile */
+                z-index: 10002;
+            }
+
+            .top-bar {
+                padding: 3px 0;
+                height: auto;
+            }
+            .top-bar-scroll span {
+                font-size: 10px;
+                letter-spacing: 1px;
             }
         }
 
@@ -722,7 +809,12 @@
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        ↓ Premium Quality Fragrances at Best Prices
+        <div class="top-bar-scroll">
+            <span>↓ Premium Quality Fragrances at Best Prices</span>
+            <span>↓ Premium Quality Fragrances at Best Prices</span>
+            <span>↓ Premium Quality Fragrances at Best Prices</span>
+            <span>↓ Premium Quality Fragrances at Best Prices</span>
+        </div>
     </div>
 
     <!-- STICKY HEADER -->
@@ -745,19 +837,19 @@
                 </a>
             </div>
             <nav style="display:flex; align-items:center; gap: 15px;">
-                <ul class="nav-links" id="main-nav-links">
+                <ul class="nav-links desktop-only" id="main-nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#collections">Collections</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="info.html#about">About</a></li>
                     <li><a href="info.html#contact">Contact</a></li>
                 </ul>
-                <div class="nav-actions" style="display:flex; gap: 15px; align-items:center;">
-                    <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                <div class="nav-actions">
+                    <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span id="cart-count-badge" style="background: var(--gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: 800;">0</span>
+                        <span id="cart-count-badge">0</span>
                     </a>
-                    <div class="mobile-toggle" id="index-mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
+                    <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></div>
                 </div>
             </nav>
         </div>

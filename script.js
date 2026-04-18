@@ -541,93 +541,47 @@ function init() {
 
 // --- PREMIUM LOADING SCREEN ---
 function initEliteHeader() {
-    const navActions = document.querySelector('.nav-actions');
-    if (navActions && !navActions.querySelector('.theme-toggle-btn')) {
-        // Clear old placeholders if any
-        navActions.innerHTML = '';
+    const mobileMenuBtn = document.querySelector('.mobile-toggle');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const navLinks = document.querySelector('.nav-links');
 
-        // Cart Button
-        const cartBtn = document.createElement('button');
-        cartBtn.className = 'header-action-btn';
-        cartBtn.id = 'header-cart-btn';
-        cartBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i><span id="cart-count-badge" style="display:none">0</span>';
-        cartBtn.onclick = (e) => {
-            e.preventDefault();
-            toggleCartPanel();
-        };
-
-        // Mobile Toggle
-        const mobileMenuBtn = document.createElement('button');
-        mobileMenuBtn.id = 'mobile-toggle';
-        mobileMenuBtn.className = 'header-action-btn mobile-only';
-        mobileMenuBtn.setAttribute('aria-label', 'Menu');
-        mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>';
-        
-        // Order: Search (already there), Cart, Mobile Menu
-        navActions.appendChild(cartBtn);
-        navActions.appendChild(mobileMenuBtn);
-
-        let overlay = document.getElementById('mobile-nav-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'mobile-nav-overlay';
-            overlay.className = 'mobile-nav-overlay';
-            document.body.appendChild(overlay);
-        }
-
-        const navLinks = document.querySelector('.nav-links');
-
-        function openMenu() {
-            if (!navLinks) return;
-            navLinks.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            const icon = mobileMenuBtn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-bars-staggered');
-                icon.classList.add('fa-xmark');
-            }
-        }
-
-        function closeMenu() {
-            if (!navLinks) return;
-            navLinks.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            const icon = mobileMenuBtn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars-staggered');
-            }
-        }
-
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks.classList.contains('active') ? closeMenu() : openMenu();
-        });
-
-        // Close menu when clicking links
-        if (navLinks) {
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // If it's the contact link, open the modal instead
-                    if (link.getAttribute('href').includes('#contact')) {
-                        e.preventDefault();
-                        closeMenu();
-                        openOrderModal('Contact Us');
-                    } else {
-                        closeMenu();
-                    }
-                });
-            });
-        }
-
-        overlay.addEventListener('click', closeMenu);
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeMenu(); closeSearch(); } });
-        
-        // Re-init search since we cleared innerHTML
-        initSearch();
+    if (mobileMenuBtn) {
+        mobileMenuBtn.onclick = toggleMobileMenu;
     }
+
+    if (!overlay) {
+        const ov = document.createElement('div');
+        ov.id = 'mobile-nav-overlay';
+        ov.className = 'mobile-nav-overlay';
+        ov.onclick = toggleMobileMenu;
+        document.body.appendChild(ov);
+    }
+}
+
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.getElementById('mobile-nav-overlay');
+    const toggleBtn = document.querySelector('.mobile-toggle i');
+    
+    if (!navLinks) return;
+
+    const isActive = navLinks.classList.toggle('active');
+    if (overlay) overlay.classList.toggle('active', isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
+
+    if (toggleBtn) {
+        if (isActive) {
+            toggleBtn.classList.remove('fa-bars-staggered');
+            toggleBtn.classList.add('fa-xmark');
+        } else {
+            toggleBtn.classList.remove('fa-xmark');
+            toggleBtn.classList.add('fa-bars-staggered');
+        }
+    }
+}
+
+function toggleCartDrawer() {
+    toggleCartPanel();
 }
 
 // --- ELITE SEARCH LOGIC ---
@@ -1034,24 +988,29 @@ function injectCartUI() {
         const panel = document.createElement('div');
         panel.id = 'cart-panel';
         panel.innerHTML = `
-            <div class="cart-panel-header">
-                <h3><i class="fa-solid fa-bag-shopping"></i> My Cart</h3>
-                <button class="cart-close-btn" onclick="toggleCartPanel()">
+            <div class="cart-panel-header" style="border-bottom: 1px solid rgba(212,175,55,0.2); padding: 25px; display:flex; justify-content:space-between; align-items:center; background: #000;">
+                <h3 style="font-family:'Cinzel', serif; color:var(--gold); margin:0; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase;">Your Boutique Cart</h3>
+                <button class="cart-close-btn" onclick="toggleCartPanel()" style="background:none; border:none; color:var(--gold); font-size:24px; cursor:pointer;">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div id="cart-items-list" class="cart-items-list"></div>
-            <div class="cart-panel-footer">
-                <div class="cart-total-row">
-                    <span>Total</span>
-                    <span id="cart-total-price">Rs. 0</span>
+            <div id="cart-items-list" class="cart-items-list" style="flex:1; overflow-y:auto; padding: 20px;"></div>
+            <div class="cart-panel-footer" style="border-top: 1px solid rgba(212,175,55,0.2); padding: 30px; background: #000;">
+                <div class="cart-total-row" style="display:flex; justify-content:space-between; margin-bottom:25px; font-weight:700; font-size: 1.2rem; font-family:'Cinzel', serif; color:#fff;">
+                    <span>Total Amount</span>
+                    <span id="cart-total-price" style="color:var(--gold);">Rs. 0</span>
                 </div>
-                <button class="cart-whatsapp-btn" onclick="sendWhatsAppOrder()">
-                    <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+                <button class="cart-whatsapp-btn btn-gold" onclick="sendWhatsAppOrder()" style="width:100%; border:none; padding: 18px; font-weight:800; text-transform:uppercase; letter-spacing: 2px; display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer;">
+                    <i class="fa-brands fa-whatsapp" style="font-size:1.4rem;"></i> Complete Order
                 </button>
-                <button class="cart-clear-btn" onclick="clearCart()">
-                    <i class="fa-solid fa-trash"></i> Clear Cart
-                </button>
+                <div style="display:flex; gap:10px; margin-top:15px;">
+                    <button class="cart-clear-btn" onclick="clearCart()" style="flex:1; background:rgba(255,255,255,0.05); color:#fff; border:1px solid rgba(255,255,255,0.1); padding:10px; cursor:pointer; font-size:11px; text-transform:uppercase; letter-spacing:1px; border-radius:4px;">
+                        <i class="fa-solid fa-trash" style="font-size:10px; margin-right:5px;"></i> Clear
+                    </button>
+                    <button onclick="toggleCartPanel()" style="flex:1; background:none; color:var(--gold); border:1px solid var(--gold); padding:10px; cursor:pointer; font-size:11px; text-transform:uppercase; letter-spacing:1px; border-radius:4px;">
+                        Continue Shopping
+                    </button>
+                </div>
             </div>
         `;
         document.body.appendChild(panel);
