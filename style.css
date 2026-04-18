@@ -1226,7 +1226,7 @@ header {
 
 .social-links {
     display: flex;
-    gap: 15px;
+    gap: 25px;
     margin-top: 25px;
 }
 
@@ -2933,7 +2933,7 @@ p {
 
 .social-links {
     display: flex;
-    gap: 15px;
+    gap: 25px;
     margin-top: 15px;
 }
 
