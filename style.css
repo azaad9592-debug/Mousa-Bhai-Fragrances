@@ -2991,7 +2991,7 @@ p {
 
 .footer-contact-list li {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
     color: var(--text-secondary);
     font-size: 14px;
@@ -3001,8 +3001,10 @@ p {
 
 .footer-contact-list i {
     color: var(--gold);
-    margin-top: 4px;
-    font-size: 16px;
+
+    font-size: 18px;
+    min-width: 25px;
+    text-align: center;
 }
 
 .footer-bottom {
