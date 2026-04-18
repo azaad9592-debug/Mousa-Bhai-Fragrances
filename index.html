@@ -981,7 +981,9 @@
 
             <!-- Actions Right Aligned via grid -->
             <div class="nav-actions">
-
+                <a href="javascript:void(0)" id="search-open-btn" class="header-action-btn" aria-label="Search" style="color:var(--gold); font-size:20px; text-decoration:none;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
                 <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px;">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cart-count-badge">0</span>
@@ -1217,8 +1219,26 @@
 
     <script src="script.js"></script>
 
+    <!-- ELITE SEARCH OVERLAY -->
+    <div id="search-overlay" class="search-overlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.98); z-index:20000; display:none; flex-direction:column; align-items:center; justify-content:start; padding:100px 20px; backdrop-filter:blur(15px);">
+        <button id="search-close-btn" style="position:absolute; top:40px; right:40px; background:none; border:none; color:var(--gold); font-size:35px; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+        <div class="search-container" style="width:100%; max-width:800px;">
+            <input type="text" id="main-search-input" placeholder="Search for your favorite fragrance..." style="width:100%; background:none; border:none; border-bottom:2px solid var(--gold); color:#fff; font-size:32px; padding:15px; font-family:'Cinzel', serif; outline:none; text-align:center;">
+            <div id="search-results-preview" style="margin-top:40px; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:25px; max-height:60vh; overflow-y:auto; padding:20px;">
+                <!-- Results injected here -->
+            </div>
+        </div>
+    </div>
 
+    <style>
+        .search-overlay.active { display: flex !important; animation: fadeIn 0.4s ease; }
+        .search-result-item { background:#111; border:1px solid rgba(212,175,55,0.2); padding:15px; border-radius:12px; cursor:pointer; transition:0.3s; text-align:center; }
+        .search-result-item:hover { border-color:var(--gold); transform:translateY(-5px); }
+        .search-result-item img { width:80px; height:80px; object-fit:cover; border-radius:50%; margin-bottom:10px; border:2px solid var(--gold); }
+        .search-result-item h4 { color:var(--gold); font-size:14px; margin-bottom:5px; }
+        .search-result-item p { font-size:12px; opacity:0.8; }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    </style>
 </body>
 
 </html>
-
