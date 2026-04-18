@@ -526,11 +526,11 @@ function toggleMobileMenu() {
 
     if (toggleBtn) {
         if (isActive) {
-            toggleBtn.classList.remove('fa-bars-staggered');
+            toggleBtn.classList.remove('fa-ellipsis-vertical');
             toggleBtn.classList.add('fa-xmark');
         } else {
             toggleBtn.classList.remove('fa-xmark');
-            toggleBtn.classList.add('fa-bars-staggered');
+            toggleBtn.classList.add('fa-ellipsis-vertical');
         }
     }
 }
