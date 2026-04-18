@@ -174,7 +174,7 @@
 
         .header-flex {
             display: grid;
-            grid-template-columns: auto 1fr auto; /* Logo | Links | Actions */
+            grid-template-columns: 1fr auto 1fr; /* Logo Left | Links Center | Actions Right */
             align-items: center;
             gap: 20px;
         }
@@ -785,7 +785,40 @@
         #cart-panel.open { right: 0; }
         .cart-added-notif { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; border: 1px solid var(--gold); color: white; padding: 14px 26px; border-radius: 50px; font-family: var(--font-body); font-size: 13px; z-index: 99999; opacity: 0; transition: all 0.4s; pointer-events: none; }
         .cart-added-notif.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-        #cart-icon-btn { display: none; }
+        .header-action-btn { 
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            transition: var(--transition);
+        }
+        .header-action-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+        #cart-count-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--gold-gradient);
+            color: var(--black);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--black);
+        }
         
         .live-popup { position: fixed; bottom: 25px; left: 25px; background: #1a1a1a; border: 1px solid var(--gold); color: white; padding: 12px 20px; border-radius: 12px; z-index: 9999; display: flex; align-items: center; gap: 10px; transform: translateX(-150%); transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); font-size: 13px; }
         .live-popup.active { transform: translateX(0); }
@@ -836,22 +869,24 @@
                     </div>
                 </a>
             </div>
-            <nav style="display:flex; align-items:center; gap: 15px;">
-                <ul class="nav-links desktop-only" id="main-nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#collections">Collections</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="info.html#about">About</a></li>
-                    <li><a href="info.html#contact">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span id="cart-count-badge">0</span>
-                    </a>
-                    <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></div>
-                </div>
-            </nav>
+
+            <!-- Links centered via grid -->
+            <ul class="nav-links desktop-only" id="main-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="info.html#about">About</a></li>
+                <li><a href="info.html#contact">Contact</a></li>
+            </ul>
+
+            <!-- Actions Right Aligned via grid -->
+            <div class="nav-actions">
+                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px;">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count-badge">0</span>
+                </a>
+                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars-staggered"></i></div>
+            </div>
         </div>
     </header>
 

@@ -70,12 +70,14 @@
                 <a href="shop.html" class="active">Shop</a>
                 <a href="info.html#about">About</a>
                 <a href="info.html#contact">Contact</a>
-                <a href="#" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration: none; display: flex; align-items: center; gap: 5px;">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="cart-count-badge" style="background: var(--gold); color: #000; font-size: 12px; padding: 2px 6px; border-radius: 50%; font-weight: 800;">0</span>
-                </a>
             </nav>
             <div class="nav-actions">
+                <!-- Shopping Cart -->
+                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-cart-btn" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count-badge">0</span>
+                </a>
+                
                 <!-- Persistent Search for Desktop -->
                 <div class="header-search-container desktop-only">
                     <input type="text" id="header-search-input" placeholder="Search fragrances...">
@@ -85,8 +87,6 @@
                 <button class="header-action-btn mobile-only" id="search-open-btn" aria-label="Search Products">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                
-                <!-- Shared Theme Toggle & Cart will be managed via script.js -->
             </div>
         </div>
     </header>
