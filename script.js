@@ -588,7 +588,13 @@ function initSearch() {
             ).slice(0, 8);
 
             if (filtered.length === 0) {
-                if (preview) preview.innerHTML = '<p style="color:var(--gold); opacity:0.6;">No fragrances matched your search...</p>';
+                if (preview) preview.innerHTML = `
+                    <div style="text-align:center; padding: 40px 20px;">
+                        <p style="color:var(--gold); font-size: 18px; margin-bottom: 10px;">آپ کی مطلوبہ خوشبو یہاں نظر نہیں آ رہی؟</p>
+                        <p style="color:#fff; opacity:0.8; line-height: 1.6;">پریشان نہ ہوں! ہمارے پاس اس کے علاوہ بھی بہت سی خوشبوئیں موجود ہیں۔ آپ بس ہم سے رابطہ کریں، انشااللہ آپ کی پسندیدہ خوشبو مل جائے گی۔</p>
+                        <a href="https://wa.me/923101131981" target="_blank" style="display:inline-block; margin-top: 20px; color:var(--gold); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; text-decoration:none;">رابطہ کریں</a>
+                    </div>
+                `;
                 return;
             }
 

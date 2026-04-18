@@ -62,21 +62,15 @@
                 <a href="info.html#contact">Contact</a>
             </nav>
             <div class="nav-actions">
+                <!-- Search Button -->
+                <a href="javascript:void(0)" id="search-open-btn" class="header-action-btn" aria-label="Search" style="color:var(--gold); font-size:20px; margin-right: 15px; text-decoration:none;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
                 <!-- Shopping Cart -->
                 <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-cart-btn" aria-label="Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cart-count-badge">0</span>
                 </a>
-                
-                <!-- Persistent Search for Desktop -->
-                <div class="header-search-container desktop-only">
-                    <input type="text" id="header-search-input" placeholder="Search fragrances...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <!-- Search Button for Mobile -->
-                <button class="header-action-btn mobile-only" id="search-open-btn" aria-label="Search Products">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
             </div>
         </div>
     </header>
