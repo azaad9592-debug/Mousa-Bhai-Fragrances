@@ -3164,14 +3164,14 @@ p {
     position: relative !important;
     overflow: hidden !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
-    flex-shrink: 0 !important; /* Prevent squashing in sliders */
-    width: 100%; /* Grid default */
+    flex-shrink: 0 !important;
+    width: 350px !important;
+    height: 400px !important;
 }
 
 /* Width control for Sliders vs Grids */
 .product-slider .product-item {
-    width: 250px !important;
-    min-width: 250px !important;
+    min-width: 350px !important;
     scroll-snap-align: start;
 }
 
@@ -3191,12 +3191,13 @@ p {
 
 .img-wrapper {
     width: 100% !important;
-    aspect-ratio: 1 / 1 !important; /* SQUARE RATIO - No squashed images */
+    aspect-ratio: 4 / 5 !important;
     background: #1a1a1a !important;
     border-radius: 8px !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 12px !important;
     overflow: hidden !important;
     position: relative;
+    max-height: 220px;
 }
 
 .img-wrapper img {
@@ -3244,16 +3245,16 @@ p {
 .product-actions {
     width: 100% !important;
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     gap: 8px !important;
     margin-top: auto;
 }
 
 .product-item .btn-add-to-cart,
 .product-item .btn-buy-now {
-    width: 100% !important;
+    flex: 1 !important;
     padding: 0 !important;
-    font-size: 12px !important;
+    font-size: 11px !important;
     letter-spacing: 1px !important;
     text-transform: uppercase !important;
     font-weight: 700 !important;
@@ -3291,19 +3292,37 @@ p {
 }
 
 @media (max-width: 768px) {
+    .product-item {
+        width: 180px !important;
+        min-width: 180px !important;
+        height: 280px !important;
+        padding: 10px !important;
+    }
+    .product-slider .product-item {
+        min-width: 180px !important;
+    }
+    .img-wrapper {
+        aspect-ratio: 4 / 5 !important;
+        max-height: 140px !important;
+    }
     .product-title {
-        font-size: 12px !important;
+        font-size: 14px !important;
         height: 34px;
-        letter-spacing: 0.8px !important;
+        letter-spacing: 0.5px !important;
     }
     .product-price {
-        font-size: 14px !important;
-        margin-bottom: 12px !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        margin-bottom: 8px !important;
+    }
+    .product-actions {
+        flex-direction: column !important;
+        gap: 5px !important;
     }
     .product-item .btn-add-to-cart,
     .product-item .btn-buy-now {
-        height: 34px !important;
-        font-size: 10px !important;
+        height: 30px !important;
+        font-size: 9px !important;
     }
 }
 
