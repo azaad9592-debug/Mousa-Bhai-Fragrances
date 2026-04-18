@@ -197,6 +197,8 @@ body.light-theme {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+
+
 .badge-offer { background: var(--red-luxury); color: white; }
 .badge-best { background: var(--gold); color: var(--black); }
 .badge-hot { background: #ff4500; color: white; }
@@ -2923,47 +2925,6 @@ p {
     gap: 10px;
 }
 
-.footer-links a:hover {
-    color: var(--gold);
-    transform: translateX(5px);
-}
-
-.footer-links a i {
-    font-size: 10px;
-    opacity: 0.5;
-}
-
-.social-links {
-    display: flex;
-    gap: 25px;
-    margin-top: 15px;
-}
-
-.social-links a {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    transition: var(--transition-smooth);
-    font-size: 18px;
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.social-links a:hover {
-    background: var(--gold-premium);
-    color: var(--black);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-}
-
-.footer-email-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     margin-top: 30px;
     padding: 12px 25px;
     background: transparent;

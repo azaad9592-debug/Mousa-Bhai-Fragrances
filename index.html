@@ -503,21 +503,25 @@
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             color: var(--gold);
-            font-size: 18px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .social-links a:hover {
-            background: var(--gold-gradient);
-            color: var(--black);
-            transform: translateY(-5px);
+            border-color: #fff;
+            color: #fff;
+            transform: translateY(-3px);
+            background: transparent;
+        }
         }
 
         .footer-links li {
