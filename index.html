@@ -200,8 +200,9 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: flex-start; /* Move to left */
+            text-align: left; /* Align text to left */
+            padding-left: 8%; /* Give some space from edge */
             overflow: hidden;
         }
 
@@ -227,8 +228,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
-            padding: 0 5%;
+            max-width: 600px; /* Reduced width for left alignment */
         }
 
         .hero h1 {
