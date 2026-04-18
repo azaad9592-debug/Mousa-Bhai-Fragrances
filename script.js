@@ -276,67 +276,22 @@ function renderProducts() {
 function generateProductCard(product) {
     if (!product || !product.name) return '';
     const safeName = product.name.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-    
     return `
-    <!-- MANUALLY STYLED COMPACT CARD -->
-    <div class="ultimate-product-card" style="
-      min-width: 220px;
-      max-width: 220px;
-      height: 340px;
-      border-radius: 14px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-      background: #f9f9f9;
-      display: flex;
-      flex-direction: column;
-      border: none;
-      transition: all 0.3s ease;
-      position: relative;
-    ">
-      <img src="${product.image || 'assets/placeholder-perfume.jpg'}" style="
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-      "/>
-      <div style="padding: 12px; flex: 1; display: flex; flex-direction: column; position: relative;">
-        <p style="font-size:14px; font-weight:600; margin:0; color: #000; font-family: sans-serif;">${product.name}</p>
-        <p style="font-size:13px; color:#888; margin:4px 0; font-family: sans-serif;">Rs. ${product.price}</p>
-        
-        <div class="hover-action-container">
-            <button class="atc-btn" onclick="addToCart('${safeName}')" style="
-              width: 100%;
-              padding: 8px;
-              background: #555;
-              color: #fff;
-              border: none;
-              border-radius: 8px;
-              cursor: pointer;
-              font-size: 13px;
-              margin-top: 6px;
-              font-family: sans-serif;
-            ">Add to Cart</button>
-
-            <button class="buy-now-btn" onclick="openOrderModal('${safeName}')" style="
-              width: 100%;
-              padding: 8px;
-              background: #000;
-              color: #fff;
-              border: none;
-              border-radius: 8px;
-              cursor: pointer;
-              font-size: 13px;
-              margin-top: 6px;
-              font-family: sans-serif;
-            ">Buy Now</button>
+    <div class="product-item">
+      <div class="img-wrapper">
+         <img src="${product.image || 'assets/placeholders/perfume.png'}" loading="lazy"/>
+      </div>
+      <div class="product-content">
+        <p class="product-title">${product.name}</p>
+        <p class="product-price">Rs. ${product.price}</p>
+        <div class="product-actions">
+            <button class="btn-add-to-cart" onclick="addToCart('${safeName}')">Add to Cart</button>
+            <button class="btn-buy-now" onclick="openOrderModal('${safeName}')">Buy Now</button>
         </div>
       </div>
     </div>
     `;
 }
-
-
 
 function openOrderModal(productName) {
     const modal = document.getElementById('order-modal');
