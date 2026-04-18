@@ -206,9 +206,10 @@
         .logo-text {
             font-family: var(--font-heading);
             color: var(--gold);
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 26px; /* Desktop size */
+            font-weight: 800;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -710,12 +711,23 @@
         /* --- RESPONSIVENESS --- */
         @media (max-width: 1024px) {
             .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: var(--black-alt);
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                z-index: 10001; /* Higher than header */
-                gap: 30px;
-                padding: 0;
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+                z-index: 10001;
+                gap: 40px;
+                padding: 40px;
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
                 transform: translateX(100%);
+                display: none; /* Only show when active */
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
             }
 
             .nav-links.active {
@@ -723,12 +735,17 @@
                 transform: translateX(0);
             }
 
+            .nav-links li a {
+                font-size: 16px;
+                letter-spacing: 3px;
+            }
+
             .mobile-nav-overlay {
                 position: fixed;
                 inset: 0;
                 background: rgba(0, 0, 0, 0.85);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
                 z-index: 10000;
                 opacity: 0;
                 visibility: hidden;
@@ -740,9 +757,36 @@
                 visibility: visible;
             }
 
+            .header-flex {
+                display: flex !important;
+                justify-content: space-between;
+                padding: 0 15px;
+            }
+
+            .logo-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 20px !important; /* Scaled down for mobile */
+                letter-spacing: 1px !important;
+            }
+
+            .logo-subtitle {
+                font-size: 8px !important;
+                letter-spacing: 4px !important;
+            }
+
+            .nav-actions {
+                gap: 12px !important;
+            }
+
             .mobile-toggle {
-                display: block; /* Shown on Mobile */
+                display: flex; /* Shown on Mobile */
                 z-index: 10002;
+                font-size: 26px;
+                color: var(--gold);
             }
 
             .top-bar {
@@ -919,15 +963,15 @@
                         <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine)" />
                         <rect x="44" y="27" width="12" height="4" fill="url(#gold-shine)" opacity="0.6" />
                     </svg>
-                    <div class="logo-text-group" style="display: flex; flex-direction: column; line-height: 1;">
-                        <span class="logo-text" style="font-size: 26px; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 2px; text-transform: uppercase;">Moosa Bhai</span>
-                        <span class="logo-subtitle" style="font-size: 10px; letter-spacing: 8px; font-weight: 700; font-family: 'Cinzel', serif; color: #fff; margin-top: 6px; opacity: 0.9; text-transform: uppercase;">FRAGRANCES</span>
+                    <div class="logo-text-group">
+                        <span class="logo-text">Moosa Bhai</span>
+                        <span class="logo-subtitle">FRAGRANCES</span>
                     </div>
                 </a>
             </div>
 
             <!-- Links centered via grid -->
-            <ul class="nav-links desktop-only" id="main-nav-links">
+            <ul class="nav-links" id="main-nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#collections">Collections</a></li>
                 <li><a href="shop.html">Shop</a></li>
