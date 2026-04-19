@@ -2164,35 +2164,46 @@ p {
         display: none;
     }
 
-    /* Compact horizontal card */
+    /* Compact horizontal card - AGGRESSIVE FIX */
     .product-item {
         flex: 0 0 155px !important;
         min-width: 155px !important;
         max-width: 155px !important;
-        padding: 8px 8px 4px 8px !important; /* Minimal bottom padding */
+        padding: 6px 6px 0px 6px !important; /* ZERO bottom padding */
         margin-bottom: 0 !important;
         height: auto !important;
-        min-height: 0 !important; /* Ensure no inherited min-height */
+        min-height: 0 !important;
+        max-height: fit-content !important; /* Force fit */
         scroll-snap-align: start;
         border-radius: 10px !important;
         display: flex !important;
         flex-direction: column !important;
+        overflow: hidden !important;
+        align-self: flex-start !important; /* Prevent stretching */
+    }
+
+    .product-content {
+        flex: 0 0 auto !important;
+        height: auto !important;
+        margin-bottom: 4px !important; /* Small space at bottom of content */
+        display: block !important; /* Change to block for tighter packing */
     }
 
     /* Square image */
     .product-item .img-wrapper {
-        margin-bottom: 6px !important;
+        margin-bottom: 4px !important;
         aspect-ratio: 1 / 1 !important;
         border-radius: 6px !important;
+        height: 140px !important; /* Fixed smaller height for mobile slider cards */
     }
 
     /* Compact title - 1 line max */
     .product-title {
-        font-size: 11px !important;
+        font-size: 10px !important;
         height: auto !important;
         min-height: 0 !important;
-        margin-bottom: 2px !important;
-        line-height: 1.2 !important;
+        margin-bottom: 1px !important;
+        line-height: 1.1 !important;
         -webkit-line-clamp: 1 !important;
         line-clamp: 1 !important;
         overflow: hidden !important;
@@ -2201,8 +2212,9 @@ p {
     }
 
     .product-price {
-        font-size: 13px !important;
-        margin-bottom: 2px !important; /* Reduced margin */
+        font-size: 12px !important;
+        margin-bottom: 2px !important;
+        display: block !important;
     }
 
     /* Single-column buttons, compact and TIGHT */
@@ -2210,19 +2222,27 @@ p {
         display: flex !important;
         flex-direction: column !important;
         gap: 3px !important;
-        margin-top: 4px !important; /* Fixed small margin instead of auto */
+        margin-top: 2px !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 4px !important;
         width: 100% !important;
     }
 
     .btn-add-to-cart,
     .btn-buy-now {
-        padding: 5px 2px !important; /* Slimmer buttons */
+        padding: 5px 2px !important;
+        height: 26px !important; /* Shorter buttons */
         font-size: 9px !important;
-        letter-spacing: 0.5px !important;
+        letter-spacing: 0px !important;
         border-radius: 4px !important;
         margin: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 }
+
 
 
 
