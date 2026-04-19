@@ -167,36 +167,47 @@
             .about-hero h1 { font-size: 45px; }
         }
     </style>
-<style> @media(max-width:991px){ .sticky-header{background:#000!important; height:80px!important; border-bottom:1px solid #D4AF37!important;} .mobile-toggle{display:flex!important; color:#D4AF37!important; font-size:28px!important; padding:10px!important; position:relative!important; z-index:9999!important; visibility:visible!important; opacity:1!important;} .header-action-btn i, .header-cart-btn i{font-size:22px!important; color:#D4AF37!important;} .header-container{display:flex!important; justify-content:space-between!important; align-items:center!important; padding:0 15px!important;} } </style></head>
+    </style></head>
 <body>
     <header id="main-header">
-        <!-- Exact Header from index -->
-        <div class="container header-flex" style="padding: 20px 0;">
+        <div class="header-container container">
             <div class="logo-area">
-                <a href="index.html" class="logo-flex" style="text-decoration:none; display:flex; align-items:center; gap:12px;">
-                    <div class="logo-text-group" style="display: flex; flex-direction: column; line-height: 1;">
-                        <span class="logo-text" style="font-size: 28px; font-weight: 800; color: #D4AF37; font-family: 'Cinzel', serif; letter-spacing: 2px; text-transform: uppercase;">Moosa Bhai</span>
-                        <span class="logo-subtitle" style="font-size: 10px; letter-spacing: 8px; font-weight: 700; font-family: 'Cinzel', serif; color: #fff; margin-top: 4px; opacity: 0.9; text-transform: uppercase;">FRAGRANCES</span>
+                <a href="index.html" class="logo-link">
+                    <svg class="logo-img" viewBox="0 0 100 100" style="width: 44px; height: 44px;">
+                        <defs>
+                            <linearGradient id="gold-shine-header-about" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#D4AF37" />
+                                <stop offset="50%" stop-color="#F1D57F" />
+                                <stop offset="100%" stop-color="#B8860B" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="url(#gold-shine-header-about)" stroke-width="1.8" />
+                        <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gold-shine-header-about)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine-header-about)" />
+                    </svg>
+                    <div class="brand-text">
+                        <span class="brand-name">Moosa Bhai</span>
+                        <span class="brand-subtitle">FRAGRANCES</span>
                     </div>
                 </a>
             </div>
-            <ul class="nav-links" id="main-nav-links" style="list-style:none; display:flex; gap:30px;">
-                <li><a href="index.html" style="color:#fff; text-decoration:none;">Home</a></li>
-                <li><a href="shop.html" style="color:#fff; text-decoration:none;">Shop</a></li>
-                <li><a href="about.html" style="color:var(--gold); text-decoration:none;">About Us</a></li>
-                <li><a href="info.html#contact" style="color:#fff; text-decoration:none;">Contact</a></li>
-            </ul>
 
-            <div class="nav-actions" style="display:flex; align-items:center;">
-                <a href="javascript:void(0)" id="search-open-btn" onclick="openSearch()" class="header-action-btn" aria-label="Search" style="color:var(--gold); font-size:20px; text-decoration:none; margin-right: 15px;">
+            <nav class="nav-links" id="main-nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="info.html#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="javascript:void(0)" onclick="openSearch()" class="header-action-btn" aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
-                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px; text-decoration:none; position:relative;">
+                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-cart-btn" aria-label="Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="cart-count-badge" style="position:absolute; top:-5px; right:-5px; background:var(--gold); color:#000; width:15px; height:15px; border-radius:50%; font-size:9px; display:flex; align-items:center; justify-content:center; font-weight:700;">0</span>
+                    <span id="cart-count-badge">0</span>
                 </a>
-                <!-- Mobile Toggle -->
-                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()" style="margin-left: 15px;">
+                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>
                 </div>
             </div>

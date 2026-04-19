@@ -149,99 +149,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- STICKY HEADER --- */
-        header {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            justify-self: end;
-        }
-
-        header.shrink {
-            padding: 8px 0;
-        }
-
-        .header-flex {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr; /* Logo Left | Links Center | Actions Right */
-            align-items: center;
-            gap: 20px;
-        }
-
-        .desktop-only { display: flex; }
-        .mobile-only { display: none; }
-
-        @media (max-width: 1024px) {
-            .desktop-only { display: none; }
-            .mobile-only { display: flex; }
-            .header-flex {
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-
-        .logo-flex {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-img {
-            width: 45px;
-            height: 45px;
-        }
-
-        .logo-text {
-            font-family: var(--font-heading);
-            color: var(--gold);
-            font-size: 26px; /* Desktop size */
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-self: center; /* Center links in the grid */
-            gap: 30px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-links li a {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .nav-links li a:hover {
-            color: var(--gold);
-        }
-
-        .mobile-toggle {
-            display: none; /* Hidden on Desktop */
-            color: var(--gold);
-            font-size: 22px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
         .mobile-toggle:hover {
             transform: scale(1.1);
         }
@@ -941,55 +848,47 @@
 
     <!-- STICKY HEADER -->
     <header id="main-header">
-        <div class="container header-flex">
+        <div class="header-container container">
             <div class="logo-area">
-                <a href="index.html" class="logo-flex">
-                    <svg class="logo-img" viewBox="0 0 100 100">
-                        <!-- LUXURY FRAGRANCE BRAND IDENTITY -->
+                <a href="index.html" class="logo-link">
+                    <svg class="logo-img" viewBox="0 0 100 100" style="width: 44px; height: 44px;">
                         <defs>
-                            <linearGradient id="gold-shine" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="gold-shine-header" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#D4AF37" />
                                 <stop offset="50%" stop-color="#F1D57F" />
                                 <stop offset="100%" stop-color="#B8860B" />
                             </linearGradient>
                         </defs>
-                        <!-- Perfume Bottle Silhouette -->
-                        <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="url(#gold-shine)" stroke-width="1.5" />
-                        <!-- Golden Essence/Drop -->
-                        <path d="M50 45 Q55 55 50 65 Q45 55 50 45" fill="url(#gold-shine)" opacity="0.3" />
-                        <!-- The Majestic 'M' Crest -->
-                        <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gold-shine)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <!-- Royal Perfume Cap -->
-                        <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine)" />
-                        <rect x="44" y="27" width="12" height="4" fill="url(#gold-shine)" opacity="0.6" />
+                        <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="url(#gold-shine-header)" stroke-width="1.8" />
+                        <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gold-shine-header)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine-header)" />
                     </svg>
-                    <div class="logo-text-group">
-                        <span class="logo-text">Moosa Bhai</span>
-                        <span class="logo-subtitle">FRAGRANCES</span>
+                    <div class="brand-text">
+                        <span class="brand-name">Moosa Bhai</span>
+                        <span class="brand-subtitle">FRAGRANCES</span>
                     </div>
                 </a>
             </div>
 
-            <!-- Links centered via grid -->
-            <ul class="nav-links" id="main-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#collections">Collections</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="info.html#contact">Contact</a></li>
-            </ul>
+            <nav class="nav-links" id="main-nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="index.html#collections">Collections</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About Us</a>
+                <a href="info.html#contact">Contact</a>
+            </nav>
 
-            <!-- Actions Right Aligned via grid -->
-            <div class="nav-actions">
-                <a href="javascript:void(0)" id="search-open-btn" onclick="openSearch()" class="header-action-btn" aria-label="Search" style="color:var(--gold); font-size:20px; text-decoration:none;">
+            <div class="header-actions">
+                <a href="javascript:void(0)" onclick="openSearch()" class="header-action-btn" aria-label="Search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
-                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-action-btn" aria-label="Cart" style="color:var(--gold); font-size:20px;">
+                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-cart-btn" aria-label="Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cart-count-badge">0</span>
                 </a>
-                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg></div>
-
+                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>
+                </div>
             </div>
         </div>
     </header>
