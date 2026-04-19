@@ -2140,6 +2140,7 @@ p {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
+        align-items: flex-start !important;
         overflow-x: auto !important;
         overflow-y: hidden !important;
         gap: 10px !important;
