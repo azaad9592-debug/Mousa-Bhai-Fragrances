@@ -746,8 +746,8 @@ header {
         padding: 0 15px !important;
     }
 
-    .nav-links {
-        display: none !important; /* Force hide middle links */
+    .nav-links:not(.active) {
+        display: none !important; /* Hide links only when menu is not active */
     }
 
     .logo-text {
