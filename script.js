@@ -534,7 +534,7 @@ function initEliteHeader() {
 }
 
 function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('main-nav-links');
     const overlay = document.getElementById('mobile-nav-overlay');
     const toggleBtn = document.querySelector('.mobile-toggle');
     
