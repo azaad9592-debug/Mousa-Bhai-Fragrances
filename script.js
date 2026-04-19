@@ -498,6 +498,7 @@ function init() {
     initLiveOrderPopup();
     initCarouselNav();
     initSearch(); // Initialize Elite Search
+    initEliteHeader(); // Failsafe Fix: Ensure header logic is initialized
 }
 
 // --- PREMIUM LOADING SCREEN ---
@@ -541,14 +542,36 @@ function toggleMobileMenu() {
     if (!navLinks) return;
 
     const isActive = navLinks.classList.toggle('active');
-    if (overlay) overlay.classList.toggle('active', isActive);
+    
+    // FAILSAFE DIRECT STYLE MANIPULATION
+    if (isActive) {
+        navLinks.style.display = 'flex';
+        navLinks.style.visibility = 'visible';
+        navLinks.style.opacity = '1';
+        navLinks.style.right = '0';
+        navLinks.style.zIndex = '20000';
+    } else {
+        navLinks.style.display = 'none';
+        navLinks.style.visibility = 'hidden';
+        navLinks.style.opacity = '0';
+        navLinks.style.right = '-100%';
+    }
+
+    if (overlay) {
+        overlay.classList.toggle('active', isActive);
+        overlay.style.display = isActive ? 'block' : 'none';
+        overlay.style.zIndex = '19999';
+    }
+    
     document.body.style.overflow = isActive ? 'hidden' : '';
 
     if (toggleBtn) {
         if (isActive) {
             toggleBtn.innerHTML = '<i class="fa-solid fa-xmark" style="font-size: 30px; color: #111;"></i>';
+            toggleBtn.style.zIndex = '20001'; // Ensure X is always on top
         } else {
             toggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>';
+            toggleBtn.style.zIndex = '';
         }
     }
 }
