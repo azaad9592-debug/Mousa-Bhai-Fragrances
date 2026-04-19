@@ -2119,13 +2119,10 @@ p {
 
 @media (max-width: 768px) {
     .slider-container { padding: 0 10px; }
-    .slider-nav { display: none; } 
-    .shop-row-container { margin-bottom: 40px; }
-    .shop-carousel { 
-        gap: 10px;
-    }
+    .slider-nav { display: none; }
+    .shop-row-container { margin-bottom: 30px; }
 
-    /* Make all product grids a 2-column layout on mobile */
+    /* === MOBILE HORIZONTAL SWIPEABLE SLIDER === */
     .product-grid,
     #featured-products-slider,
     #shop-grid-row-1,
@@ -2140,51 +2137,86 @@ p {
     #afnan-grid,
     #body-spray-grid,
     #body-spray-full-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
         gap: 10px !important;
-        overflow-x: hidden !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 10px 5px 15px !important;
+        scrollbar-width: none;
     }
 
-    /* Compact card for 2-up mobile display */
+    .product-grid::-webkit-scrollbar,
+    #featured-products-slider::-webkit-scrollbar,
+    #shop-grid-row-1::-webkit-scrollbar,
+    #shop-grid-row-2::-webkit-scrollbar,
+    #ajmal-perfume-grid::-webkit-scrollbar,
+    #new-attar-grid::-webkit-scrollbar,
+    #new-arrivals-grid::-webkit-scrollbar,
+    #fresh-attars-grid::-webkit-scrollbar,
+    #surrati-grid::-webkit-scrollbar,
+    #afnan-grid::-webkit-scrollbar,
+    #body-spray-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Compact horizontal card */
     .product-item {
+        flex: 0 0 155px !important;
+        min-width: 155px !important;
+        max-width: 155px !important;
         padding: 8px !important;
         margin-bottom: 0 !important;
         height: auto !important;
+        scroll-snap-align: start;
+        border-radius: 10px !important;
     }
 
-    /* Fix image height to keep cards uniform */
+    /* Square image */
     .product-item .img-wrapper {
-        margin-bottom: 8px !important;
+        margin-bottom: 6px !important;
         aspect-ratio: 1 / 1 !important;
+        border-radius: 6px !important;
     }
 
-    /* Compact text */
+    /* Compact title - 1 line max */
     .product-title {
         font-size: 11px !important;
         height: auto !important;
-        min-height: 30px;
-        margin-bottom: 4px !important;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-    }
-    .product-price {
-        font-size: 13px !important;
+        min-height: 0 !important;
+        margin-bottom: 2px !important;
+        -webkit-line-clamp: 1 !important;
+        line-clamp: 1 !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
     }
 
-    /* Compact buttons stacked vertically on small cards */
+    .product-price {
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* Single-column buttons, compact */
     .product-actions {
         display: flex !important;
         flex-direction: column !important;
-        gap: 5px !important;
+        gap: 4px !important;
+        margin-top: 6px !important;
     }
+
     .btn-add-to-cart,
     .btn-buy-now {
-        padding: 7px 5px !important;
+        padding: 6px !important;
         font-size: 9px !important;
         letter-spacing: 0.5px !important;
+        border-radius: 4px !important;
     }
 }
+
 
 
 /* ============================================================ */
