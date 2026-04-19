@@ -619,23 +619,48 @@ header {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 280px;
+        width: 320px;
         height: 100vh;
-        background: rgba(10, 10, 10, 0.98);
+        background: #ffffff !important;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        padding: 90px 0 40px;
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 2005;
         visibility: hidden;
-        border-left: 1px solid rgba(212, 175, 55, 0.2);
-        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        border-left: 4px solid var(--gold);
+        box-shadow: -20px 0 60px rgba(0,0,0,0.15);
+        overflow-y: auto;
     }
     
     .nav-links.active {
         right: 0;
         visibility: visible;
+    }
+
+    .nav-links a {
+        color: #111111 !important;
+        padding: 18px 30px !important;
+        border-bottom: 1px solid #eeeeee !important;
+        width: 100%;
+        display: block;
+        font-size: 14px !important;
+        text-align: left;
+        letter-spacing: 1.5px !important;
+        opacity: 1 !important;
+        font-weight: 700 !important;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: #f9f9f9;
+        color: var(--gold) !important;
+    }
+
+    .nav-links a::after {
+        display: none !important; /* Remove the underline animation for mobile */
     }
 }
 
