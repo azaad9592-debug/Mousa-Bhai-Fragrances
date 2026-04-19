@@ -1530,29 +1530,25 @@ p {
         scale: 0.8; /* Mobile logo scaling 70-80% */
     }
 
-    /* Mobile Toggle Styles */
+    /* Mobile Toggle Styles - Desktop: hidden, Mobile: visible */
     .mobile-toggle {
-        display: none;
         color: var(--gold);
         font-size: 26px;
         cursor: pointer;
         z-index: 10002;
         padding: 5px;
         transition: var(--transition-elite);
-    }
-    
-    .mobile-only {
-        display: none;
+        display: none; /* Hidden on desktop */
+        align-items: center;
+        justify-content: center;
     }
 
     @media (max-width: 991px) {
-        .mobile-only {
-            display: flex;
-        }
         .mobile-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex !important;
+        }
+        .mobile-only {
+            display: flex !important;
         }
     }
 
@@ -3240,14 +3236,14 @@ p {
     opacity: 0.7;
 }
 
-/* Reset visibility - force mobile-style actions group globally */
-/* Reset visibility logic */
-.desktop-only { display: flex !important; }
-.mobile-only { display: none !important; }
+/* Visibility helpers */
+.desktop-only { display: flex; }
+.mobile-only { display: none; }
 
 @media (max-width: 991px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
+    .mobile-toggle { display: flex !important; }
 }
 
 /* Luxury Product Card Volume Badge */
