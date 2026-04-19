@@ -507,7 +507,10 @@ function initEliteHeader() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn) {
-        mobileMenuBtn.onclick = toggleMobileMenu;
+        mobileMenuBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        };
     }
 
     if (!overlay) {
@@ -517,12 +520,23 @@ function initEliteHeader() {
         ov.onclick = toggleMobileMenu;
         document.body.appendChild(ov);
     }
+
+    // Close menu when a link is clicked
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.onclick = () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            };
+        });
+    }
 }
 
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
     const overlay = document.getElementById('mobile-nav-overlay');
-    const toggleBtn = document.querySelector('.mobile-toggle i');
+    const toggleBtn = document.querySelector('.mobile-toggle');
     
     if (!navLinks) return;
 
@@ -532,11 +546,9 @@ function toggleMobileMenu() {
 
     if (toggleBtn) {
         if (isActive) {
-            toggleBtn.classList.remove('fa-ellipsis-vertical');
-            toggleBtn.classList.add('fa-xmark');
+            toggleBtn.innerHTML = '<i class="fa-solid fa-xmark" style="font-size: 30px;"></i>';
         } else {
-            toggleBtn.classList.remove('fa-xmark');
-            toggleBtn.classList.add('fa-ellipsis-vertical');
+            toggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>';
         }
     }
 }
