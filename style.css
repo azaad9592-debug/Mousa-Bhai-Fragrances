@@ -2124,33 +2124,68 @@ p {
     .shop-carousel { 
         gap: 10px;
     }
-    .shop-carousel .product-item {
-        flex: 0 0 160px; /* Small professional cards for slider */
+
+    /* Make all product grids a 2-column layout on mobile */
+    .product-grid,
+    #featured-products-slider,
+    #shop-grid-row-1,
+    #shop-grid-row-2,
+    #ajmal-perfume-grid,
+    #perfume-full-grid,
+    #attar-full-grid,
+    #new-attar-grid,
+    #new-arrivals-grid,
+    #fresh-attars-grid,
+    #surrati-grid,
+    #afnan-grid,
+    #body-spray-grid,
+    #body-spray-full-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        overflow-x: hidden !important;
     }
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    .shop-carousel.product-grid {
-        display: flex;
-        grid-template-columns: none;
-    }
+
+    /* Compact card for 2-up mobile display */
     .product-item {
-        padding: 6px;
+        padding: 8px !important;
+        margin-bottom: 0 !important;
+        height: auto !important;
     }
+
+    /* Fix image height to keep cards uniform */
     .product-item .img-wrapper {
-        margin-bottom: 8px;
+        margin-bottom: 8px !important;
+        aspect-ratio: 1 / 1 !important;
     }
+
+    /* Compact text */
     .product-title {
-        font-size: 13px;
-        height: 34px;
-        margin-bottom: 4px;
+        font-size: 11px !important;
+        height: auto !important;
+        min-height: 30px;
+        margin-bottom: 4px !important;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
     }
     .product-price {
-        font-size: 15px;
+        font-size: 13px !important;
+    }
+
+    /* Compact buttons stacked vertically on small cards */
+    .product-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+    .btn-add-to-cart,
+    .btn-buy-now {
+        padding: 7px 5px !important;
+        font-size: 9px !important;
+        letter-spacing: 0.5px !important;
     }
 }
+
 
 /* ============================================================ */
 /*  PRODUCT VIEW MODAL                                          */
