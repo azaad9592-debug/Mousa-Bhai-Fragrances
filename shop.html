@@ -30,53 +30,105 @@
         </div>
     </div>
 
-    <header id="main-header">
-        <div class="header-container container">
-            <div class="logo-area">
-                <a href="index.html" class="logo-link">
-                    <svg class="logo-img" viewBox="0 0 100 100" style="width: 44px; height: 44px;">
-                        <defs>
-                            <linearGradient id="gold-shine-header-shop" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#D4AF37" />
-                                <stop offset="50%" stop-color="#F1D57F" />
-                                <stop offset="100%" stop-color="#B8860B" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M30 35 L70 35 L76 75 C 76 88, 62 95, 50 95 C 38 95, 24 88, 24 75 Z" fill="none" stroke="url(#gold-shine-header-shop)" stroke-width="1.8" />
-                        <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gold-shine-header-shop)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gold-shine-header-shop)" />
-                    </svg>
-                    <div class="brand-text">
-                        <span class="brand-name">Moosa Bhai</span>
-                        <span class="brand-subtitle">FRAGRANCES</span>
-                    </div>
-                </a>
-            </div>
+    <header id="main-header" style="background:#0a0a0a; border-bottom:1px solid rgba(212,175,55,0.2); position:sticky; top:0; width:100%; z-index:9000; padding:10px 0;">
+        <div style="display:flex; flex-direction:row; align-items:center; justify-content:space-between; padding:0 5%; max-width:1500px; margin:0 auto; width:100%;">
 
-            <nav class="nav-links" id="main-nav-links">
+            <!-- LEFT: Logo -->
+            <a href="index.html" style="display:flex; flex-direction:row; align-items:center; gap:10px; text-decoration:none; flex-shrink:0;">
+                <svg viewBox="0 0 100 100" style="width:40px; height:40px; flex-shrink:0;">
+                    <defs>
+                        <linearGradient id="gh" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#D4AF37"/><stop offset="50%" stop-color="#F1D57F"/><stop offset="100%" stop-color="#B8860B"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M30 35 L70 35 L76 75 C76 88,62 95,50 95 C38 95,24 88,24 75 Z" fill="none" stroke="url(#gh)" stroke-width="1.8"/>
+                    <path d="M38 78 V55 L50 68 L62 55 V78" fill="none" stroke="url(#gh)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M42 5 L58 5 L62 25 L38 25 Z" fill="url(#gh)"/>
+                </svg>
+                <div style="display:flex; flex-direction:column; line-height:1;">
+                    <span style="font-family:'Cinzel',serif; font-size:20px; font-weight:800; color:#D4AF37; letter-spacing:1px; text-transform:uppercase; white-space:nowrap;">Moosa Bhai</span>
+                    <span style="font-family:'Montserrat',sans-serif; font-size:6px; color:rgba(255,255,255,0.75); text-transform:uppercase; letter-spacing:4px; font-weight:600; margin-top:3px;">FRAGRANCES</span>
+                </div>
+            </a>
+
+            <!-- CENTER: Nav Links (Desktop only) -->
+            <nav id="main-nav-links" style="display:flex; flex-direction:row; align-items:center; gap:28px; list-style:none; margin:0; padding:0; flex:1; justify-content:center;">
                 <div class="menu-close-btn mobile-only" onclick="toggleMobileMenu()">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
-                <a href="index.html">Home</a>
-                <a href="index.html#collections">Collections</a>
-                <a href="shop.html" class="active">Shop</a>
-                <a href="about.html">About Us</a>
-                <a href="info.html#contact">Contact</a>
+                <a href="index.html" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Home</a>
+                <a href="index.html#collections" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Collections</a>
+                <a href="shop.html" class="nav-active" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Shop</a>
+                <a href="about.html" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">About Us</a>
+                <a href="info.html#contact" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Contact</a>
             </nav>
 
-            <div class="header-actions">
-                <a href="javascript:void(0)" onclick="openSearch()" class="header-action-btn" aria-label="Search">
+            <!-- RIGHT: Actions -->
+            <div style="display:flex; flex-direction:row; align-items:center; gap:14px; flex-shrink:0;">
+                <a href="javascript:void(0)" onclick="openSearch()" aria-label="Search" style="color:#D4AF37; font-size:18px; text-decoration:none; display:flex; align-items:center; cursor:pointer;">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
-                <a href="javascript:void(0)" onclick="toggleCartDrawer()" class="header-cart-btn" aria-label="Cart">
+                <a href="javascript:void(0)" onclick="toggleCartDrawer()" aria-label="Cart" style="color:#D4AF37; font-size:17px; text-decoration:none; display:flex; align-items:center; justify-content:center; position:relative; width:36px; height:36px; border:1px solid rgba(212,175,55,0.3); border-radius:8px; cursor:pointer;">
                     <i class="fa-solid fa-bag-shopping"></i>
-                    <span id="cart-count-badge">0</span>
+                    <span id="cart-count-badge" style="position:absolute; top:-6px; right:-6px; background:#cc0000; color:#fff; font-size:9px; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900;">0</span>
                 </a>
-                <div class="mobile-toggle mobile-only" onclick="toggleMobileMenu()">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>
+                <!-- Mobile toggle: 3 dots — hidden on desktop, shown on mobile -->
+                <div class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display:none; cursor:pointer; padding:4px;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>
                 </div>
             </div>
         </div>
+
+        <!-- Mobile-only style to show/hide toggle -->
+        <style>
+            .menu-close-btn { display: none !important; }
+            @media (max-width: 991px) {
+                .mobile-menu-btn { display: flex !important; }
+                div.menu-close-btn { display: block !important; }
+                
+                header#main-header #main-nav-links {
+                    position: fixed !important;
+                    top: 0 !important;
+                    right: -100% !important;
+                    width: min(80%, 340px) !important;
+                    height: 100vh !important;
+                    background: #111111 !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    gap: 36px !important;
+                    margin: 0 !important;
+                    z-index: 9500 !important;
+                    transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow: -8px 0 40px rgba(0,0,0,0.7) !important;
+                    border-left: 1px solid rgba(212,175,55,0.15) !important;
+                    padding: 80px 30px 40px !important;
+                }
+                
+                header#main-header #main-nav-links.active {
+                    right: 0 !important;
+                }
+
+                header#main-header #main-nav-links .menu-close-btn {
+                    position: absolute !important;
+                    top: 20px !important;
+                    right: 25px !important;
+                    font-size: 35px !important;
+                    color: #D4AF37 !important;
+                    cursor: pointer !important;
+                }
+
+                header#main-header #main-nav-links a {
+                    font-size: 1.1rem !important;
+                    letter-spacing: 3px !important;
+                    width: 100% !important;
+                    text-align: center !important;
+                    padding: 12px 20px !important;
+                    border-bottom: 1px solid rgba(212,175,55,0.08) !important;
+                }
+            }
+        </style>
     </header>
 
     <!-- Page Header -->
