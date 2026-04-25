@@ -1465,8 +1465,62 @@ p {
     }
 
     .luxury-logo {
-        height: 55px; /* Mobile height 45-60px */
-        scale: 0.8; /* Mobile logo scaling 70-80% */
+        height: auto;
+        scale: 1;
+    }
+
+    /* Professional Footer Logo Fix */
+    .footer-luxury-logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-decoration: none;
+        margin-bottom: 25px;
+        transition: var(--transition-elite);
+    }
+
+    .footer-luxury-logo:hover {
+        opacity: 0.9;
+        transform: translateX(5px);
+    }
+
+    .footer-logo-icon {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+
+    .footer-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+
+    .footer-logo-text .brand-name {
+        font-family: 'Cinzel', serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--gold);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        display: block;
+    }
+
+    .footer-logo-text .brand-subline {
+        font-family: 'Cinzel', serif;
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: 700;
+        display: block;
+        margin-top: 2px;
+    }
+
+    @media (max-width: 480px) {
+        .footer-luxury-logo {
+            justify-content: center;
+        }
     }
 
     /* Mobile Toggle Styles - Desktop: hidden, Mobile: visible */
