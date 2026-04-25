@@ -1627,6 +1627,15 @@ p {
         right: 0 !important;
     }
 
+    header#main-header #main-nav-links .menu-close-btn {
+        position: absolute !important;
+        top: 20px !important;
+        right: 25px !important;
+        font-size: 35px !important;
+        color: #D4AF37 !important;
+        cursor: pointer !important;
+    }
+
     header#main-header #main-nav-links a {
         font-size: 1.1rem !important;
         letter-spacing: 3px !important;

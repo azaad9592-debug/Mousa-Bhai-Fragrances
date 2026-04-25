@@ -904,6 +904,9 @@
 
             <!-- CENTER: Nav Links (Desktop only) -->
             <nav id="main-nav-links" style="display:flex; flex-direction:row; align-items:center; gap:28px; list-style:none; margin:0; padding:0; flex:1; justify-content:center;">
+                <div class="menu-close-btn mobile-only" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
                 <a href="index.html" class="nav-active" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Home</a>
                 <a href="index.html#collections" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Collections</a>
                 <a href="shop.html" style="text-decoration:none; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; white-space:nowrap;">Shop</a>
@@ -954,6 +957,15 @@
                 
                 header#main-header #main-nav-links.active {
                     right: 0 !important;
+                }
+
+                header#main-header #main-nav-links .menu-close-btn {
+                    position: absolute !important;
+                    top: 20px !important;
+                    right: 25px !important;
+                    font-size: 35px !important;
+                    color: #D4AF37 !important;
+                    cursor: pointer !important;
                 }
 
                 header#main-header #main-nav-links a {

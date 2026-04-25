@@ -506,7 +506,7 @@ function init() {
 function initEliteHeader() {
     const mobileMenuBtn = document.querySelector('.mobile-toggle');
     const overlay = document.getElementById('mobile-nav-overlay');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('main-nav-links');
 
     if (mobileMenuBtn) {
         mobileMenuBtn.onclick = (e) => {
