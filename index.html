@@ -931,6 +931,39 @@
         <style>
             @media (max-width: 991px) {
                 .mobile-menu-btn { display: flex !important; }
+                
+                #main-nav-links {
+                    position: fixed !important;
+                    top: 0 !important;
+                    right: -100% !important;
+                    width: min(80%, 340px) !important;
+                    height: 100vh !important;
+                    background: #111111 !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    gap: 36px !important;
+                    margin: 0 !important;
+                    z-index: 9500 !important;
+                    transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow: -8px 0 40px rgba(0,0,0,0.7) !important;
+                    border-left: 1px solid rgba(212,175,55,0.15) !important;
+                    padding: 80px 30px 40px !important;
+                }
+                
+                #main-nav-links.active {
+                    right: 0 !important;
+                }
+
+                #main-nav-links a {
+                    font-size: 1.1rem !important;
+                    letter-spacing: 3px !important;
+                    width: 100% !important;
+                    text-align: center !important;
+                    padding: 12px 20px !important;
+                    border-bottom: 1px solid rgba(212,175,55,0.08) !important;
+                }
             }
         </style>
     </header>
