@@ -1456,6 +1456,49 @@ p {
     opacity: 1;
 }
 
+/* Professional Footer Logo Fix */
+.footer-luxury-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    margin-bottom: 25px;
+    transition: var(--transition-elite);
+}
+
+.footer-logo-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.footer-logo-text .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+}
+
+.footer-logo-text .brand-subline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6px;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 600;
+    display: block;
+    margin-top: 3px;
+}
+
 /* Mobile Responsiveness Improvements */
 @media (max-width: 992px) {
     .nav-flex {
@@ -1470,51 +1513,7 @@ p {
     }
 
     .footer-luxury-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        margin-bottom: 25px;
-        transition: var(--transition-elite);
-    }
-
-    .footer-logo-icon {
-        width: 40px;
-        height: 40px;
-        flex-shrink: 0;
-    }
-
-    .footer-logo-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1;
-    }
-
-    .footer-logo-text .brand-name {
-        font-family: 'Cinzel', serif;
-        font-size: 20px;
-        font-weight: 800;
-        color: var(--gold);
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        display: block;
-    }
-
-    .footer-logo-text .brand-subline {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 6px;
-        color: rgba(255, 255, 255, 0.75);
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        font-weight: 600;
-        display: block;
-        margin-top: 3px;
-    }
-
-    @media (max-width: 480px) {
-        .footer-luxury-logo {
-            justify-content: center;
-        }
+        justify-content: center;
     }
 
     /* Mobile Toggle Styles - Desktop: hidden, Mobile: visible */
