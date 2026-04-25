@@ -1469,52 +1469,46 @@ p {
         scale: 1;
     }
 
-    /* Professional Footer Logo Fix */
     .footer-luxury-logo {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
         text-decoration: none;
         margin-bottom: 25px;
         transition: var(--transition-elite);
     }
 
-    .footer-luxury-logo:hover {
-        opacity: 0.9;
-        transform: translateX(5px);
-    }
-
     .footer-logo-icon {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         flex-shrink: 0;
     }
 
     .footer-logo-text {
         display: flex;
         flex-direction: column;
-        line-height: 1.2;
+        line-height: 1;
     }
 
     .footer-logo-text .brand-name {
         font-family: 'Cinzel', serif;
-        font-size: 1.5rem;
+        font-size: 20px;
         font-weight: 800;
         color: var(--gold);
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
         text-transform: uppercase;
         display: block;
     }
 
     .footer-logo-text .brand-subline {
-        font-family: 'Cinzel', serif;
-        font-size: 0.6rem;
-        color: rgba(255, 255, 255, 0.8);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 6px;
+        color: rgba(255, 255, 255, 0.75);
         text-transform: uppercase;
-        letter-spacing: 5px;
-        font-weight: 700;
+        letter-spacing: 4px;
+        font-weight: 600;
         display: block;
-        margin-top: 2px;
+        margin-top: 3px;
     }
 
     @media (max-width: 480px) {
