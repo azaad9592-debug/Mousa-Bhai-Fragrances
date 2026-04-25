@@ -499,6 +499,7 @@ function init() {
     initCarouselNav();
     initSearch(); // Initialize Elite Search
     initEliteHeader(); // Failsafe Fix: Ensure header logic is initialized
+    initAnnouncementBar();
 }
 
 // --- PREMIUM LOADING SCREEN ---
@@ -709,14 +710,6 @@ function initLoadingScreen() {
         }, 800);
     }
 }
-
-// Global Initialization
-document.addEventListener('DOMContentLoaded', () => {
-    initEliteHeader();
-    initLoadingScreen();
-    // Re-trigger AOS if used or other animations
-    if (typeof initAnimations === 'function') initAnimations();
-});
 
 // --- CAROUSEL NAVIGATION ---
 function initCarouselNav() {
@@ -1067,29 +1060,34 @@ function toggleCartDrawer() {
 // ============================================================
 
 
-// ============================================================
-// PREMIUM ANNOUNCEMENT BAR ROTATOR
-// ============================================================
 function initAnnouncementBar() {
-    const bar = document.querySelector('.announcement-bar');
-    if (!bar) return;
-    const spans = bar.querySelectorAll('span');
-    if (spans.length < 2) return;
-
-    let current = 0;
+    const items = document.querySelectorAll('.top-bar-item');
+    if (items.length < 2) return;
+    
+    let currentIndex = 0;
+    
     setInterval(() => {
-        spans[current].classList.remove('active');
-        spans[current].classList.add('exit');
+        const currentItem = items[currentIndex];
+        if (!currentItem) return;
+        currentItem.classList.remove('active');
+        currentItem.classList.add('exit');
         
-        const prev = current;
-        current = (current + 1) % spans.length;
+        currentIndex = (currentIndex + 1) % items.length;
         
-        spans[current].classList.add('active');
+        const nextItem = items[currentIndex];
+        if (!nextItem) return;
+        nextItem.classList.remove('exit');
+        nextItem.classList.add('active');
         
+        // Clean up exit class after transition
         setTimeout(() => {
-            spans[prev].classList.remove('exit');
-        }, 800);
-    }, 4500);
+            items.forEach((item, index) => {
+                if (index !== currentIndex) {
+                    item.classList.remove('exit');
+                }
+            });
+        }, 600);
+    }, 4000);
 }
 
 

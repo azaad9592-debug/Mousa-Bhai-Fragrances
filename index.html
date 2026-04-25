@@ -120,33 +120,61 @@
             }
         }
 
-        /* --- TOP BAR --- */
+        /* --- TOP BAR REDESIGN --- */
         .top-bar {
-            background: linear-gradient(90deg, #800000 0%, #B8860B 50%, #800000 100%);
+            background: linear-gradient(90deg, #1a0000 0%, #3d2b1f 50%, #1a0000 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             color: var(--white);
-            padding: 6px 0;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             position: relative;
             z-index: 1001;
         }
 
-        .top-bar-scroll {
+        .top-bar-items {
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
-            white-space: nowrap;
-            animation: topBarMarquee 20s linear infinite;
+            align-items: center;
+            justify-content: center;
         }
 
-        .top-bar-scroll span {
-            padding: 0 40px;
+        .top-bar-item {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        @keyframes topBarMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .top-bar-item i {
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        .top-bar-item.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .top-bar-item.exit {
+            opacity: 0;
+            transform: translateY(-10px);
         }
 
         .mobile-toggle:hover {
@@ -697,12 +725,15 @@
             }
 
             .top-bar {
-                padding: 3px 0;
-                height: auto;
+                height: 34px;
             }
-            .top-bar-scroll span {
+            .top-bar-item {
+                font-size: 9px;
+                letter-spacing: 0.8px;
+                gap: 6px;
+            }
+            .top-bar-item i {
                 font-size: 10px;
-                letter-spacing: 1px;
             }
 
             /* Fix product-item height on mobile */
@@ -836,13 +867,16 @@
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        <div class="top-bar-scroll">
-            <span>↓ Premium Quality Fragrances at Best Prices</span>
-            <span>↓ Fast 2-Day Delivery in Karachi</span>
-            <span>↓ 3-4 Days Delivery Across Pakistan</span>
-            <span>↓ Premium Quality Fragrances at Best Prices</span>
-            <span>↓ Fast 2-Day Delivery in Karachi</span>
-            <span>↓ 3-4 Days Delivery Across Pakistan</span>
+        <div class="top-bar-items" id="announcement-bar">
+            <div class="top-bar-item active">
+                <i class="fa-solid fa-star"></i> Premium Quality Fragrances at Best Prices
+            </div>
+            <div class="top-bar-item">
+                <i class="fa-solid fa-truck-fast"></i> Fast 2-Day Delivery in Karachi
+            </div>
+            <div class="top-bar-item">
+                <i class="fa-solid fa-bolt"></i> 3-4 Days Delivery Across Pakistan
+            </div>
         </div>
     </div>
 
