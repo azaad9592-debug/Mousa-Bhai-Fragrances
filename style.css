@@ -1542,27 +1542,28 @@ p {
         display: block;
     }
 
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: min(80%, 340px);
-        height: 100vh;
-        background: #111111;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 36px;
-        margin: 0;
-        z-index: 9500;
-        transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -8px 0 40px rgba(0,0,0,0.7);
-        border-left: 1px solid rgba(212,175,55,0.15);
-        padding: 80px 30px 40px;
+    #main-nav-links {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: min(80%, 340px) !important;
+        height: 100vh !important;
+        background: #111111 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 36px !important;
+        margin: 0 !important;
+        z-index: 9500 !important;
+        transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: -8px 0 40px rgba(0,0,0,0.7) !important;
+        border-left: 1px solid rgba(212,175,55,0.15) !important;
+        padding: 80px 30px 40px !important;
     }
 
-    .nav-links.active {
-        right: 0;
+    #main-nav-links.active {
+        right: 0 !important;
     }
 
     .nav-links a {
@@ -3651,45 +3652,6 @@ p {
 .header-action-btn:hover, .header-cart-btn:hover {
     color: #fff !important;
     transform: translateY(-2px);
-}
-/* ABSOLUTE MOBILE MENU FAILSAFE FIX */
-@media (max-width: 991px) {
-    #main-nav-links {
-        position: fixed !important;
-        top: 0 !important;
-        right: -100% !important;
-        width: 320px !important;
-        height: 100vh !important;
-        background: #ffffff !important;
-        z-index: 20000 !important;
-        display: none !important; /* JS will change this to flex when active */
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        padding: 90px 0 40px !important;
-        box-shadow: -20px 0 60px rgba(0,0,0,0.15) !important;
-        overflow-y: auto !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-    }
-
-    #main-nav-links.active {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        right: 0 !important;
-    }
-
-    #main-nav-links a {
-        color: #111111 !important;
-        display: block !important;
-        padding: 18px 30px !important;
-        border-bottom: 1px solid #eeeeee !important;
-        font-weight: 700 !important;
-        font-size: 15px !important;
-        text-align: left !important;
-    }
 }
 
 .mobile-nav-overlay {

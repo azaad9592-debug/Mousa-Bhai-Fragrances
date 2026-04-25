@@ -544,23 +544,11 @@ function toggleMobileMenu() {
 
     const isActive = navLinks.classList.toggle('active');
     
-    // FAILSAFE DIRECT STYLE MANIPULATION
-    if (isActive) {
-        navLinks.style.display = 'flex';
-        navLinks.style.visibility = 'visible';
-        navLinks.style.opacity = '1';
-        navLinks.style.right = '0';
-        navLinks.style.zIndex = '20000';
-    } else {
-        navLinks.style.display = 'none';
-        navLinks.style.visibility = 'hidden';
-        navLinks.style.opacity = '0';
-        navLinks.style.right = '-100%';
-    }
+    // Let CSS handle the visibility and sliding transition via the .active class
+    // Removed inline style manipulation that was killing transitions and causing conflicts.
 
     if (overlay) {
         overlay.classList.toggle('active', isActive);
-        overlay.style.display = isActive ? 'block' : 'none';
         overlay.style.zIndex = '19999';
     }
     
