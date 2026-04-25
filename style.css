@@ -1597,7 +1597,10 @@ p {
         .mobile-only {
             display: flex !important;
         }
+        div.menu-close-btn { display: block !important; }
     }
+
+    .menu-close-btn { display: none !important; }
 
     .mobile-nav-overlay {
         display: block;
