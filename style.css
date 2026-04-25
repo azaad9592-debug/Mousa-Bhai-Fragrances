@@ -1546,7 +1546,7 @@ p {
         display: block;
     }
 
-    #main-nav-links {
+    header#main-header #main-nav-links {
         position: fixed !important;
         top: 0 !important;
         right: -100% !important;
@@ -1566,17 +1566,17 @@ p {
         padding: 80px 30px 40px !important;
     }
 
-    #main-nav-links.active {
+    header#main-header #main-nav-links.active {
         right: 0 !important;
     }
 
-    .nav-links a {
-        font-size: 1.1rem;
-        letter-spacing: 3px;
-        width: 100%;
-        text-align: center;
-        padding: 12px 20px;
-        border-bottom: 1px solid rgba(212,175,55,0.08);
+    header#main-header #main-nav-links a {
+        font-size: 1.1rem !important;
+        letter-spacing: 3px !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+        border-bottom: 1px solid rgba(212,175,55,0.08) !important;
     }
 
     .nav-links a:last-child {

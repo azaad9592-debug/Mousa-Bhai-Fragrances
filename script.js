@@ -549,14 +549,14 @@ function toggleMobileMenu() {
 
     if (overlay) {
         overlay.classList.toggle('active', isActive);
-        overlay.style.zIndex = '19999';
+        overlay.style.zIndex = '8999';
     }
     
     document.body.style.overflow = isActive ? 'hidden' : '';
 
     if (toggleBtn) {
         if (isActive) {
-            toggleBtn.innerHTML = '<i class="fa-solid fa-xmark" style="font-size: 30px; color: #111;"></i>';
+            toggleBtn.innerHTML = '<i class="fa-solid fa-xmark" style="font-size: 30px; color: #D4AF37;"></i>';
             toggleBtn.style.zIndex = '20001'; // Ensure X is always on top
         } else {
             toggleBtn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="5" r="2" fill="#D4AF37"/><circle cx="12" cy="12" r="2" fill="#D4AF37"/><circle cx="12" cy="19" r="2" fill="#D4AF37"/></svg>';
