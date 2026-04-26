@@ -180,6 +180,13 @@ function initAdminWidget() {
 
 // --- RENDERING ---
 function renderProducts() {
+    const newArrivalsPageGrid = document.getElementById('new-arrivals-page-grid');
+    if (newArrivalsPageGrid) {
+        const newArrivals = products.filter(p => p.isNew || p.isNewArrival);
+        newArrivalsPageGrid.innerHTML = newArrivals.map(p => generateProductCard(p)).join('');
+        initAnimations();
+    }
+
     const bestSellersGrid = document.getElementById('best-sellers-grid');
     if (bestSellersGrid) {
         const bestSellers = products.filter(p => p.isBestSeller);
