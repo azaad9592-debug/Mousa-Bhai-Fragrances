@@ -618,38 +618,11 @@ header#main-header .brand-subtitle {
 }
 
 /* ── CENTER: Nav Links ── */
-header#main-header .nav-links {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 28px !important;
-    list-style: none !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    flex: 1 1 auto !important;
-    justify-content: center !important;
-}
 
-header#main-header .nav-links a,
-header#main-header .nav-links li a {
-    display: inline-block !important;
-    text-decoration: none !important;
-    color: rgba(255,255,255,0.75) !important;
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.8px !important;
-    transition: color 0.2s !important;
-    white-space: nowrap !important;
-}
 
-header#main-header .nav-links a:hover,
-header#main-header .nav-links a.active,
-header#main-header .nav-links li a:hover,
-header#main-header .nav-links li a.active {
-    color: #D4AF37 !important;
-}
+
+
+
 
 /* ── RIGHT: Actions ── */
 header#main-header .header-actions {
@@ -711,27 +684,7 @@ header#main-header .mobile-toggle {
 }
 
 /* ── MOBILE: ≤ 991px ── */
-@media (max-width: 991px) {
-    header#main-header {
-        padding: 8px 0 !important;
-    }
 
-    header#main-header .header-container {
-        justify-content: space-between !important;
-    }
-
-    /* Hide desktop nav on mobile */
-    header#main-header .nav-links {
-        display: none !important;
-    }
-
-    /* Show 3-dot toggle on mobile */
-    header#main-header .mobile-toggle {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-    }
 
     header#main-header .logo-img {
         width: 32px !important;
@@ -1502,20 +1455,8 @@ p {
 }
 
 /* Mobile nav overlay: hidden by default */
-.mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 9400;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-.mobile-nav-overlay.active {
-    opacity: 1;
-}
+
+
 
 /* Professional Footer Logo Fix */
 .footer-luxury-logo {
@@ -1631,9 +1572,7 @@ p {
         display: none !important;
     }
 
-    .mobile-nav-overlay {
-        display: none !important;
-    }
+    
 }
 
 /* Custom Scrollbar */
@@ -2832,16 +2771,7 @@ p {
 }
 
 /* Overlay that dims the page when menu is open */
-.mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 1900;
-    backdrop-filter: blur(2px);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
+
 
 /* ---- Responsive breakpoints ---- */
 
@@ -3273,8 +3203,8 @@ p {
 .header-action-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.2); color: var(--gold); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition-elite); position: relative; padding: 0; }
 .header-action-btn:hover { background: rgba(212,175,55,0.1); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.2); }
 #cart-count-badge { position: absolute; top: -4px; right: -4px; background: var(--gold-premium); color: #000; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid #0A0A0A; z-index: 5; }
-.mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s; }
-.mobile-nav-overlay.active { opacity: 1; visibility: visible; }@media (max-width: 480px) {
+
+@media (max-width: 480px) {
     .nav-actions { gap: 6px; }
     .header-action-btn { width: 36px; height: 36px; }
     .logo-flex { gap: 8px; }
@@ -3321,10 +3251,7 @@ p {
 .desktop-only { display: flex; }
 .mobile-only { display: none; }
 
-@media (max-width: 991px) {
-    .desktop-only { display: none !important; }
-    .mobile-only { display: flex !important; }
-    .mobile-toggle { display: flex !important; }
+
 }
 
 /* Luxury Product Card Volume Badge */
@@ -3639,10 +3566,7 @@ p {
     justify-content: center;
 }
 
-@media (max-width: 991px) {
-    .mobile-toggle.mobile-only {
-        display: flex !important;
-    }
+
     .mobile-toggle:active {
         background: rgba(212, 175, 55, 0.1);
         transform: scale(0.9);
@@ -3654,14 +3578,5 @@ p {
     transform: translateY(-2px);
 }
 
-.mobile-nav-overlay {
-    position: fixed !important;
-    inset: 0 !important;
-    background: rgba(0,0,0,0.7) !important;
-    z-index: 19999 !important;
-    display: none;
-    backdrop-filter: blur(5px);
-}
-.mobile-nav-overlay.active {
-    display: block !important;
-}
+
+
