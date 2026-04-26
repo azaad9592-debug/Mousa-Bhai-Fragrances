@@ -96,7 +96,7 @@ const DEFAULT_PRODUCTS = [
 // VERSION STAMP â€” bump this string whenever products change
 // so stale localStorage is automatically wiped on next load
 // ============================================================
-const CACHE_VERSION = '3.0';
+const CACHE_VERSION = '4.0';
 if (localStorage.getItem('musa_cache_v') !== CACHE_VERSION) {
     localStorage.removeItem('musa_products');
     localStorage.removeItem('musa_cart'); // Clear cart to avoid corruption
@@ -132,6 +132,7 @@ DEFAULT_PRODUCTS.forEach(defaultProd => {
         if (existing.isNewArrival !== defaultProd.isNewArrival) { existing.isNewArrival = defaultProd.isNewArrival; changed = true; }
         if (existing.isFreshAttar !== defaultProd.isFreshAttar) { existing.isFreshAttar = defaultProd.isFreshAttar; changed = true; }
         if (existing.brand !== defaultProd.brand) { existing.brand = defaultProd.brand; changed = true; }
+        if (existing.isBestSeller !== defaultProd.isBestSeller) { existing.isBestSeller = defaultProd.isBestSeller; changed = true; }
         if (changed) updated = true;
     }
 });
