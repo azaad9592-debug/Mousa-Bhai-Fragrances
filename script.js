@@ -1,44 +1,44 @@
 // --- PRODUCT DATABASE (Local + Default) ---
 const DEFAULT_PRODUCTS = [
-    { id: 1, name: "Wurood", price: "2999", category: "Premium Fragrance", image: "assets/images/wurood-rs-2999.jpeg" },
-    { id: 2, name: "Black Scent", price: "1899", category: "Premium Fragrance", image: "assets/images/black-scent-rs-1899.jpeg" },
-    { id: 3, name: "ROMANCE", price: "2999", category: "Premium Fragrance", image: "assets/images/romance-2999.jpeg" },
-    { id: 4, name: "Tiger Black", price: "1799", category: "Premium Fragrance", image: "assets/images/tiger-black-rs-1799.jpeg" },
-    { id: 5, name: "AL-WATANI", price: "1799", category: "Premium Fragrance", image: "assets/images/al-watani-rs-1799.jpeg" },
-    { id: 6, name: "Noble Man", price: "1999", category: "Premium Fragrance", image: "assets/images/noble-man-rs-1999.jpeg" },
-    { id: 7, name: "DIVINE", price: "1699", category: "Premium Fragrance", image: "assets/images/divine-rs-1699.jpeg" },
-    { id: 8, name: "HISTORY", price: "2499", category: "Premium Fragrance", image: "assets/images/history-rs-2499.jpeg" },
-    { id: 9, name: "MAXI", price: "4999", category: "Premium Fragrance", image: "assets/images/maxi-rs-4999.jpeg" },
+    { id: 1, name: "Wurood", price: "2999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/wurood-rs-2999.jpeg" },
+    { id: 2, name: "Black Scent", price: "1899", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/black-scent-rs-1899.jpeg" },
+    { id: 3, name: "ROMANCE", price: "2999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/romance-2999.jpeg" },
+    { id: 4, name: "Tiger Black", price: "1799", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/tiger-black-rs-1799.jpeg" },
+    { id: 5, name: "AL-WATANI", price: "1799", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/al-watani-rs-1799.jpeg" },
+    { id: 6, name: "Noble Man", price: "1999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/noble-man-rs-1999.jpeg" },
+    { id: 7, name: "DIVINE", price: "1699", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/divine-rs-1699.jpeg" },
+    { id: 8, name: "HISTORY", price: "2499", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/history-rs-2499.jpeg" },
+    { id: 9, name: "MAXI", price: "4999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/maxi-rs-4999.jpeg" },
     { id: 10, name: "NTA By BLAZER", price: "1599", category: "Premium Fragrance", image: "assets/images/nta-by-blazer-rs-1599.jpeg" },
     { id: 11, name: "TEA ROSE MESK", price: "1999", category: "Premium Fragrance", image: "assets/images/tea-rose-mesk-rs-1999.jpeg" },
     { id: 12, name: "MUSK AL-HAWAMEER", price: "2499", category: "Premium Fragrance", image: "assets/images/musk-al-hawameer-rs-2499.jpeg" },
     { id: 13, name: "NAJOOM", price: "1699", category: "Premium Fragrance", image: "assets/images/najoom-rs-1699.jpeg" },
-    { id: 14, name: "MARQUIS", price: "3799", category: "Premium Fragrance", image: "assets/images/marquis-rs-3799.jpeg" },
+    { id: 14, name: "MARQUIS", price: "3799", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/marquis-rs-3799.jpeg" },
     { id: 15, name: "KHUMAR", price: "4499", category: "Premium Fragrance", image: "assets/images/khumaar-rs-4499.jpeg" },
-    { id: 16, name: "JANAN SPORT By J.", price: "6299", category: "Premium Fragrance", image: "assets/images/janan-sports-by-j.-rs-6299.jpeg" },
+    { id: 16, name: "JANAN SPORT By J.", price: "6299", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/janan-sports-by-j.-rs-6299.jpeg" },
     { id: 17, name: "JANAN OUD By J.", price: "6299", category: "Premium Fragrance", image: "assets/images/janan-oud-by-j.-rs-6299.jpeg" },
-    { id: 18, name: "WHITE MUSK BY J.", price: "4999", category: "Premium Fragrance", image: "assets/images/white-musk-rs-4999.jpeg" },
+    { id: 18, name: "WHITE MUSK BY J.", price: "4999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/white-musk-rs-4999.jpeg" },
     { id: 19, name: "MARJ By AHMED AL-MAGHRABI", price: "13999", category: "Premium Fragrance", image: "assets/images/marj-by-ahmed-al-maghrabi-rs-13999.jpeg" },
-    { id: 20, name: "KAAF", price: "6999", category: "Premium Fragrance", image: "assets/images/kaaf-rs-699.jpeg" },
+    { id: 20, name: "KAAF", price: "6999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/kaaf-rs-699.jpeg" },
     { id: 21, name: "Blue Lady", price: "2999", category: "Premium Fragrance", image: "assets/images/blue-lady-rs-2999.jpeg" },
     { id: 22, name: "AL-FARAS", price: "3499", category: "Premium Fragrance", image: "assets/images/al-faras-rs3499.jpeg" },
-    { id: 23, name: "LAMSAT HARIR", price: "2999", category: "Premium Fragrance", image: "assets/images/lamsat-harir-rs--2999.jpeg" },
-    { id: 24, name: "MOUSOF", price: "3999", category: "Premium Fragrance", image: "assets/images/mousof-rs-3999.jpeg" },
+    { id: 23, name: "LAMSAT HARIR", price: "2999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/lamsat-harir-rs--2999.jpeg" },
+    { id: 24, name: "MOUSOF", price: "3999", isBestSeller: true, category: "Premium Fragrance", image: "assets/images/mousof-rs-3999.jpeg" },
     { id: 25, name: "OUD HAYAT", price: "2999", category: "Premium Fragrance", image: "assets/images/oud-hayat-rs-2999.jpeg" },
     { id: 26, name: "UROOSA By J.", price: "3499", category: "Premium Fragrance", image: "assets/images/uroosa-by-j.-rs-3499.jpeg" },
     { id: 27, name: "Wurood 4 by Rasasi", price: "4499", category: "Premium Fragrance", image: "assets/images/wardat-4-by-rasasi-rs-4499.jpeg" },
-    { id: 28, name: "Musk Silk Ajmal", price: "4999", category: "Attar", image: "assets/images/musk-silk-ajmal-rs-4999.jpeg" },
+    { id: 28, name: "Musk Silk Ajmal", price: "4999", isBestSeller: true, category: "Attar", image: "assets/images/musk-silk-ajmal-rs-4999.jpeg" },
     { id: 29, name: "Applause", price: "2999", category: "Attar", image: "assets/images/applause-12ml-rs-2999.jpeg" },
     { id: 30, name: "Ashwaaq", price: "2599", category: "Attar", image: "assets/images/ashwaaq-12ml-rs-2599.jpeg" },
     { id: 31, name: "Lucky", price: "2799", category: "Attar", image: "assets/images/lucky-12ml-rs-2799.jpeg" },
     { id: 32, name: "Malika", price: "3599", category: "Attar", image: "assets/images/malika-12ml-rs-3599.jpeg" },
     { id: 33, name: "Musk Rose", price: "3499", category: "Attar", image: "assets/images/musk-rose-12ml-rs-3499.jpeg" },
     { id: 34, name: "Oud E Aswad", price: "5999", category: "Attar", image: "assets/images/oud-e-aswad-12ml-rs-5999.jpeg" },
-    { id: 35, name: "Oudh O Oudh", price: "3999", category: "Attar", image: "assets/images/oudh-o-oudh-12ml-rs-3999.jpeg" },
+    { id: 35, name: "Oudh O Oudh", price: "3999", isBestSeller: true, category: "Attar", image: "assets/images/oudh-o-oudh-12ml-rs-3999.jpeg" },
     { id: 36, name: "Sweet Oud", price: "3499", category: "Attar", image: "assets/images/sweet-oud-12ml-rs-3499.jpeg" },
     { id: 37, name: "Ward No 1", price: "1599", category: "Attar", image: "assets/images/ward-no1-12ml-rs-1599.jpeg" },
     { id: 38, name: "Ward E Khaas", price: "1999", category: "Attar", image: "assets/images/ward-e-khaas-12ml-rs1999.jpeg" },
-    { id: 39, name: "Amber Oud", price: "3499", category: "Attar", brand: "Surrati", image: "assets/images/amber-oud-by-surrati-rs-3499.jpeg" },
+    { id: 39, name: "Amber Oud", price: "3499", isBestSeller: true, category: "Attar", brand: "Surrati", image: "assets/images/amber-oud-by-surrati-rs-3499.jpeg" },
     { id: 40, name: "Banafsaji", price: "3499", category: "Attar", brand: "Surrati", image: "assets/images/banafsaji-by-surrati-rs-3499.jpeg" },
     { id: 41, name: "Black Oud", price: "3499", category: "Attar", brand: "Surrati", image: "assets/images/black-oud-by-surrati-rs-3499.jpeg" },
     { id: 42, name: "Dehan Oud Ateeq", price: "5999", category: "Attar", brand: "Surrati", image: "assets/images/dehan-oud-ateeq-by-surrati-rs-5999.jpeg" },
@@ -50,7 +50,7 @@ const DEFAULT_PRODUCTS = [
     { id: 48, name: "Musk Abiyad", price: "2799", category: "Afnan", image: "assets/images/musk-abiyad-by-afnan-rs-2799.jpeg" },
     { id: 49, name: "Alifun Lailatun Wa Lailah", price: "2799", category: "Attar", isNew: true, image: "assets/images/alifun-lailatun--wa-lailah-12ml-rs-2799.jpeg" },
     { id: 50, name: "Ameer Ul Oud", price: "1499", category: "Attar", isNew: true, image: "assets/images/ameer-ul-oud-12ml-rs-1499.jpeg" },
-    { id: 51, name: "Aventus Creed", price: "1699", category: "Attar", isNew: true, image: "assets/images/aventus-creed-12ml-rs-1699.jpeg" },
+    { id: 51, name: "Aventus Creed", price: "1699", isBestSeller: true, category: "Attar", isNew: true, image: "assets/images/aventus-creed-12ml-rs-1699.jpeg" },
     { id: 52, name: "Bad E Saba", price: "1599", category: "Attar", isNew: true, image: "assets/images/bad-e-saba-12ml-rs-1599.jpeg" },
     { id: 53, name: "Bakarat", price: "1599", category: "Attar", isNew: true, image: "assets/images/bakarat-12ml-rs-1599.jpeg" },
     { id: 54, name: "Dehan Oud Combodi", price: "7999", category: "Attar", isNewArrival: true, image: "assets/images/dehan-oud-combodi-12ml-rs-7999.jpeg" },
@@ -68,7 +68,7 @@ const DEFAULT_PRODUCTS = [
     { id: 66, name: "One Man Show", price: "999", category: "Attar", isNewArrival: true, image: "assets/images/one-man-show-12ml-rs-999.jpeg" },
     { id: 67, name: "Oud Asfahan", price: "1799", category: "Attar", isNewArrival: true, image: "assets/images/oud-asfahan-12ml-rs-1799.jpeg" },
     { id: 68, name: "Oud Mood", price: "3799", category: "Attar", isNewArrival: true, image: "assets/images/oud-mood-12ml-rs-3799.jpeg" },
-    { id: 69, name: "Oud for Greatness", price: "1599", category: "Attar", isNewArrival: true, image: "assets/images/oud-for-greatness-12ml-rs-1599.jpeg" },
+    { id: 69, name: "Oud for Greatness", price: "1599", isBestSeller: true, category: "Attar", isNewArrival: true, image: "assets/images/oud-for-greatness-12ml-rs-1599.jpeg" },
     { id: 70, name: "Qissa", price: "1999", category: "Attar", isNewArrival: true, image: "assets/images/qissa-12ml-rs-1999.jpeg" },
     { id: 71, name: "Sewaaj", price: "1399", category: "Attar", isNewArrival: true, image: "assets/images/sewaaj-12ml-rs-1399.jpeg" },
     { id: 72, name: "Shamamat Ul Amber", price: "4999", category: "Attar", isNewArrival: true, image: "assets/images/shamamat-ul-amber-12ml-rs-4999.jpeg" },
@@ -179,6 +179,13 @@ function initAdminWidget() {
 
 // --- RENDERING ---
 function renderProducts() {
+    const bestSellersGrid = document.getElementById('best-sellers-grid');
+    if (bestSellersGrid) {
+        const bestSellers = products.filter(p => p.isBestSeller);
+        bestSellersGrid.innerHTML = bestSellers.map(p => generateProductCard(p)).join('');
+        initAnimations();
+    }
+
     const featuredGrid = document.getElementById('featured-products-slider');
     if (featuredGrid) {
         featuredGrid.innerHTML = products.slice(0, 15).map(p => generateProductCard(p)).join('');
