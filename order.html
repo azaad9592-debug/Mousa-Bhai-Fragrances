@@ -214,7 +214,7 @@
                     <input type="text" id="transaction-id" placeholder="Enter payment proof details" required>
                 </div>
 
-                <button type="submit" class="submit-btn">Send Order via WhatsApp</button>
+                <button type="submit" class="submit-btn">Send Order via Email</button>
             </form>
 
             <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Boutique</a>
@@ -232,17 +232,18 @@
             const method = document.getElementById('payment-method').value;
             const tid = document.getElementById('transaction-id').value;
 
-            const message = `*Musa Bhai Fragrances - New Order*%0A%0A` +
-                            `*Customer Name:* ${name}%0A` +
-                            `*WhatsApp:* ${whatsapp}%0A` +
-                            `*Perfume Details:* ${details}%0A` +
-                            `*Total Amount:* PKR ${amount}%0A` +
-                            `*Payment Method:* ${method}%0A` +
-                            `*Transaction ID:* ${tid}%0A%0A` +
-                            `_Please confirm my order. Thank you!_`;
+            const subject = `New Order from ${name}`;
+            const body = `Musa Bhai Fragrances - New Order%0D%0A%0D%0A` +
+                         `Customer Name: ${name}%0D%0A` +
+                         `WhatsApp: ${whatsapp}%0D%0A` +
+                         `Perfume Details: ${details}%0D%0A` +
+                         `Total Amount: PKR ${amount}%0D%0A` +
+                         `Payment Method: ${method}%0D%0A` +
+                         `Transaction ID: ${tid}%0D%0A%0D%0A` +
+                         `Please confirm my order. Thank you!`;
 
-            const waLink = `https://wa.me/923101131981?text=${message}`;
-            window.open(waLink, '_blank');
+            const mailtoLink = `mailto:moosakhanbaloch672@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            window.location.href = mailtoLink;
         });
     </script>
 </body>
